@@ -1,145 +1,292 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ファーストエイドライン｜緊急配送の判断基準を公開</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ファーストエイドライン｜緊急配送・判断基準を公開</title>
+  <meta name="description" content="緊急配送・特急便・スポット配送。安全最優先の判断基準を公開し、緊急時に真っ先に声がかかる物流会社を目指します。" />
   <style>
-    body {
-      margin: 0;
-      font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
-      background: #0b1020;
-      color: #eaf0ff;
-      line-height: 1.7;
+    :root{
+      --bg:#0b1020; --panel:#0f1835; --text:#eaf0ff; --muted:#b8c3e6;
+      --line:rgba(234,240,255,.12); --accent:#ff3b3b; --accent2:#3be1ff;
+      --shadow:0 12px 40px rgba(0,0,0,.35); --radius:18px; --max:1120px;
     }
-    header {
-      padding: 80px 20px;
-      background: linear-gradient(180deg, #0b1020, #0f1733);
-      text-align: center;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% -10%, rgba(59,225,255,.14), transparent 60%),
+        radial-gradient(1200px 800px at 80% 10%, rgba(255,59,59,.14), transparent 55%),
+        var(--bg);
+      line-height:1.65;
     }
-    header h1 {
-      font-size: 32px;
-      margin-bottom: 20px;
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px;}
+    .topbar{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter: blur(10px);
+      background: rgba(11,16,32,.70);
+      border-bottom: 1px solid var(--line);
     }
-    header p {
-      font-size: 18px;
-      opacity: 0.9;
+    .topbar .wrap{display:flex; align-items:center; justify-content:space-between; padding:12px 20px; gap:12px;}
+    .brand{display:flex; align-items:center; gap:10px; min-width:220px;}
+    .logo{width:40px; height:40px; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--accent2)); box-shadow:var(--shadow);}
+    .nav{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px; white-space:nowrap;
+      border:1px solid var(--line); padding:10px 12px; border-radius:999px;
+      background: rgba(255,255,255,.04); text-decoration:none;
+      transition:transform .15s ease, background .15s ease;
+      font-weight:900; font-size:13px;
     }
-    section {
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: auto;
+    .chip:hover{transform:translateY(-1px); background:rgba(255,255,255,.07);}
+    .chip.primary{border-color:rgba(255,59,59,.35); background:rgba(255,59,59,.12);}
+    .hero{
+      position:relative; overflow:hidden; border-bottom:1px solid var(--line);
+      min-height: 420px;
     }
-    h2 {
-      font-size: 26px;
-      margin-bottom: 20px;
-      border-left: 4px solid #6aa9ff;
-      padding-left: 12px;
+    .hero::before{
+      content:""; position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(11,16,32,.18), rgba(11,16,32,.95)),
+        url("https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=2400&q=70");
+      background-size:cover; background-position:center;
+      transform:scale(1.03);
     }
-    .card {
-      background: #141b3d;
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 24px;
+    .hero .wrap{
+      position:relative;
+      padding:70px 20px 46px;
+      display:grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap:22px;
+      align-items:end;
     }
-    ul {
-      padding-left: 20px;
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      padding:8px 12px; border-radius:999px;
+      width:fit-content; font-weight:900; font-size:13px;
     }
-    li {
-      margin-bottom: 10px;
+    h1{margin:14px 0 10px; font-size:clamp(28px,4.2vw,52px); line-height:1.12; letter-spacing:.01em;}
+    .lead{margin:0; color:rgba(234,240,255,.92); font-size:clamp(16px,1.4vw,19px); max-width:60ch;}
+    .pillrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+    .pill{border:1px solid var(--line); background:rgba(255,255,255,.05); padding:10px 12px; border-radius:999px; font-weight:1000; font-size:13px;}
+    .hero-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:13px 16px; border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      text-decoration:none;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+      transition:transform .15s ease, background .15s ease;
+      font-weight:1000;
     }
-    footer {
-      padding: 40px 20px;
-      text-align: center;
-      background: #0b1020;
-      opacity: 0.7;
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.09);}
+    .btn.danger{border-color:rgba(255,59,59,.55); background:linear-gradient(135deg, rgba(255,59,59,.95), rgba(255,59,59,.55));}
+    .btn.info{border-color:rgba(59,225,255,.55); background:linear-gradient(135deg, rgba(59,225,255,.34), rgba(59,225,255,.12));}
+    section{padding:54px 0;}
+    .panel{background:rgba(15,24,53,.74); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:stretch;}
+    .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+    .h2{margin:0 0 12px; font-size:clamp(22px,2.5vw,34px); letter-spacing:.01em;}
+    .sub{color:var(--muted); margin:0 0 18px;}
+    .list{margin:0; padding:0; list-style:none; display:grid; gap:10px;}
+    .list li{border:1px solid var(--line); background:rgba(255,255,255,.05); padding:12px; border-radius:14px; display:flex; gap:10px;}
+    .dot{width:10px; height:10px; border-radius:999px; background:linear-gradient(135deg,var(--accent),var(--accent2)); margin-top:8px; flex:0 0 auto;}
+    .card{border:1px solid var(--line); background:rgba(255,255,255,.05); border-radius:var(--radius); padding:18px;}
+    .card h3{margin:0 0 8px; font-size:18px;}
+    .small{color:rgba(234,240,255,.86); font-size:13px;}
+    .footer{padding:24px 0 34px; color:rgba(234,240,255,.72); border-top:1px solid var(--line); font-size:12px;}
+    .footgrid{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+    .float{position:fixed; right:16px; bottom:16px; z-index:50; display:flex; flex-direction:column; gap:10px;}
+    .float a{
+      border-radius:999px; padding:12px 14px;
+      display:inline-flex; gap:10px; align-items:center; justify-content:center;
+      text-decoration:none; border:1px solid var(--line);
+      box-shadow:var(--shadow); background:rgba(15,24,53,.90); backdrop-filter: blur(10px);
+      font-weight:1000;
+    }
+    .float a.primary{background:rgba(255,59,59,.92); border-color:rgba(255,59,59,.55);}
+    .float a.secondary{background:rgba(59,225,255,.18); border-color:rgba(59,225,255,.45);}
+    @media (max-width: 920px){
+      .hero .wrap{grid-template-columns:1fr; padding:54px 20px 40px;}
+      .grid3{grid-template-columns:1fr;}
+      .grid2{grid-template-columns:1fr;}
+      .nav{display:none;}
+      .brand{min-width:unset}
+      .hero{min-height:unset}
     }
   </style>
 </head>
-
 <body>
 
-<header>
-  <h1>緊急だからこそ、安全を最優先にする</h1>
-  <p>
-    私たちは「早さ」よりも「正しい判断」を選ぶ、<br>
-    緊急対応に特化した物流会社です。
-  </p>
-</header>
+  <div class="topbar" role="banner">
+    <div class="wrap">
+      <div class="brand" aria-label="ブランド">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <b>ファーストエイドライン</b><br>
+          <span style="color:var(--muted); font-size:12px;">荷物の救急隊｜24時間365日</span>
+        </div>
+      </div>
 
-<section>
-  <h2>私たちの基本姿勢</h2>
-  <div class="card">
-    <p>
-      事業活動におけるすべての判断において、<br>
-      <strong>安全を最優先とする。</strong>
-    </p>
-    <p>
-      緊急時であっても、無理な運行や判断を正当化しません。
-      人と社会を守ることを、何よりも優先します。
-    </p>
+      <nav class="nav" aria-label="グローバルナビ">
+        <a class="chip" href="./philosophy/">理念</a>
+        <a class="chip" href="./company/">会社概要</a>
+        <a class="chip" href="./recruit/">採用</a>
+        <a class="chip primary" href="#contact">今すぐ相談</a>
+      </nav>
+
+      <!-- ★差し替え：電話番号 -->
+      <a class="chip primary" href="tel:000-0000-0000">📞 000-0000-0000</a>
+    </div>
   </div>
-</section>
 
-<section>
-  <h2>判断基準を公開します</h2>
-  <div class="card">
-    <ul>
-      <li>安全が担保できない場合、運行は中止・変更します</li>
-      <li>判断に迷う場合は、必ず複数人で決定します</li>
-      <li>一人に責任を押しつけません</li>
-      <li>理由を説明できない判断は行いません</li>
-    </ul>
+  <header class="hero">
+    <div class="wrap">
+      <div>
+        <div class="kicker">🚨 緊急配送・特急便・スポット配送</div>
+        <h1>緊急だからこそ、<br>「安全」を最優先にします。</h1>
+        <p class="lead">
+          私たちは、社会インフラの一翼として、<b>人命と社会を支える物流のプロフェッショナル</b>。<br>
+          緊急時ほど冷静に、誠実に。「間に合う」と「安全」を両立させる判断を徹底します。
+        </p>
+
+        <div class="pillrow">
+          <div class="pill">安全最優先</div>
+          <div class="pill">判断基準を公開</div>
+          <div class="pill">24時間365日</div>
+        </div>
+
+        <div class="hero-cta">
+          <a class="btn danger" href="tel:000-0000-0000">📞 今すぐ電話で相談</a>
+          <a class="btn info" href="https://example.com/line" target="_blank" rel="noopener">💬 LINEで相談</a>
+          <a class="btn" href="#decision">▶ 判断基準を見る</a>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <b style="display:block; font-size:18px; margin-bottom:6px;">最短で判断するために</b>
+        <div class="small" style="color:var(--muted);">
+          ①集荷地　②届け先　③希望時間　④荷物（サイズ/重量/内容）<br>
+          この4点だけで、可否と最適手段を即回答します。
+        </div>
+
+        <ul class="list" style="margin-top:12px;">
+          <li><span class="dot"></span><div><b>迷ったら安全側</b>で判断します</div></li>
+          <li><span class="dot"></span><div><b>無理は一人で抱えない</b>運用です</div></li>
+          <li><span class="dot"></span><div><b>判断理由を共有</b>し、再発防止へ</div></li>
+        </ul>
+
+        <p class="small" style="margin-top:12px; color:rgba(234,240,255,.78);">
+          ※電話番号/LINE/メールは本番用に差し替えてください。
+        </p>
+      </aside>
+    </div>
+  </header>
+
+  <section id="decision">
+    <div class="wrap">
+      <h2 class="h2">他社には真似できない理由</h2>
+      <p class="sub">私たちは「早さ」よりも「正しい判断」を優先します。緊急時こそ、安全と誠実さを守ります。</p>
+
+      <div class="grid3">
+        <div class="card">
+          <h3>判断基準を公開します</h3>
+          <p class="small">緊急時でも、次の基準を超える判断は行いません。</p>
+          <ul class="list" style="margin-top:10px;">
+            <li><span class="dot"></span><div>安全が担保できない場合、運行は中止・変更する</div></li>
+            <li><span class="dot"></span><div>迷うときは、複数人で判断する</div></li>
+            <li><span class="dot"></span><div>一人に責任を押しつけない</div></li>
+            <li><span class="dot"></span><div>理由を説明できない判断はしない</div></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>「運ばない」判断もします</h3>
+          <p class="small">すべての依頼を受ける会社ではありません。安全のために、断ることがあります。</p>
+          <div class="panel" style="margin-top:10px;">
+            <b>（サンプル）運行を見送ったケース</b><br>
+            <span class="small" style="color:rgba(234,240,255,.86);">
+              ・ドライバーの連続稼働で判断力低下の恐れ<br>
+              ・天候悪化により二次事故リスクが高い<br>
+              ・到着時間を守れない可能性が高い
+            </span>
+            <p class="small" style="margin:10px 0 0;">
+              取引にならないことがあっても、私たちはその判断を正解だと考えています。
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>現場の声を無加工で</h3>
+          <p class="small">きれいな言葉ではなく、現場のリアルで信頼をつくります。</p>
+          <div class="panel" style="margin-top:10px;">
+            <p class="small" style="margin:0 0 10px;"><b>現場の判断メモ（例）</b></p>
+            <p class="small" style="margin:0 0 10px;">「正直、行けと言われたら行っていたと思う。<br>でも“安全側でいい”と言われて、止める判断ができた。」</p>
+            <p class="small" style="margin:0;">「一人で決めなくていいのが、精神的に一番助かる。」</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:18px;">
+        <h3 style="margin:0 0 10px; font-size:18px;">私たちからの約束（対外宣言）</h3>
+        <ul class="list">
+          <li><span class="dot"></span><div>無理な運行で信頼を取りにいかない</div></li>
+          <li><span class="dot"></span><div>できない依頼は、理由を説明して正直に伝える</div></li>
+          <li><span class="dot"></span><div>判断を現場任せにしない</div></li>
+          <li><span class="dot"></span><div>事故を隠さない。再発防止を優先する</div></li>
+        </ul>
+
+        <p class="small" style="margin-top:10px; color:var(--muted);">
+          ※理念・会社情報・採用は独立ページで詳しく掲載しています。
+        </p>
+
+        <div class="hero-cta" style="margin-top:12px;">
+          <a class="btn" href="./philosophy/">▶ 企業理念を見る</a>
+          <a class="btn" href="./company/">▶ 会社概要を見る</a>
+          <a class="btn" href="./recruit/">▶ 採用を見る</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-bottom:84px;">
+    <div class="wrap">
+      <div class="panel">
+        <h2 class="h2">今すぐ相談</h2>
+        <p class="sub">「まだ間に合うか？」その判断を、私たちに任せてください。</p>
+
+        <div class="hero-cta">
+          <a class="btn danger" href="tel:000-0000-0000">📞 今すぐ電話で相談</a>
+          <a class="btn info" href="https://example.com/line" target="_blank" rel="noopener">💬 LINEで相談</a>
+          <a class="btn" href="mailto:info@example.com">✉️ メールで見積もり</a>
+        </div>
+
+        <p class="small" style="margin-top:12px; color:var(--muted);">
+          ★本番化チェック：電話/LINE/メールを実運用に差し替え／対応エリアの明記／受けられない荷物（法令・安全）を明記
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footgrid">
+      <div>© First Aid Line. All rights reserved.</div>
+      <div>Demo page on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <div class="float" aria-label="固定CTA">
+    <a class="primary" href="tel:000-0000-0000">📞 今すぐ</a>
+    <a class="secondary" href="#contact">💬 相談</a>
   </div>
-</section>
-
-<section>
-  <h2>「運ばない」判断について</h2>
-  <div class="card">
-    <p>
-      私たちは、すべての依頼を受ける会社ではありません。
-    </p>
-    <p>
-      過去には、ドライバーの連続稼働や天候悪化を理由に、
-      運行を見送ったケースもあります。
-    </p>
-    <p>
-      それでも私たちは、その判断を「正解」だと考えています。
-    </p>
-  </div>
-</section>
-
-<section>
-  <h2>現場の声</h2>
-  <div class="card">
-    <p>
-      「正直、行けと言われたら行っていたと思う。<br>
-      でも“安全側でいい”と言われて、止める判断ができた。」
-    </p>
-    <p>
-      「一人で決めなくていいのが、精神的に一番助かる。」
-    </p>
-  </div>
-</section>
-
-<section>
-  <h2>私たちの約束</h2>
-  <div class="card">
-    <ul>
-      <li>無理な運行で信頼を取りにいかない</li>
-      <li>できない依頼は、理由を説明して正直に伝える</li>
-      <li>判断を現場任せにしない</li>
-      <li>事故を隠さず、再発防止を最優先する</li>
-    </ul>
-  </div>
-</section>
-
-<footer>
-  <p>
-    ファーストエイドライン<br>
-    緊急時に、最初に思い出される物流会社へ
-  </p>
-</footer>
 
 </body>
 </html>
