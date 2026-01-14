@@ -323,27 +323,32 @@ asm);
 </head>
 <body>
 
-  <div class="topbar" role="banner">
-    <div class="wrap">
-      <div class="brand" aria-label="ブランド">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <b>ファーストエイドライン</b><br>
-          <span style="color:var(--muted); font-size:12px;">荷物の救急隊｜24時間365日</span>
-        </div>
+ <div class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="./">
+      <img class="brandLogo" src="./images/logo.png" alt="First Aid Line ロゴ">
+      <div class="brandText">
+        <div class="brandName">ファーストエイドライン</div>
+        <div class="brandSub">荷物の救急隊｜24時間365日</div>
       </div>
+    </a>
 
-      <nav class="nav" aria-label="グローバルナビ">
-        <a class="chip" href="./philosophy/">企業理念</a>
-        <a class="chip" href="./company/">会社概要</a>
-        <a class="chip" href="./recruit/">採用</a>
-        <a class="chip primary" href="#contact">今すぐ相談</a>
-      </nav>
+    <div class="navLinks">
+      <a class="chip" href="./philosophy/">理念</a>
+      <a class="chip" href="./company/">会社概要</a>
+      <a class="chip" href="./recruit/">採用</a>
+      <a class="chip primary" href="#contact">今すぐ相談</a>
+    </div>
 
-      <!-- ★差し替え：電話番号 -->
-      <a class="chip primary" href="tel:04-2997-9697">📞 04-2997-9697</a>
+    <div class="navRight">
+      <div class="callPill">
+        <span class="callDot"></span>
+        <span>04-2997-9697</span>
+      </div>
     </div>
   </div>
+</div>
+
 
   <header class="hero">
     <div class="wrap">
