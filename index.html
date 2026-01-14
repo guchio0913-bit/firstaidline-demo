@@ -32,7 +32,8 @@ body{
     linear-gradient(180deg, var(--bg1), var(--bg0));
 }
 .heroSlide.zoom-out{
-  transform: scale(0.80);
+ .heroSlide{ transform: scale(1.00); }   /* 基準 */
+.heroSlide.zoom-out{ transform: scale(0.90); } /* 1・2枚目だけ引く */
 }
 
 /* ===== 共通 ===== */
