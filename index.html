@@ -11,24 +11,27 @@
   --red:#e60012;
   --gray:#9ca3af;
 
+  /* 背景：少し明るめネイビー */
   --bg0:#111c2f;
   --bg1:#1b2a44;
 
-  --text:rgba(255,255,255,.94);
-  --muted:rgba(255,255,255,.74);
-  --muted2:rgba(255,255,255,.58);
+  /* 白を濃く：基本は純白寄り */
+  --text:#ffffff;
+  --muted:rgba(255,255,255,.82);
+  --muted2:rgba(255,255,255,.66);
 
-  --panel:rgba(255,255,255,.08);
-  --panel2:rgba(255,255,255,.06);
-  --border:rgba(255,255,255,.14);
+  --panel:rgba(255,255,255,.10);
+  --panel2:rgba(255,255,255,.07);
+  --border:rgba(255,255,255,.18);
   --shadow:0 22px 70px rgba(0,0,0,.38);
 
   --max:1120px;
   --r:18px;
   --r2:24px;
 
-  --slide-interval: 5200ms;
-  --fade-duration: 900ms;
+  /* スライド調整 */
+  --slide-interval: 5200ms;   /* 表示時間 */
+  --fade-duration: 900ms;     /* フェード */
 }
 
 *{box-sizing:border-box}
@@ -38,81 +41,111 @@ body{
   font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
   color:var(--text);
   background:
-    radial-gradient(900px 520px at 12% 8%, rgba(230,0,18,.14), transparent 60%),
-    radial-gradient(900px 520px at 88% 0%, rgba(156,163,175,.14), transparent 60%),
+    radial-gradient(900px 520px at 12% 8%, rgba(230,0,18,.16), transparent 60%),
+    radial-gradient(900px 520px at 88% 0%, rgba(156,163,175,.16), transparent 60%),
     linear-gradient(180deg, var(--bg1), var(--bg0));
   letter-spacing:.02em;
 }
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
-
 .wrap{ width:min(var(--max), calc(100% - 40px)); margin-inline:auto; }
 
 /* ===== Header ===== */
 .topbar{
-  position:sticky; top:0; z-index:100;
+  position:sticky;
+  top:0;
+  z-index:100;
   backdrop-filter: blur(14px);
-  background:rgba(16, 28, 52, .78);
+  background:rgba(16, 28, 52, .80);
   border-bottom:1px solid var(--border);
 }
 .nav{
-  display:flex; align-items:center; justify-content:space-between;
-  gap:16px; padding:12px 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:12px 0;
 }
-.brand{ display:flex; align-items:center; gap:12px; min-width:240px; }
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:240px;
+}
 .brandLogo{ width:44px; height:auto; }
 .brandText{ line-height:1.15; }
 .brandName{ font-weight:900; font-size:15px; }
 .brandSub{ font-size:12px; color:var(--muted2); margin-top:2px; }
 
 .navLinks{
-  display:flex; align-items:center; justify-content:center;
-  gap:10px; flex-wrap:wrap;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
 }
 .chip{
-  padding:9px 12px; border-radius:999px;
+  padding:9px 12px;
+  border-radius:999px;
   border:1px solid var(--border);
-  background:rgba(255,255,255,.04);
-  font-size:13px; color:rgba(255,255,255,.90);
+  background:rgba(255,255,255,.05);
+  font-size:13px;
+  color:#fff;
   transition:.15s ease;
 }
-.chip:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); }
-.chip.primary{ background:rgba(230,0,18,.16); border-color:rgba(230,0,18,.40); }
+.chip:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); }
+.chip.primary{
+  background:rgba(230,0,18,.18);
+  border-color:rgba(230,0,18,.45);
+}
 
-.navRight{ display:flex; align-items:center; justify-content:flex-end; min-width:240px; }
+.navRight{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  min-width:240px;
+}
 .callPill{
-  display:flex; align-items:center; gap:10px;
-  padding:9px 12px; border-radius:999px;
-  background:rgba(230,0,18,.14);
-  border:1px solid rgba(230,0,18,.36);
-  white-space:nowrap; font-size:13px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:9px 12px;
+  border-radius:999px;
+  background:rgba(230,0,18,.16);
+  border:1px solid rgba(230,0,18,.42);
+  white-space:nowrap;
+  font-size:13px;
+  color:#fff;
 }
 .callDot{
   width:10px;height:10px;border-radius:999px;
   background:var(--red);
-  box-shadow:0 0 0 4px rgba(230,0,18,.18);
+  box-shadow:0 0 0 4px rgba(230,0,18,.22);
 }
 
 /* ===== Hero ===== */
 .hero{ padding: 26px 0 40px; }
+
 .heroSlider{
   position:relative;
   border-radius:var(--r2);
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.05);
   box-shadow: var(--shadow);
-  min-height: 580px;
+  min-height: 600px;
 }
 .heroLayers{ position:absolute; inset:0; }
 
 .heroLayer{
-  position:absolute; inset:0;
+  position:absolute;
+  inset:0;
   opacity:0;
   transition: opacity var(--fade-duration) ease;
 }
 .heroLayer.is-active{ opacity:1; }
 
+/* 背景：全面に敷いて余白を自然に埋める */
 .heroBg{
   position:absolute;
   inset:-18px;
@@ -120,10 +153,23 @@ img{max-width:100%;display:block}
   height:calc(100% + 36px);
   object-fit:cover;
   object-position:center center;
-  filter: blur(18px) brightness(.76) saturate(1.05);
+  filter: blur(18px) brightness(.75) saturate(1.08);
   transform: scale(1.08);
 }
-  /* 追加：トラックをもう一回り大きく見せる */
+
+/* 前面：トラック全体（切れない）＋大きく見せる */
+.heroFg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  object-position: var(--pos, 50% center);
+  filter: brightness(var(--bri,1)) contrast(var(--con,1)) saturate(var(--sat,1));
+  transform: scale(var(--zoom,1.22));
+}
+
+/* さらに“もう一回り大きく”見せる（切れにくい範囲で拡大） */
 .heroFg{
   width:112%;
   height:112%;
@@ -131,103 +177,130 @@ img{max-width:100%;display:block}
   top:-6%;
 }
 
-.heroFg{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit: contain; /* ←トラック全体が入る */
-  object-position: var(--pos, 50% center);
-  filter: brightness(var(--bri,1)) contrast(var(--con,1)) saturate(var(--sat,1));
-  transform: scale(var(--zoom,1.06)); /* ←“画面いっぱい感”はここ */
-}
-
+/* 文字が読める暗幕 */
 .heroSlider::after{
   content:"";
-  position:absolute; inset:0;
+  position:absolute;
+  inset:0;
   background: linear-gradient(
     90deg,
-    rgba(10,16,30,.84),
-    rgba(10,16,30,.46),
+    rgba(10,16,30,.86),
+    rgba(10,16,30,.48),
     rgba(10,16,30,.18)
   );
   pointer-events:none;
 }
 
-.heroContent{ position:relative; z-index:2; height:100%; display:flex; align-items:center; }
+.heroContent{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  align-items:center;
+}
 .heroGrid{
   width:min(var(--max), calc(100% - 40px));
   margin-inline:auto;
   display:grid;
-  grid-template-columns:1.2fr .9fr;
+  grid-template-columns:1.2fr .95fr;
   gap:18px;
   align-items:center;
   padding:18px 0;
 }
 
 .tagline{
-  display:inline-flex; align-items:center; gap:10px;
-  padding:8px 12px; border-radius:999px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.08);
   font-size:12px;
   width:fit-content;
+  color:#fff;
 }
 .tagIcon{
   width:9px;height:9px;border-radius:999px;
   background:var(--red);
-  box-shadow:0 0 0 4px rgba(230,0,18,.16);
+  box-shadow:0 0 0 4px rgba(230,0,18,.18);
 }
 
-h1{ margin:14px 0 10px; font-size: clamp(30px, 4.2vw, 54px); line-height:1.12; }
-.lead{ margin:0 0 18px; color:rgba(255,255,255,.80); font-size:15px; line-height:1.9; max-width:56ch; }
+h1{
+  margin:14px 0 10px;
+  font-size: clamp(30px, 4.2vw, 54px);
+  line-height:1.12;
+  color:#fff;
+  text-shadow:0 2px 12px rgba(0,0,0,.35);
+}
+.lead{
+  margin:0 0 18px;
+  color:#fff;
+  opacity:.88;
+  font-size:15px;
+  line-height:1.9;
+  max-width:56ch;
+  text-shadow:0 1px 2px rgba(0,0,0,.35);
+}
 
 .badges{ display:flex; flex-wrap:wrap; gap:10px; margin: 10px 0 18px; }
 .badge{
-  padding:8px 10px; border-radius:999px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.10);
-  font-size:12px; color:rgba(255,255,255,.88);
+  padding:8px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  font-size:12px;
+  color:#fff;
+  font-weight:800;
 }
 
 .ctaRow{ display:flex; flex-wrap:wrap; gap:12px; margin-top:14px; }
 .btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:10px;
-  padding:13px 16px; border-radius:14px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);
-  color:rgba(255,255,255,.92);
-  font-weight:900; font-size:14px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:13px 16px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-weight:900;
+  font-size:14px;
   transition:.15s ease;
-  box-shadow:0 14px 40px rgba(0,0,0,.22);
+  box-shadow:0 14px 40px rgba(0,0,0,.24);
 }
-.btn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.08); }
-.btn.red{ background:linear-gradient(135deg, rgba(230,0,18,.96), rgba(230,0,18,.56)); border-color:rgba(230,0,18,.35); }
-.btn.gray{ background:rgba(156,163,175,.16); border-color:rgba(156,163,175,.28); }
+.btn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.11); }
+.btn.red{ background:linear-gradient(135deg, rgba(230,0,18,.98), rgba(230,0,18,.58)); border-color:rgba(230,0,18,.40); }
+.btn.gray{ background:rgba(156,163,175,.18); border-color:rgba(156,163,175,.30); }
 
 .panel{
-  background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,.06));
-  border:1px solid rgba(255,255,255,.12);
+  background: linear-gradient(to bottom, rgba(255,255,255,.11), rgba(255,255,255,.07));
+  border:1px solid rgba(255,255,255,.14);
   border-radius:var(--r2);
   box-shadow: var(--shadow);
   padding:18px;
+  color:#fff;
 }
-  /* ===== 判断パネル強調 ===== */
-.panel-judge{
-  padding:22px;
-}
+.note{ color:rgba(255,255,255,.78); font-size:12px; line-height:1.7; margin-top:10px; }
+
+/* ===== 判断パネル（強調版）===== */
+.panel-judge{ padding:22px; }
 
 .panelTitle{
-  font-size:20px;          /* ← 少し大きく */
+  font-size:20px;
   font-weight:900;
-  margin-bottom:12px;
+  margin:0 0 12px;
   letter-spacing:0.04em;
+  color:#fff;
+  text-shadow:0 1px 2px rgba(0,0,0,.35);
 }
 
+/* 宣言文（4点で即回答）を最強に */
 .panelLead{
   font-size:17px;
   line-height:1.75;
-  margin-bottom:20px;
+  margin:0 0 18px;
   color:#ffffff;
   font-weight:900;
   background:rgba(230,0,18,.18);
@@ -235,6 +308,17 @@ h1{ margin:14px 0 10px; font-size: clamp(30px, 4.2vw, 54px); line-height:1.12; }
   padding:14px 16px;
   border-radius:10px;
   text-shadow:0 1px 2px rgba(0,0,0,.35);
+}
+
+.leadTag{
+  display:inline-block;
+  margin-right:8px;
+  padding:4px 10px;
+  background:#e60012;
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  border-radius:999px;
 }
 
 .judgeList{
@@ -245,7 +329,6 @@ h1{ margin:14px 0 10px; font-size: clamp(30px, 4.2vw, 54px); line-height:1.12; }
   grid-template-columns:1fr 1fr;
   gap:10px;
 }
-
 .judgeList li{
   display:flex;
   align-items:center;
@@ -254,10 +337,10 @@ h1{ margin:14px 0 10px; font-size: clamp(30px, 4.2vw, 54px); line-height:1.12; }
   border-radius:14px;
   background:rgba(255,255,255,.10);
   border:1px solid rgba(255,255,255,.18);
-  font-size:15px;          /* ← 大きく */
+  font-size:15px;
   font-weight:800;
+  color:#fff;
 }
-
 .judgeList li span{
   display:inline-flex;
   align-items:center;
@@ -272,6 +355,7 @@ h1{ margin:14px 0 10px; font-size: clamp(30px, 4.2vw, 54px); line-height:1.12; }
   box-shadow:0 0 0 4px rgba(230,0,18,.25);
 }
 
+/* 行動指針：思想として強く読ませる */
 .judgeRules{
   margin-top:16px;
   padding:14px 14px;
@@ -279,25 +363,27 @@ h1{ margin:14px 0 10px; font-size: clamp(30px, 4.2vw, 54px); line-height:1.12; }
   border-left:4px solid rgba(255,255,255,.45);
   border-radius:10px;
 }
-
-.panel h3{ margin:0 0 8px; font-size:14px; font-weight:900; }
-.panel p{ margin:0 0 10px; color:var(--muted2); font-size:12px; line-height:1.7; }
-.panel ul{ list-style:none; padding:0; margin:10px 0 0; display:flex; flex-direction:column; gap:10px; }
-.panel li{
-  padding:12px; border-radius:14px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.10);
-  color:rgba(255,255,255,.88);
-  font-size:13px;
+.judgeRules p{
+  margin:0 0 10px;
+  font-size:15px;
+  line-height:1.85;
+  color:#ffffff;
+  font-weight:700;
+  text-shadow:0 1px 2px rgba(0,0,0,.35);
 }
-.note{ color:var(--muted2); font-size:12px; line-height:1.7; margin-top:10px; }
+.judgeRules p:last-child{ margin-bottom:0; }
+.judgeRules strong{
+  color:#ff4a4a;
+  font-weight:900;
+  letter-spacing:0.05em;
+}
 
 /* ===== Sections ===== */
 .section{ padding: 60px 0; }
-.section h2{ margin:0 0 10px; font-size:22px; }
+.section h2{ margin:0 0 10px; font-size:22px; color:#fff; }
 .sectionLead{
   margin:0 0 22px;
-  color:var(--muted2);
+  color:rgba(255,255,255,.78);
   line-height:1.85;
   font-size:14px;
   max-width:70ch;
@@ -306,50 +392,48 @@ h1{ margin:14px 0 10px; font-size: clamp(30px, 4.2vw, 54px); line-height:1.12; }
 .card{
   padding:18px;
   border-radius:var(--r);
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.07);
   box-shadow:0 14px 40px rgba(0,0,0,.18);
   min-height:160px;
+  color:#fff;
 }
 .cardTitle{ margin:0 0 8px; font-weight:900; font-size:15px; }
-.cardText{ margin:0; color:rgba(255,255,255,.74); line-height:1.85; font-size:13px; }
-.kv{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-.kv .item{
-  padding:14px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.05);
-}
-.kv .k{ font-size:12px; color:var(--muted2); }
-.kv .v{ margin-top:6px; font-weight:900; }
+.cardText{ margin:0; color:rgba(255,255,255,.82); line-height:1.85; font-size:13px; }
 
 footer{
   padding:30px 0 40px;
-  border-top:1px solid rgba(255,255,255,.08);
-  color:rgba(255,255,255,.62);
+  border-top:1px solid rgba(255,255,255,.10);
+  color:rgba(255,255,255,.70);
   font-size:12px;
   line-height:1.8;
 }
 
 /* Fixed CTA */
 .float{
-  position:fixed; right:18px; bottom:18px;
-  display:flex; flex-direction:column; gap:10px;
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
   z-index:120;
 }
 .float a{
-  display:flex; align-items:center; justify-content:center; gap:8px;
-  padding:12px 14px; border-radius:999px;
-  font-weight:900; font-size:13px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:12px 14px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:13px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.08);
   box-shadow:0 18px 50px rgba(0,0,0,.25);
+  color:#fff;
 }
-.float a.primary{ background:rgba(230,0,18,.20); border-color:rgba(230,0,18,.36); }
+.float a.primary{ background:rgba(230,0,18,.22); border-color:rgba(230,0,18,.40); }
 
 /* Responsive */
 @media (max-width: 980px){
@@ -359,15 +443,16 @@ footer{
 @media (max-width: 900px){
   .navLinks{ display:none; }
   .grid3{ grid-template-columns:1fr; }
-  .kv{ grid-template-columns:1fr; }
+  .judgeList{ grid-template-columns:1fr; } /* スマホは1列が見やすい */
   .btn{ width:100%; }
-  .heroSlider{ min-height: 560px; }
+  .heroSlider{ min-height: 600px; }
 }
 </style>
 </head>
 
 <body>
 
+<!-- ===== Header ===== -->
 <div class="topbar">
   <div class="wrap nav">
     <a class="brand" href="./">
@@ -379,8 +464,6 @@ footer{
     </a>
 
     <div class="navLinks">
-      <a class="chip" href="#services">サービス</a>
-      <a class="chip" href="#flow">対応フロー</a>
       <a class="chip" href="./philosophy/">企業理念</a>
       <a class="chip" href="./company/">会社概要</a>
       <a class="chip" href="./recruit/">採用</a>
@@ -397,22 +480,29 @@ footer{
   </div>
 </div>
 
+<!-- ===== Hero ===== -->
 <section class="hero">
   <div class="wrap">
     <div class="heroSlider" aria-label="ヒーロー画像スライダー">
       <div class="heroLayers">
 
-        <div class="heroLayer is-active" data-pos="50% center" data-bri="1.06" data-con="1.05" data-sat="1.05" data-zoom="1.30">
+        <!-- hero-1：トラックをもっと大きく（zoom高め） -->
+        <div class="heroLayer is-active"
+             data-pos="50% center" data-bri="1.06" data-con="1.05" data-sat="1.06" data-zoom="1.28">
           <img class="heroBg" src="./images/hero-1.png" alt="">
           <img class="heroFg" src="./images/hero-1.png" alt="緊急物流イメージ1">
         </div>
 
-        <div class="heroLayer" data-pos="50% center" data-bri="1.05" data-con="1.05" data-sat="1.05" data-zoom="1.30">
+        <!-- hero-2：同様 -->
+        <div class="heroLayer"
+             data-pos="50% center" data-bri="1.05" data-con="1.05" data-sat="1.06" data-zoom="1.28">
           <img class="heroBg" src="./images/hero-2.png" alt="">
           <img class="heroFg" src="./images/hero-2.png" alt="緊急物流イメージ2">
         </div>
 
-        <div class="heroLayer" data-pos="50% center" data-bri="1.05" data-con="1.05" data-sat="1.05" data-zoom="1.10">
+        <!-- hero-3：少し控えめ -->
+        <div class="heroLayer"
+             data-pos="50% center" data-bri="1.05" data-con="1.05" data-sat="1.05" data-zoom="1.18">
           <img class="heroBg" src="./images/hero-3.png" alt="">
           <img class="heroFg" src="./images/hero-3.png" alt="緊急物流イメージ3">
         </div>
@@ -443,27 +533,30 @@ footer{
             <p class="note">※電話番号/メール/対応エリアは本番用に差し替えてください。</p>
           </div>
 
-         <aside class="panel panel-judge">
-  <h3 class="panelTitle">最短で判断するために</h3>
+          <!-- ここが“見やすさ＆刺さり”の核：強調済み -->
+          <aside class="panel panel-judge">
+            <h3 class="panelTitle">最短で判断するために</h3>
 
-  <p class="panelLead">
-    下記 <strong>4点</strong> を共有いただければ、<br>
-    <strong>可否と最適手段を即回答</strong>します。
-  </p>
+            <p class="panelLead">
+              <span class="leadTag">即回答</span>
+              下記 <strong>4点</strong> を共有いただければ、<br>
+              <strong>可否と最適手段</strong>を即回答します。
+            </p>
 
-  <ol class="judgeList">
-    <li><span>①</span> 集荷地</li>
-    <li><span>②</span> 届け先</li>
-    <li><span>③</span> 希望時間</li>
-    <li><span>④</span> 荷物（サイズ／重量／内容）</li>
-  </ol>
+            <ol class="judgeList">
+              <li><span>①</span> 集荷地</li>
+              <li><span>②</span> 届け先</li>
+              <li><span>③</span> 希望時間</li>
+              <li><span>④</span> 荷物（サイズ／重量／内容）</li>
+            </ol>
 
-  <div class="judgeRules">
-    <p>判断に迷う場面では、<strong>安全を最優先</strong>にします。</p>
-    <p>無理は<strong>一人で抱えない</strong>運用です。</p>
-    <p>判断理由を<strong>共有</strong>し、再発防止へつなげます。</p>
-  </div>
-</aside>
+            <div class="judgeRules">
+              <p>判断に迷う場面では、<strong>安全を最優先</strong>にします。</p>
+              <p>無理は<strong>一人で抱えない</strong>運用です。</p>
+              <p>判断理由を<strong>共有</strong>し、再発防止へつなげます。</p>
+            </div>
+          </aside>
+
         </div>
       </div>
 
@@ -471,10 +564,13 @@ footer{
   </div>
 </section>
 
+<!-- ===== Sections ===== -->
 <section class="section" id="services">
   <div class="wrap">
     <h2>サービス</h2>
-    <p class="sectionLead">緊急時に「最短・最適」を選ぶために。状況に合わせて最善の手段を提案します。</p>
+    <p class="sectionLead">
+      緊急時に「最短・最適」を選ぶために。状況に合わせて最善の手段を提案します。
+    </p>
 
     <div class="grid3">
       <div class="card">
@@ -493,54 +589,33 @@ footer{
   </div>
 </section>
 
-<section class="section" id="flow">
+<section class="section" id="promise">
   <div class="wrap">
-    <h2>緊急対応フロー</h2>
-    <p class="sectionLead">連絡から回答までを短く。判断材料を先にもらうことで、最短で可否を返します。</p>
-
-    <div class="kv">
-      <div class="item">
-        <div class="k">STEP 1</div>
-        <div class="v">4点を共有</div>
-        <div class="cardText" style="margin-top:8px">集荷地／届け先／希望時間／荷物情報</div>
-      </div>
-      <div class="item">
-        <div class="k">STEP 2</div>
-        <div class="v">安全条件チェック</div>
-        <div class="cardText" style="margin-top:8px">人・車両・天候・時間のリスクを確認</div>
-      </div>
-      <div class="item">
-        <div class="k">STEP 3</div>
-        <div class="v">複数案で提示</div>
-        <div class="cardText" style="margin-top:8px">最短案／確実案／代替案を提示</div>
-      </div>
-      <div class="item">
-        <div class="k">STEP 4</div>
-        <div class="v">実行＆振り返り</div>
-        <div class="cardText" style="margin-top:8px">緊急対応後は必ず振り返り、次へ活かす</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="area">
-  <div class="wrap">
-    <h2>対応エリア（例）</h2>
-    <p class="sectionLead">実運用に合わせて都道府県・主要拠点を記載できます（ここは仮の表示です）。</p>
+    <h2>私たちからの約束（対外宣言）</h2>
+    <p class="sectionLead">
+      早さよりも、正しい判断。緊急時ほど落ち着いて誠実に対応します。
+    </p>
 
     <div class="grid3">
       <div class="card">
-        <div class="cardTitle">関東</div>
-        <p class="cardText">東京／埼玉／千葉／神奈川 ほか</p>
+        <div class="cardTitle">無理な運行で信頼を取りにいかない</div>
+        <p class="cardText">安全を損なう依頼は、正直にお断りします。</p>
       </div>
       <div class="card">
-        <div class="cardTitle">近隣拠点</div>
-        <p class="cardText">主要幹線へのアクセスを活かして柔軟に対応</p>
+        <div class="cardTitle">できない依頼は理由を説明</div>
+        <p class="cardText">遅延・変更の連絡は早めに。誠実な対応を徹底します。</p>
       </div>
       <div class="card">
-        <div class="cardTitle">緊急時</div>
-        <p class="cardText">状況により対応可否が変わります。まずはご相談ください。</p>
+        <div class="cardTitle">一人に背負わせない</div>
+        <p class="cardText">迷うときほど複数人で判断し、負担を集中させません。</p>
       </div>
+    </div>
+
+    <div class="ctaRow" style="margin-top:18px">
+      <a class="btn" href="./philosophy/">▶ 企業理念を見る</a>
+      <a class="btn" href="./company/">▶ 会社概要を見る</a>
+      <a class="btn" href="./recruit/">▶ 採用を見る</a>
+      <a class="btn" href="./partner/">▶ 加盟店を見る</a>
     </div>
   </div>
 </section>
@@ -548,8 +623,8 @@ footer{
 <section class="section" id="contact2">
   <div class="wrap">
     <div class="panel">
-      <h3 style="margin:0 0 10px;font-size:18px;">今すぐ相談</h3>
-      <p style="margin:0;color:var(--muted);line-height:1.8;font-size:13px;">
+      <h3 style="margin:0 0 10px;font-size:18px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.35);">今すぐ相談</h3>
+      <p style="margin:0;color:#fff;opacity:.88;line-height:1.8;font-size:13px;text-shadow:0 1px 2px rgba(0,0,0,.35);">
         「まだ間に合うか？」その判断を、私たちに任せてください。
       </p>
 
@@ -589,7 +664,7 @@ footer{
     const bri  = layer.dataset.bri  || "1";
     const con  = layer.dataset.con  || "1";
     const sat  = layer.dataset.sat  || "1";
-    const zoom = layer.dataset.zoom || "1.06";
+    const zoom = layer.dataset.zoom || "1.22";
 
     layer.style.setProperty('--pos', pos);
     layer.style.setProperty('--bri', bri);
