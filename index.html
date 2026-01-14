@@ -225,15 +225,16 @@ h1{ margin:14px 0 10px; font-size: clamp(30px, 4.2vw, 54px); line-height:1.12; }
 }
 
 .panelLead{
-  font-size:16px;              /* ← 大きく */
-  line-height:1.8;
-  margin-bottom:18px;
-  color:#ffffff;
-  font-weight:800;
-  background:rgba(230,0,18,.12);
-  border-left:4px solid #e60012;
-  padding:12px 14px;
-  border-radius:8px;
+  font-size:17px;                 /* ← さらに大きく */
+  line-height:1.75;
+  margin-bottom:20px;
+  color:#ffffff;                  /* ← 純白 */
+  font-weight:900;                /* ← 太さMAX */
+  background:rgba(230,0,18,.18);  /* ← 赤を少し濃く */
+  border-left:5px solid #e60012;
+  padding:14px 16px;
+  border-radius:10px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.35); /* ← 白字をくっきり */
 }
 
 .judgeList{
@@ -271,11 +272,12 @@ h1{ margin:14px 0 10px; font-size: clamp(30px, 4.2vw, 54px); line-height:1.12; }
   box-shadow:0 0 0 4px rgba(230,0,18,.25);
 }
 
-.judgeRules p{
-  margin:0 0 8px;
-  font-size:13px;
-  line-height:1.8;
-  color:rgba(255,255,255,.85);
+.judgeRules{
+  margin-top:16px;
+  padding:14px 14px;
+  background:rgba(255,255,255,.08);
+  border-left:4px solid rgba(255,255,255,.45);
+  border-radius:10px;
 }
 
 .panel h3{ margin:0 0 8px; font-size:14px; font-weight:900; }
