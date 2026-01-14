@@ -31,10 +31,6 @@ body{
     radial-gradient(800px 500px at 90% 0%, rgba(156,163,175,.12), transparent 60%),
     linear-gradient(180deg, var(--bg1), var(--bg0));
 }
-.heroSlide.zoom-out{
- .heroSlide{ transform: scale(1.00); }   /* 基準 */
-.heroSlide.zoom-out{ transform: scale(0.90); } /* 1・2枚目だけ引く */
-}
 
 /* ===== 共通 ===== */
 .wrap{
@@ -110,6 +106,8 @@ img{display:block;max-width:100%}
   position:absolute;
   inset:0;
 }
+
+/* 画像（共通） */
 .heroSlide{
   position:absolute;
   inset:0;
@@ -117,12 +115,16 @@ img{display:block;max-width:100%}
   height:100%;
   object-fit: cover;
   object-position: center center;
-  transform: scale(0.95);   /* ← ここが重要（少し引く） */
   opacity:0;
-    opacity:0;
   transition: opacity .8s ease;
 }
 .heroSlide.is-active{opacity:1}
+
+/* 画像のズーム：通常は等倍 */
+.heroSlide{ transform: scale(1.00); }
+
+/* 1・2枚目だけ遠目（切れ防止） */
+.heroSlide.zoom-out{ transform: scale(0.90); }
 
 .heroSlider::after{
   content:"";
@@ -262,14 +264,18 @@ footer{
   <div class="wrap">
     <div class="heroSlider">
       <div class="heroSlides">
- <img src="./images/hero-1.png" class="heroSlide is-active"
-     data-pos="55% center" data-bri="1.12">
 
-<img src="./images/hero-2.png" class="heroSlide"
-     data-pos="35% center" data-bri="1.10">
+        <img src="./images/hero-1.png"
+             class="heroSlide zoom-out is-active"
+             data-pos="55% center" data-bri="1.12">
 
-<img src="./images/hero-3.png" class="heroSlide"
-     data-pos="left center" data-bri="1.10">
+        <img src="./images/hero-2.png"
+             class="heroSlide zoom-out"
+             data-pos="35% center" data-bri="1.10">
+
+        <img src="./images/hero-3.png"
+             class="heroSlide"
+             data-pos="left center" data-bri="1.10">
 
       </div>
 
