@@ -6,34 +6,320 @@
   <title>企業理念｜ファーストエイドライン</title>
   <meta name="description" content="基本理念・企業理念・ビジョン・経営方針・行動指標。安全最優先の判断を現場に根づかせ、地域に欠かせない物流会社を目指します。" />
   <style>
-    :root{--bg:#0b1020;--panel:#0f1835;--text:#eaf0ff;--muted:#b8c3e6;--line:rgba(234,240,255,.12);--accent:#ff3b3b;--accent2:#3be1ff;--shadow:0 12px 40px rgba(0,0,0,.35);--radius:18px;--max:1120px;}
-    *{box-sizing:border-box} html{scroll-behavior:smooth}
-    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;color:var(--text);
-      background:radial-gradient(1200px 800px at 20% -10%, rgba(59,225,255,.14), transparent 60%),radial-gradient(1200px 800px at 80% 10%, rgba(255,59,59,.14), transparent 55%),var(--bg);line-height:1.65;}
-    a{color:inherit} .wrap{max-width:var(--max);margin:0 auto;padding:0 20px;}
-    .topbar{position:sticky;top:0;z-index:30;backdrop-filter:blur(10px);background:rgba(11,16,32,.70);border-bottom:1px solid var(--line);}
-    .topbar .wrap{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;gap:12px;}
-    .brand{display:flex;align-items:center;gap:10px;}
-    .logo{width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:var(--shadow);}
-    .nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
-    .chip{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;border:1px solid var(--line);padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.04);text-decoration:none;transition:transform .15s ease, background .15s ease;font-weight:900;font-size:13px;}
-    .chip:hover{transform:translateY(-1px);background:rgba(255,255,255,.07);}
-    .chip.primary{border-color:rgba(255,59,59,.35);background:rgba(255,59,59,.12);}
-    header{padding:46px 0 10px;border-bottom:1px solid var(--line);}
-    h1{margin:0 0 10px;font-size:clamp(26px,3.5vw,44px);line-height:1.15;}
-    .sub{color:var(--muted);margin:0 0 18px;}
-    section{padding:34px 0;}
-    .panel{background:rgba(15,24,53,.74);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);}
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-    .h2{margin:0 0 12px;font-size:clamp(20px,2.2vw,30px);}
-    .list{margin:0;padding:0;list-style:none;display:grid;gap:10px;}
-    .list li{border:1px solid var(--line);background:rgba(255,255,255,.05);padding:12px;border-radius:14px;display:flex;gap:10px;}
-    .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));margin-top:8px;flex:0 0 auto;}
-    .card{border:1px solid var(--line);background:rgba(255,255,255,.05);border-radius:var(--radius);padding:18px;}
-    .card h3{margin:0 0 8px;font-size:16px;}
-    .small{color:rgba(234,240,255,.86);font-size:13px;}
-    @media (max-width:920px){.grid2{grid-template-columns:1fr}.nav{display:none;}}
-  </style>
+  :root{
+    /* ロゴ基準：赤×クールグレー×白 */
+    --bg0:#0b1220;           /* ネイビーブラック（怖くしない暗さ） */
+    --bg1:#0f172a;           /* ほんの少し明るい */
+    --panel:rgba(255,255,255,.06);
+    --panel2:rgba(255,255,255,.08);
+    --line:rgba(255,255,255,.12);
+
+    --text:rgba(255,255,255,.92);
+    --muted:rgba(255,255,255,.72);
+    --muted2:rgba(255,255,255,.58);
+
+    --red:#e60012;           /* ロゴ赤のイメージに寄せる */
+    --gray:#9ca3af;          /* クールグレー */
+    --shadow: 0 18px 60px rgba(0,0,0,.45);
+
+    --max:1120px;
+    --r:18px;
+    --r2:24px;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    color:var(--text);
+    background: radial-gradient(900px 520px at 12% 8%, rgba(230,0,18,.12), transparent 60%),
+                radial-gradient(900px 520px at 85% 0%, rgba(156,163,175,.12), transparent 60%),
+                linear-gradient(180deg, var(--bg1), var(--bg0));
+asm);
+    letter-spacing:.02em;
+  }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{
+    width:min(var(--max), calc(100% - 40px));
+    margin-inline:auto;
+  }
+
+  /* ===== Header（ロゴ入り）===== */
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    backdrop-filter: blur(14px);
+    background: rgba(15, 23, 42, 0.78);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:12px 0;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-width: 240px;
+  }
+  .brandLogo{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    background: rgba(255,255,255,.92);
+    padding:6px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.10);
+  }
+  .brandText{ line-height:1.15; }
+  .brandName{ font-weight:900; font-size:15px; }
+  .brandSub{ font-size:12px; color:var(--muted2); margin-top:2px; }
+
+  .navLinks{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .chip{
+    padding:9px 12px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.04);
+    font-size:13px;
+    color:rgba(255,255,255,.86);
+    transition:.15s ease;
+  }
+  .chip:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); }
+  .chip.primary{
+    border-color: rgba(230,0,18,.35);
+    background: rgba(230,0,18,.14);
+  }
+
+  .navRight{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width: 240px;
+    justify-content:flex-end;
+  }
+  .callPill{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:9px 12px;
+    border-radius:999px;
+    border:1px solid rgba(230,0,18,.28);
+    background: rgba(230,0,18,.12);
+    font-size:13px;
+    white-space:nowrap;
+  }
+  .callDot{
+    width:10px;height:10px;border-radius:999px;
+    background: var(--red);
+    box-shadow: 0 0 0 4px rgba(230,0,18,.16);
+  }
+
+  /* ===== Hero Slider（TOPのみ使用）===== */
+  .hero{
+    padding: 26px 0 34px;
+  }
+  .heroGrid{
+    display:grid;
+    grid-template-columns: 1.2fr .9fr;
+    gap: 18px;
+    align-items:center;
+    padding: 18px 0 10px;
+  }
+
+  .heroSlider{
+    position: relative;
+    border-radius: var(--r2);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.04);
+    box-shadow: var(--shadow);
+    min-height: 520px;
+  }
+  .heroSlides{
+    position: relative;
+    width: 100%;
+    height: min(70vh, 560px);
+  }
+  .heroSlide{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit: cover;
+    opacity:0;
+    transition: opacity .7s ease;
+  }
+  .heroSlide.is-active{ opacity:1; }
+
+  /* 文字が読める暗幕 */
+  .heroSlider::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: linear-gradient(90deg, rgba(11,18,32,.92), rgba(11,18,32,.45), rgba(11,18,32,.20));
+    pointer-events:none;
+  }
+
+  .heroContent{
+    position:absolute;
+    inset:0;
+    z-index:3;
+    display:flex;
+    align-items:center;
+  }
+  .heroContent .inner{
+    width:min(var(--max), calc(100% - 40px));
+    margin-inline:auto;
+    display:grid;
+    grid-template-columns: 1.2fr .9fr;
+    gap: 18px;
+    align-items:center;
+    padding: 18px 0;
+  }
+
+  .tagline{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 12px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.06);
+    color: rgba(255,255,255,.88);
+    font-size:12px;
+    width:fit-content;
+  }
+  .tagIcon{
+    width:9px;height:9px;border-radius:999px;
+    background: var(--red);
+    box-shadow: 0 0 0 4px rgba(230,0,18,.16);
+  }
+
+  h1{
+    margin:14px 0 10px;
+    font-size: clamp(30px, 4.2vw, 54px);
+    line-height:1.12;
+  }
+  .lead{
+    margin:0 0 18px;
+    color: rgba(255,255,255,.78);
+    font-size: 15px;
+    line-height: 1.9;
+    max-width: 56ch;
+  }
+
+  .badges{ display:flex; flex-wrap:wrap; gap:10px; margin: 10px 0 18px; }
+  .badge{
+    padding:8px 10px;
+    border-radius:999px;
+    background: rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.10);
+    font-size:12px;
+    color: rgba(255,255,255,.85);
+  }
+
+  .ctaRow{ display:flex; flex-wrap:wrap; gap:12px; margin-top: 14px; }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding: 13px 16px;
+    border-radius: 14px;
+    border:1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.06);
+    color: rgba(255,255,255,.92);
+    font-weight:800;
+    font-size:14px;
+    transition:.15s ease;
+    box-shadow: 0 14px 40px rgba(0,0,0,.25);
+  }
+  .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
+  .btn.red{ background: linear-gradient(135deg, rgba(230,0,18,.95), rgba(230,0,18,.55)); border-color: rgba(230,0,18,.35); }
+  .btn.gray{ background: rgba(156,163,175,.16); border-color: rgba(156,163,175,.28); }
+
+  .panel{
+    background: linear-gradient(to bottom, rgba(255,255,255,.08), rgba(255,255,255,.04));
+    border:1px solid rgba(255,255,255,.10);
+    border-radius: var(--r2);
+    box-shadow: var(--shadow);
+    padding: 18px;
+  }
+  .panel h3{ margin:0 0 8px; font-size:14px; font-weight:900; }
+  .panel p{ margin:0 0 10px; color:var(--muted2); font-size:12px; line-height:1.7; }
+  .panel ul{ list-style:none; padding:0; margin: 10px 0 0; display:flex; flex-direction:column; gap:10px; }
+  .panel li{
+    padding: 12px 12px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    color: rgba(255,255,255,.86);
+    font-size:13px;
+  }
+
+  /* セクション */
+  .section{ padding: 54px 0; }
+  .section h2{ margin:0 0 10px; font-size: 22px; }
+  .section .sectionLead{
+    margin:0 0 22px;
+    color: var(--muted2);
+    line-height:1.85;
+    font-size: 14px;
+    max-width: 70ch;
+  }
+  .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .card{
+    padding: 18px;
+    border-radius: var(--r);
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.05);
+    box-shadow: 0 14px 40px rgba(0,0,0,.22);
+    min-height: 150px;
+  }
+  .cardTitle{ margin:0 0 8px; font-weight:900; font-size:15px; }
+  .cardText{ margin:0; color: rgba(255,255,255,.72); line-height:1.85; font-size:13px; }
+
+  footer{
+    padding: 28px 0 40px;
+    border-top:1px solid rgba(255,255,255,.08);
+    color: rgba(255,255,255,.62);
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  /* 採用ページだけ“明るめ” */
+  body.page-recruit{
+    background: radial-gradient(900px 520px at 12% 8%, rgba(230,0,18,.10), transparent 60%),
+                radial-gradient(900px 520px at 85% 0%, rgba(156,163,175,.14), transparent 60%),
+                linear-gradient(180deg, #111c33, #0b1220);
+  }
+  body.page-recruit .card,
+  body.page-recruit .panel{
+    background: rgba(255,255,255,.07);
+  }
+
+  @media (max-width: 980px){
+    .heroContent .inner{ grid-template-columns: 1fr; }
+    .navRight{ display:none; }
+  }
+  @media (max-width: 820px){
+    .grid3{ grid-template-columns: 1fr; }
+    .btn{ width:100%; }
+    .heroSlider{ min-height: 480px; }
+  }
+</style>
 </head>
 <body>
   <div class="topbar">
