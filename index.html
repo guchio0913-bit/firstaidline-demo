@@ -1,531 +1,352 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>FirstAidLine｜緊急配送・判断基準を公開</title>
-  <meta name="description" content="緊急配送・特急便・スポット配送。安全最優先の判断基準を公開し、緊急時に真っ先に声がかかる物流会社を目指します。" />
- <style>
-  :root{
-    /* ロゴ基準：赤×クールグレー×白 */
-    --bg0:#0b1220;           /* ネイビーブラック（怖くしない暗さ） */
-    --bg1:#0f172a;           /* ほんの少し明るい */
-    --panel:rgba(255,255,255,.06);
-    --panel2:rgba(255,255,255,.08);
-    --line:rgba(255,255,255,.12);
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First Aid Line｜緊急配送・安全最優先</title>
+<meta name="description" content="緊急配送・特急便・スポット配送。判断に迷う場面ほど安全を最優先する物流会社です。">
 
-    --text:rgba(255,255,255,.92);
-    --muted:rgba(255,255,255,.72);
-    --muted2:rgba(255,255,255,.58);
-
-    --red:#e60012;           /* ロゴ赤のイメージに寄せる */
-    --gray:#9ca3af;          /* クールグレー */
-    --shadow: 0 18px 60px rgba(0,0,0,.45);
-
-    --max:1120px;
-    --r:18px;
-    --r2:24px;
-  }
-
-  *{ box-sizing:border-box; }
-  html,body{ height:100%; }
-  body{
-    margin:0;
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
-    color:var(--text);
-    background: radial-gradient(900px 520px at 12% 8%, rgba(230,0,18,.12), transparent 60%),
-                radial-gradient(900px 520px at 85% 0%, rgba(156,163,175,.12), transparent 60%),
-                linear-gradient(180deg, var(--bg1), var(--bg0));
-asm);
-    letter-spacing:.02em;
-  }
-  a{ color:inherit; text-decoration:none; }
-  img{ max-width:100%; display:block; }
-
-  .wrap{
-    width:min(var(--max), calc(100% - 40px));
-    margin-inline:auto;
-  }
-
-  /* ===== Header（ロゴ入り）===== */
-  .topbar{
-    position:sticky;
-    top:0;
-    z-index:50;
-    backdrop-filter: blur(14px);
-    background: rgba(15, 23, 42, 0.78);
-    border-bottom:1px solid rgba(255,255,255,.08);
-  }
-  .nav{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:16px;
-    padding:12px 0;
-  }
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    min-width: 240px;
-  }
- .brandLogo{
-  width:44px;
-  height:auto;
-  border-radius:0;
-  background:none;
-  padding:0;
-  box-shadow:none;
+<style>
+:root{
+  --red:#e60012;
+  --gray:#9ca3af;
+  --bg0:#0b1220;
+  --bg1:#0f172a;
+  --text:#ffffff;
+  --muted:rgba(255,255,255,.7);
+  --panel:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.12);
+  --shadow:0 20px 60px rgba(0,0,0,.45);
+  --radius:18px;
+  --max:1120px;
 }
-  .brandText{ line-height:1.15; }
-  .brandName{ font-weight:900; font-size:15px; }
-  .brandSub{ font-size:12px; color:var(--muted2); margin-top:2px; }
 
-  .navLinks{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-  }
-  .chip{
-    padding:9px 12px;
-    border-radius:999px;
-    border:1px solid rgba(255,255,255,.12);
-    background: rgba(255,255,255,.04);
-    font-size:13px;
-    color:rgba(255,255,255,.86);
-    transition:.15s ease;
-  }
-  .chip:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); }
-  .chip.primary{
-    border-color: rgba(230,0,18,.35);
-    background: rgba(230,0,18,.14);
-  }
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(800px 500px at 10% 0%, rgba(230,0,18,.12), transparent 60%),
+    radial-gradient(800px 500px at 90% 0%, rgba(156,163,175,.12), transparent 60%),
+    linear-gradient(180deg, var(--bg1), var(--bg0));
+}
 
-  .navRight{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    min-width: 240px;
-    justify-content:flex-end;
-  }
-  .callPill{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:9px 12px;
-    border-radius:999px;
-    border:1px solid rgba(230,0,18,.28);
-    background: rgba(230,0,18,.12);
-    font-size:13px;
-    white-space:nowrap;
-  }
-  .callDot{
-    width:10px;height:10px;border-radius:999px;
-    background: var(--red);
-    box-shadow: 0 0 0 4px rgba(230,0,18,.16);
-  }
+/* ===== 共通 ===== */
+.wrap{
+  width:min(var(--max), calc(100% - 40px));
+  margin:auto;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
 
-  /* ===== Hero Slider（TOPのみ使用）===== */
-  .hero{
-    padding: 26px 0 34px;
-  }
-  .heroGrid{
-    display:grid;
-    grid-template-columns: 1.2fr .9fr;
-    gap: 18px;
-    align-items:center;
-    padding: 18px 0 10px;
-  }
+/* ===== ヘッダー ===== */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter: blur(14px);
+  background:rgba(15,23,42,.85);
+  border-bottom:1px solid var(--border);
+}
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:12px 0;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.brand img{width:44px}
+.brandName{font-weight:900;font-size:15px}
+.brandSub{font-size:12px;color:var(--muted)}
 
-  .heroSlider{
-    position: relative;
-    border-radius: var(--r2);
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.04);
-    box-shadow: var(--shadow);
-    min-height: 520px;
-  }
-   .heroSlide{
+.navLinks{
+  display:flex;
+  gap:10px;
+}
+.chip{
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.04);
+  font-size:13px;
+}
+.chip.primary{
+  background:rgba(230,0,18,.18);
+  border-color:rgba(230,0,18,.4);
+}
+
+.call{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(230,0,18,.18);
+  border:1px solid rgba(230,0,18,.4);
+}
+
+/* ===== HERO ===== */
+.hero{
+  padding:28px 0 60px;
+}
+.heroSlider{
+  position:relative;
+  border-radius:24px;
+  overflow:hidden;
+  min-height:520px;
+  box-shadow:var(--shadow);
+}
+.heroSlides{
+  position:absolute;
+  inset:0;
+}
+.heroSlide{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
-  object-fit: cover;
-  object-position: right center; /* ← これを追加 */
+  object-fit:cover;
   opacity:0;
-  transition: opacity .7s ease;
+  transition:opacity .8s ease;
 }
-  .heroSlides{
-    position: relative;
-    width: 100%;
-    height: min(70vh, 560px);
-  }
-  .heroSlide{
-    position:absolute; inset:0;
-    width:100%; height:100%;
-    object-fit: cover;
-    opacity:0;
-    transition: opacity .7s ease;
-  }
-  .heroSlide.is-active{ opacity:1; }
+.heroSlide.is-active{opacity:1}
 
-  /* 文字が読める暗幕 */
-  .heroSlider::after{
+.heroSlider::after{
   content:"";
   position:absolute;
   inset:0;
-  background: linear-gradient(
+  background:linear-gradient(
     90deg,
-    rgba(11,18,32,.78),
-    rgba(11,18,32,.38),
+    rgba(11,18,32,.85),
+    rgba(11,18,32,.45),
     rgba(11,18,32,.15)
   );
 }
 
-  .heroContent{
-    position:absolute;
-    inset:0;
-    z-index:3;
-    display:flex;
-    align-items:center;
-  }
-  .heroContent .inner{
-    width:min(var(--max), calc(100% - 40px));
-    margin-inline:auto;
-    display:grid;
-    grid-template-columns: 1.2fr .9fr;
-    gap: 18px;
-    align-items:center;
-    padding: 18px 0;
-  }
+.heroContent{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+.heroGrid{
+  display:grid;
+  grid-template-columns:1.2fr .9fr;
+  gap:20px;
+}
 
-  .tagline{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:8px 12px;
-    border-radius:999px;
-    border:1px solid rgba(255,255,255,.12);
-    background: rgba(255,255,255,.06);
-    color: rgba(255,255,255,.88);
-    font-size:12px;
-    width:fit-content;
-  }
-  .tagIcon{
-    width:9px;height:9px;border-radius:999px;
-    background: var(--red);
-    box-shadow: 0 0 0 4px rgba(230,0,18,.16);
-  }
+.tag{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  font-size:12px;
+}
+.dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--red);
+}
 
-  h1{
-    margin:14px 0 10px;
-    font-size: clamp(30px, 4.2vw, 54px);
-    line-height:1.12;
-  }
-  .lead{
-    margin:0 0 18px;
-    color: rgba(255,255,255,.78);
-    font-size: 15px;
-    line-height: 1.9;
-    max-width: 56ch;
-  }
+h1{
+  font-size:clamp(30px,4.5vw,54px);
+  line-height:1.15;
+  margin:14px 0;
+}
+.lead{
+  color:var(--muted);
+  line-height:1.9;
+}
 
-  .badges{ display:flex; flex-wrap:wrap; gap:10px; margin: 10px 0 18px; }
-  .badge{
-    padding:8px 10px;
-    border-radius:999px;
-    background: rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.10);
-    font-size:12px;
-    color: rgba(255,255,255,.85);
-  }
+.cta{
+  display:flex;
+  gap:12px;
+  margin-top:20px;
+}
+.btn{
+  padding:14px 18px;
+  border-radius:14px;
+  font-weight:800;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.06);
+}
+.btn.red{
+  background:linear-gradient(135deg, #e60012, #ff4a4a);
+  border:none;
+}
 
-  .ctaRow{ display:flex; flex-wrap:wrap; gap:12px; margin-top: 14px; }
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    padding: 13px 16px;
-    border-radius: 14px;
-    border:1px solid rgba(255,255,255,.12);
-    background: rgba(255,255,255,.06);
-    color: rgba(255,255,255,.92);
-    font-weight:800;
-    font-size:14px;
-    transition:.15s ease;
-    box-shadow: 0 14px 40px rgba(0,0,0,.25);
-  }
-  .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
-  .btn.red{ background: linear-gradient(135deg, rgba(230,0,18,.95), rgba(230,0,18,.55)); border-color: rgba(230,0,18,.35); }
-  .btn.gray{ background: rgba(156,163,175,.16); border-color: rgba(156,163,175,.28); }
+/* ===== パネル ===== */
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:18px;
+}
+.panel ul{list-style:none;padding:0;margin:10px 0 0}
+.panel li{
+  padding:10px;
+  background:rgba(255,255,255,.05);
+  border-radius:12px;
+  margin-bottom:8px;
+}
 
-  .panel{
-    background: linear-gradient(to bottom, rgba(255,255,255,.08), rgba(255,255,255,.04));
-    border:1px solid rgba(255,255,255,.10);
-    border-radius: var(--r2);
-    box-shadow: var(--shadow);
-    padding: 18px;
-  }
-  .panel h3{ margin:0 0 8px; font-size:14px; font-weight:900; }
-  .panel p{ margin:0 0 10px; color:var(--muted2); font-size:12px; line-height:1.7; }
-  .panel ul{ list-style:none; padding:0; margin: 10px 0 0; display:flex; flex-direction:column; gap:10px; }
-  .panel li{
-    padding: 12px 12px;
-    border-radius: 14px;
-    background: rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.10);
-    color: rgba(255,255,255,.86);
-    font-size:13px;
-  }
+/* ===== セクション ===== */
+.section{padding:60px 0}
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.card{
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+}
 
-  /* セクション */
-  .section{ padding: 54px 0; }
-  .section h2{ margin:0 0 10px; font-size: 22px; }
-  .section .sectionLead{
-    margin:0 0 22px;
-    color: var(--muted2);
-    line-height:1.85;
-    font-size: 14px;
-    max-width: 70ch;
-  }
-  .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .card{
-    padding: 18px;
-    border-radius: var(--r);
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.05);
-    box-shadow: 0 14px 40px rgba(0,0,0,.22);
-    min-height: 150px;
-  }
-  .cardTitle{ margin:0 0 8px; font-weight:900; font-size:15px; }
-  .cardText{ margin:0; color: rgba(255,255,255,.72); line-height:1.85; font-size:13px; }
+/* ===== フッター ===== */
+footer{
+  padding:30px 0;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:12px;
+}
 
-  footer{
-    padding: 28px 0 40px;
-    border-top:1px solid rgba(255,255,255,.08);
-    color: rgba(255,255,255,.62);
-    font-size: 12px;
-    line-height: 1.8;
-  }
-
-  /* 採用ページだけ“明るめ” */
-  body.page-recruit{
-    background: radial-gradient(900px 520px at 12% 8%, rgba(230,0,18,.10), transparent 60%),
-                radial-gradient(900px 520px at 85% 0%, rgba(156,163,175,.14), transparent 60%),
-                linear-gradient(180deg, #111c33, #0b1220);
-  }
-  body.page-recruit .card,
-  body.page-recruit .panel{
-    background: rgba(255,255,255,.07);
-  }
-
-  @media (max-width: 980px){
-    .heroContent .inner{ grid-template-columns: 1fr; }
-    .navRight{ display:none; }
-  }
-  @media (max-width: 820px){
-    .grid3{ grid-template-columns: 1fr; }
-    .btn{ width:100%; }
-    .heroSlider{ min-height: 480px; }
-  }
+/* ===== レスポンシブ ===== */
+@media(max-width:900px){
+  .heroGrid{grid-template-columns:1fr}
+  .navLinks{display:none}
+}
 </style>
 </head>
+
 <body>
 
- <div class="topbar">
+<!-- ===== HEADER ===== -->
+<div class="topbar">
   <div class="wrap nav">
     <a class="brand" href="./">
-      <img class="brandLogo" src="./images/logo.png" alt="First Aid Line ロゴ">
-      <div class="brandText">
+      <img src="./images/logo.png" alt="First Aid Line">
+      <div>
         <div class="brandName">ファーストエイドライン</div>
         <div class="brandSub">荷物の救急隊｜24時間365日</div>
       </div>
     </a>
-
     <div class="navLinks">
       <a class="chip" href="./philosophy/">企業理念</a>
       <a class="chip" href="./company/">会社概要</a>
       <a class="chip" href="./recruit/">採用</a>
       <a class="chip primary" href="#contact">今すぐ相談</a>
     </div>
-
-    <div class="navRight">
-      <div class="callPill">
-        <span class="callDot"></span>
-        <span>04-2997-9697</span>
-      </div>
-    </div>
+    <div class="call">📞 04-2997-9697</div>
   </div>
 </div>
 
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap">
+    <div class="heroSlider">
+      <div class="heroSlides">
+        <img src="./images/hero-1.png" class="heroSlide is-active" data-pos="right center" data-bri="1.1">
+        <img src="./images/hero-2.png" class="heroSlide" data-pos="center center" data-bri="1.05">
+        <img src="./images/hero-3.png" class="heroSlide" data-pos="left center" data-bri="1.08">
+      </div>
 
- <section class="hero">
-  <div class="heroSlider" aria-label="ヒーロー画像スライダー">
-  <div class="heroSlides">
-  <img src="./images/hero-1.png" alt="緊急物流イメージ1"
-       class="heroSlide is-active" data-pos="right center" data-bri="1.10" data-con="1.06" data-sat="1.05">
-  <img src="./images/hero-2.png" alt="緊急物流イメージ2"
-       class="heroSlide" data-pos="center center" data-bri="1.06" data-con="1.05" data-sat="1.05">
-  <img src="./images/hero-3.png" alt="緊急物流イメージ3"
-       class="heroSlide" data-pos="left center" data-bri="1.08" data-con="1.06" data-sat="1.06">
-</div>
-
-    <div class="heroContent">
-      <div class="inner">
-        <div>
-          <div class="tagline"><span class="tagIcon"></span><span>緊急配送・特急便・スポット配送</span></div>
-          <h1>緊急だからこそ、<br>「安全」を最優先にします。</h1>
-          <p class="lead">
-            私たちは社会インフラの一翼として、人命と社会を支える物流のプロフェッショナル。<br>
-            緊急時ほど冷静に、誠実に。判断の理由を共有し、再発を防ぎます。
-          </p>
-
-          <div class="badges">
-            <span class="badge">安全最優先</span>
-            <span class="badge">判断基準を公開</span>
-            <span class="badge">24時間365日</span>
+      <div class="heroContent">
+        <div class="heroGrid wrap">
+          <div>
+            <div class="tag"><span class="dot"></span>緊急配送・特急便</div>
+            <h1>緊急だからこそ、<br>「安全」を最優先にします。</h1>
+            <p class="lead">
+              判断に迷う場面ほど、無理をしない。<br>
+              私たちは「運ばない判断」も含めて責任を持ちます。
+            </p>
+            <div class="cta">
+              <a class="btn red" href="tel:0429979697">今すぐ電話</a>
+              <a class="btn" href="./philosophy/">判断基準を見る</a>
+            </div>
           </div>
 
-          <div class="ctaRow" id="contact">
-            <a class="btn red" href="tel:00000000000">今すぐ電話で相談</a>
-            <a class="btn gray" href="./philosophy/">判断基準を見る</a>
-          </div>
+          <aside class="panel">
+            <h3>最短で判断するために</h3>
+            <ul>
+              <li>判断に迷う場面では、安全を最優先にします</li>
+              <li>無理は一人で抱えません</li>
+              <li>判断理由を共有し、再発防止へ</li>
+            </ul>
+          </aside>
         </div>
-
-        <aside class="panel">
-          <h3>最短で判断するために</h3>
-          <p>①集荷地 ②届け先 ③希望時間 ④荷物（サイズ/重量/内容）<br>この4点で、可否と最適手段を即回答します。</p>
-          <ul>
-            <li>判断に迷う場面では、安全を最優先にします。</li>
-            <li>無理は一人で抱えない運用です。</li>
-            <li>判断理由を共有し、再発防止へつなげます。</li>
-          </ul>
-        </aside>
       </div>
     </div>
   </div>
 </section>
 
-        <p class="small" style="margin-top:12px; color:rgba(234,240,255,.78);">
-          ※電話番号/LINE/メールは本番用に差し替えてください。
-        </p>
-      </aside>
-    </div>
-  </header>
-
-  <section id="decision">
-    <div class="wrap">
-      <h2 class="h2">他社には真似できない理由</h2>
-      <p class="sub">私たちは「早さ」よりも「正しい判断」を優先します。緊急時こそ、安全と誠実さを守ります。</p>
-
-      <div class="grid3">
-        <div class="card">
-          <h3>判断基準を公開します</h3>
-          <p class="small">緊急時でも、次の基準を超える判断は行いません。</p>
-          <ul class="list" style="margin-top:10px;">
-            <li><span class="dot"></span><div>安全が担保できない場合、運行は中止・変更する</div></li>
-            <li><span class="dot"></span><div>迷うときは、複数人で判断する</div></li>
-            <li><span class="dot"></span><div>一人に責任を押しつけない</div></li>
-            <li><span class="dot"></span><div>理由を説明できない判断はしない</div></li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>「運ばない」判断もします</h3>
-          <p class="small">すべての依頼を受ける会社ではありません。安全のために、断ることがあります。</p>
-          <div class="panel" style="margin-top:10px;">
-            <b>（サンプル）運行を見送ったケース</b><br>
-            <span class="small" style="color:rgba(234,240,255,.86);">
-              ・ドライバーの連続稼働で判断力低下の恐れ<br>
-              ・天候悪化により二次事故リスクが高い<br>
-              ・到着時間を守れない可能性が高い
-            </span>
-            <p class="small" style="margin:10px 0 0;">
-              取引にならないことがあっても、私たちはその判断を正解だと考えています。
-            </p>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>現場の声を無加工で</h3>
-          <p class="small">きれいな言葉ではなく、現場のリアルで信頼をつくります。</p>
-          <div class="panel" style="margin-top:10px;">
-            <p class="small" style="margin:0 0 10px;"><b>現場の判断メモ（例）</b></p>
-            <p class="small" style="margin:0 0 10px;">「正直、行けと言われたら行っていたと思う。<br>でも“安全側でいい”と言われて、止める判断ができた。」</p>
-            <p class="small" style="margin:0;">「一人で決めなくていいのが、精神的に一番助かる。」</p>
-          </div>
-        </div>
+<!-- ===== 理由 ===== -->
+<section class="section">
+  <div class="wrap">
+    <h2>他社には真似できない理由</h2>
+    <div class="grid3">
+      <div class="card">
+        <h3>判断基準を公開</h3>
+        <p>属人的な判断を排し、基準で動きます。</p>
       </div>
-
-      <div class="panel" style="margin-top:18px;">
-        <h3 style="margin:0 0 10px; font-size:18px;">私たちからの約束（対外宣言）</h3>
-        <ul class="list">
-          <li><span class="dot"></span><div>無理な運行で信頼を取りにいかない</div></li>
-          <li><span class="dot"></span><div>できない依頼は、理由を説明して正直に伝える</div></li>
-          <li><span class="dot"></span><div>判断を現場任せにしない</div></li>
-          <li><span class="dot"></span><div>事故を隠さない。再発防止を優先する</div></li>
-        </ul>
-
-        <p class="small" style="margin-top:10px; color:var(--muted);">
-          ※理念・会社情報・採用は独立ページで詳しく掲載しています。
-        </p>
-
-        <div class="hero-cta" style="margin-top:12px;">
-          <a class="btn" href="./philosophy/">▶ 企業理念を見る</a>
-          <a class="btn" href="./company/">▶ 会社概要を見る</a>
-          <a class="btn" href="./recruit/">▶ 採用を見る</a>
-        </div>
+      <div class="card">
+        <h3>「運ばない」判断</h3>
+        <p>安全を損なう依頼は断ります。</p>
+      </div>
+      <div class="card">
+        <h3>現場の声を重視</h3>
+        <p>机上ではなく、現実を見ます。</p>
       </div>
     </div>
-  </section>
-
-  <section id="contact" style="padding-bottom:84px;">
-    <div class="wrap">
-      <div class="panel">
-        <h2 class="h2">今すぐ相談</h2>
-        <p class="sub">「まだ間に合うか？」その判断を、私たちに任せてください。</p>
-
-        <div class="hero-cta">
-          <a class="btn danger" href="tel:04-2997-9697">📞 今すぐ電話で相談</a>
-          <a class="btn info" href="https://example.com/line" target="_blank" rel="noopener">💬 LINEで相談</a>
-          <a class="btn" href="mailto:info@example.com">✉️ メールで見積もり</a>
-        </div>
-
-        <p class="small" style="margin-top:12px; color:var(--muted);">
-          ★本番化チェック：電話/LINE/メールを実運用に差し替え／対応エリアの明記／受けられない荷物（法令・安全）を明記
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="wrap footgrid">
-      <div>© First Aid Line. All rights reserved.</div>
-      <div>Demo page on GitHub Pages</div>
-    </div>
-  </footer>
-
-  <div class="float" aria-label="固定CTA">
-    <a class="primary" href="tel:04-2997-9697">📞 今すぐ</a>
-    <a class="secondary" href="#contact">💬 相談</a>
   </div>
+</section>
 
-  <script>
-  (function(){
-    const slides = Array.from(document.querySelectorAll('.heroSlide'));
-    if(!slides.length) return;
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="section">
+  <div class="wrap">
+    <div class="panel">
+      <h2>今すぐ相談</h2>
+      <p>「まだ間に合うか？」その判断を任せてください。</p>
+      <div class="cta">
+        <a class="btn red" href="tel:0429979697">電話する</a>
+        <a class="btn" href="mailto:info@example.com">メール</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    let idx = 0;
-    function show(i){
-      idx = (i + slides.length) % slides.length;
-      slides.forEach((s, n) => s.classList.toggle('is-active', n === idx));
-    }
-    setInterval(() => show(idx + 1), 4500);
-  })();
+<footer>
+  <div class="wrap">© First Aid Line</div>
+</footer>
+
+<script>
+(function(){
+  const slides = document.querySelectorAll('.heroSlide');
+  let i = 0;
+
+  function apply(slide){
+    slide.style.objectPosition = slide.dataset.pos || 'center';
+    slide.style.filter = `brightness(${slide.dataset.bri || 1})`;
+  }
+
+  slides.forEach(apply);
+
+  setInterval(()=>{
+    slides[i].classList.remove('is-active');
+    i = (i + 1) % slides.length;
+    slides[i].classList.add('is-active');
+    apply(slides[i]);
+  }, 4500);
+})();
 </script>
 
 </body>
