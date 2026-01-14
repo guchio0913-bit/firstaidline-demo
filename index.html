@@ -10,29 +10,37 @@
 :root{
   --red:#e60012;
   --gray:#9ca3af;
-  --bg0:#111827;   /* 少し明るいネイビー */
-  --bg1:#1f2937;   /* ロゴのグレーと相性◎ */
+
+  /* 背景色：少し明るめ（ロゴ赤・グレーに合わせたネイビー） */
+  --bg0:#111b2d;
+  --bg1:#1b2a44;
+
   --text:#ffffff;
-  --muted:rgba(255,255,255,.7);
-  --panel:rgba(255,255,255,.06);
-  --border:rgba(255,255,255,.12);
-  --shadow:0 20px 60px rgba(0,0,0,.45);
-  --radius:18px;
+  --muted:rgba(255,255,255,.72);
+
+  --panel:rgba(255,255,255,.08);
+  --border:rgba(255,255,255,.14);
+  --shadow:0 20px 60px rgba(0,0,0,.40);
+
   --max:1120px;
+
+  /* スライド調整（ここを変える） */
+  --slide-interval: 5500ms;   /* 1枚の表示時間 */
+  --fade-duration: 900ms;     /* フェード時間 */
 }
 
 *{box-sizing:border-box}
+html,body{height:100%}
 body{
   margin:0;
   font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
   color:var(--text);
   background:
-    radial-gradient(800px 500px at 10% 0%, rgba(230,0,18,.12), transparent 60%),
-    radial-gradient(800px 500px at 90% 0%, rgba(156,163,175,.12), transparent 60%),
+    radial-gradient(900px 560px at 10% 0%, rgba(230,0,18,.14), transparent 60%),
+    radial-gradient(900px 560px at 90% 0%, rgba(156,163,175,.16), transparent 60%),
     linear-gradient(180deg, var(--bg1), var(--bg0));
 }
 
-/* ===== 共通 ===== */
 .wrap{
   width:min(var(--max), calc(100% - 40px));
   margin:auto;
@@ -46,7 +54,7 @@ img{display:block;max-width:100%}
   top:0;
   z-index:100;
   backdrop-filter: blur(14px);
-  background:rgba(15,23,42,.85);
+  background:rgba(15,23,42,.78);
   border-bottom:1px solid var(--border);
 }
 .nav{
@@ -60,25 +68,28 @@ img{display:block;max-width:100%}
   display:flex;
   align-items:center;
   gap:12px;
+  min-width:240px;
 }
-.brand img{width:44px}
-.brandName{font-weight:900;font-size:15px}
-.brandSub{font-size:12px;color:var(--muted)}
+.brand img{width:44px;height:auto}
+.brandName{font-weight:900;font-size:15px;line-height:1.1}
+.brandSub{font-size:12px;color:var(--muted);margin-top:2px}
 
 .navLinks{
   display:flex;
   gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
 }
 .chip{
   padding:8px 12px;
   border-radius:999px;
   border:1px solid var(--border);
-  background:rgba(255,255,255,.04);
+  background:rgba(255,255,255,.05);
   font-size:13px;
 }
 .chip.primary{
   background:rgba(230,0,18,.18);
-  border-color:rgba(230,0,18,.4);
+  border-color:rgba(230,0,18,.40);
 }
 
 .call{
@@ -87,55 +98,74 @@ img{display:block;max-width:100%}
   gap:8px;
   padding:8px 12px;
   border-radius:999px;
-  background:rgba(230,0,18,.18);
-  border:1px solid rgba(230,0,18,.4);
+  background:rgba(230,0,18,.16);
+  border:1px solid rgba(230,0,18,.38);
+  min-width:240px;
+  justify-content:flex-end;
 }
 
 /* ===== HERO ===== */
-.hero{
-  padding:28px 0 60px;
-}
+.hero{ padding:28px 0 60px; }
+
 .heroSlider{
   position:relative;
   border-radius:24px;
   overflow:hidden;
   min-height:520px;
   box-shadow:var(--shadow);
+  border:1px solid rgba(255,255,255,.10);
 }
+
+/* ここがポイント：各スライドを「ぼかし背景 + 画像本体(contain)」の2層にする */
 .heroSlides{
   position:absolute;
   inset:0;
 }
 
-/* 画像（共通） */
 .heroSlide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition: opacity var(--fade-duration) ease;
+}
+.heroSlide.is-active{ opacity:1; }
+
+/* ぼかし背景（余白を埋める） */
+.heroSlide::before{
+  content:"";
+  position:absolute;
+  inset:-20px; /* ぼかしの端切れ防止 */
+  background-image: var(--src);
+  background-size: cover;
+  background-position: center center;
+  filter: blur(18px) brightness(.78) saturate(1.05);
+  transform: scale(1.08);
+}
+
+/* 画像本体：contain で絶対に切れない */
+.heroSlide img{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
-  object-fit: cover;
-  object-position: center center;
-  opacity:0;
-  transition: opacity .8s ease;
+  object-fit: contain;                /* ← 切れない */
+  object-position: var(--pos, center);
+  filter: brightness(var(--bri,1)) contrast(var(--con,1)) saturate(var(--sat,1));
+  transform: scale(var(--zoom,1.00)); /* 微調整（必要なら） */
 }
-.heroSlide.is-active{opacity:1}
 
-/* 画像のズーム：通常は等倍 */
-.heroSlide{ transform: scale(1.00); }
-
-/* 1・2枚目だけ遠目（切れ防止） */
-.heroSlide.zoom-out{ transform: scale(0.90); }
-
+/* 文字が読みやすい暗幕（左→右） */
 .heroSlider::after{
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(
     90deg,
-    rgba(11,18,32,.85),
-    rgba(11,18,32,.45),
-    rgba(11,18,32,.15)
+    rgba(11,18,32,.84),
+    rgba(11,18,32,.44),
+    rgba(11,18,32,.14)
   );
+  pointer-events:none;
 }
 
 .heroContent{
@@ -149,6 +179,7 @@ img{display:block;max-width:100%}
   display:grid;
   grid-template-columns:1.2fr .9fr;
   gap:20px;
+  align-items:center;
 }
 
 .tag{
@@ -157,28 +188,24 @@ img{display:block;max-width:100%}
   align-items:center;
   padding:6px 12px;
   border-radius:999px;
-  background:rgba(255,255,255,.08);
+  background:rgba(255,255,255,.10);
   font-size:12px;
+  width:fit-content;
 }
-.dot{
-  width:8px;height:8px;border-radius:50%;
-  background:var(--red);
-}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--red)}
 
 h1{
   font-size:clamp(30px,4.5vw,54px);
   line-height:1.15;
   margin:14px 0;
 }
-.lead{
-  color:var(--muted);
-  line-height:1.9;
-}
+.lead{ color:var(--muted); line-height:1.9; max-width:56ch; }
 
 .cta{
   display:flex;
   gap:12px;
   margin-top:20px;
+  flex-wrap:wrap;
 }
 .btn{
   padding:14px 18px;
@@ -194,15 +221,15 @@ h1{
 
 /* ===== パネル ===== */
 .panel{
-  background:var(--panel);
-  border:1px solid var(--border);
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
   border-radius:20px;
   padding:18px;
 }
 .panel ul{list-style:none;padding:0;margin:10px 0 0}
 .panel li{
   padding:10px;
-  background:rgba(255,255,255,.05);
+  background:rgba(255,255,255,.06);
   border-radius:12px;
   margin-bottom:8px;
 }
@@ -215,7 +242,7 @@ h1{
   gap:16px;
 }
 .card{
-  background:rgba(255,255,255,.05);
+  background:rgba(255,255,255,.06);
   border:1px solid var(--border);
   border-radius:16px;
   padding:18px;
@@ -233,6 +260,8 @@ footer{
 @media(max-width:900px){
   .heroGrid{grid-template-columns:1fr}
   .navLinks{display:none}
+  .call{display:none}
+  .heroSlider{min-height:560px}
 }
 </style>
 </head>
@@ -249,12 +278,14 @@ footer{
         <div class="brandSub">荷物の救急隊｜24時間365日</div>
       </div>
     </a>
+
     <div class="navLinks">
       <a class="chip" href="./philosophy/">企業理念</a>
       <a class="chip" href="./company/">会社概要</a>
       <a class="chip" href="./recruit/">採用</a>
       <a class="chip primary" href="#contact">今すぐ相談</a>
     </div>
+
     <div class="call">📞 04-2997-9697</div>
   </div>
 </div>
@@ -262,20 +293,26 @@ footer{
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="wrap">
-    <div class="heroSlider">
+    <div class="heroSlider" aria-label="ヒーロー画像スライダー">
       <div class="heroSlides">
 
-        <img src="./images/hero-1.png"
-             class="heroSlide zoom-out is-active"
-             data-pos="55% center" data-bri="1.12">
+        <!-- 1枚目：トラックが切れる場合は zoom を 0.95→0.90 にしてOK -->
+        <div class="heroSlide is-active"
+             style="--src:url('./images/hero-1.png'); --pos:55% center; --bri:1.12; --con:1.06; --sat:1.05; --zoom:0.92;">
+          <img src="./images/hero-1.png" alt="緊急物流イメージ1">
+        </div>
 
-        <img src="./images/hero-2.png"
-             class="heroSlide zoom-out"
-             data-pos="35% center" data-bri="1.10">
+        <!-- 2枚目：同様に少し引く -->
+        <div class="heroSlide"
+             style="--src:url('./images/hero-2.png'); --pos:45% center; --bri:1.10; --con:1.05; --sat:1.05; --zoom:0.92;">
+          <img src="./images/hero-2.png" alt="緊急物流イメージ2">
+        </div>
 
-        <img src="./images/hero-3.png"
-             class="heroSlide"
-             data-pos="left center" data-bri="1.10">
+        <!-- 3枚目：切れにくいなら zoom は 1.00 でOK -->
+        <div class="heroSlide"
+             style="--src:url('./images/hero-3.png'); --pos:center center; --bri:1.10; --con:1.05; --sat:1.05; --zoom:1.00;">
+          <img src="./images/hero-3.png" alt="緊急物流イメージ3">
+        </div>
 
       </div>
 
@@ -288,7 +325,7 @@ footer{
               判断に迷う場面ほど、無理をしない。<br>
               私たちは「運ばない判断」も含めて責任を持ちます。
             </p>
-            <div class="cta">
+            <div class="cta" id="contact">
               <a class="btn red" href="tel:0429979697">今すぐ電話</a>
               <a class="btn" href="./philosophy/">判断基準を見る</a>
             </div>
@@ -304,6 +341,7 @@ footer{
           </aside>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -330,7 +368,7 @@ footer{
 </section>
 
 <!-- ===== CONTACT ===== -->
-<section id="contact" class="section">
+<section class="section">
   <div class="wrap">
     <div class="panel">
       <h2>今すぐ相談</h2>
@@ -349,22 +387,21 @@ footer{
 
 <script>
 (function(){
-  const slides = document.querySelectorAll('.heroSlide');
-  let i = 0;
+  const slides = Array.from(document.querySelectorAll('.heroSlide'));
+  if(!slides.length) return;
 
-  function apply(slide){
-    slide.style.objectPosition = slide.dataset.pos || 'center';
-    slide.style.filter = `brightness(${slide.dataset.bri || 1})`;
+  // CSS変数から読む（調整は :root の --slide-interval / --fade-duration）
+  const rootStyle = getComputedStyle(document.documentElement);
+  const interval = parseInt(rootStyle.getPropertyValue('--slide-interval')) || 5500;
+
+  let i = 0;
+  function show(next){
+    slides[i].classList.remove('is-active');
+    i = (next + slides.length) % slides.length;
+    slides[i].classList.add('is-active');
   }
 
-  slides.forEach(apply);
-
-  setInterval(()=>{
-    slides[i].classList.remove('is-active');
-    i = (i + 1) % slides.length;
-    slides[i].classList.add('is-active');
-    apply(slides[i]);
-  }, 5000);
+  setInterval(() => show(i + 1), interval);
 })();
 </script>
 
