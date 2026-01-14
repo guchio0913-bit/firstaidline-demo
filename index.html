@@ -6,9 +6,15 @@
   <title>ファーストエイドライン｜緊急配送・判断基準を公開</title>
   <meta name="description" content="緊急配送・特急便・スポット配送。安全最優先の判断基準を公開し、緊急時に真っ先に声がかかる物流会社を目指します。" />
   <style>
-    .hero {
-  position: relative;
-  background: url("./images/hero-illustration.png") center / cover no-repeat;
+ .hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(11,16,32,.18), rgba(11,16,32,.95)),
+    url("./images/hero-illustration.png");
+  background-size:cover;
+  background-position:center;
 }
 
 .hero::before {
