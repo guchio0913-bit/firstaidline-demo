@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>会社概要｜ファーストエイドライン</title>
+  <meta name="description" content="ファーストエイドラインの会社概要。所在地、事業内容、対応エリア、連絡先など。" />
+  <style>
+    :root{--bg:#0b1020;--panel:#0f1835;--text:#eaf0ff;--muted:#b8c3e6;--line:rgba(234,240,255,.12);--accent:#ff3b3b;--accent2:#3be1ff;--shadow:0 12px 40px rgba(0,0,0,.35);--radius:18px;--max:1120px;}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;color:var(--text);
+      background:radial-gradient(1200px 800px at 20% -10%, rgba(59,225,255,.14), transparent 60%),radial-gradient(1200px 800px at 80% 10%, rgba(255,59,59,.14), transparent 55%),var(--bg);line-height:1.65;}
+    a{color:inherit} .wrap{max-width:var(--max);margin:0 auto;padding:0 20px;}
+    .topbar{position:sticky;top:0;z-index:30;backdrop-filter:blur(10px);background:rgba(11,16,32,.70);border-bottom:1px solid var(--line);}
+    .topbar .wrap{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;gap:12px;}
+    .brand{display:flex;align-items:center;gap:10px;}
+    .logo{width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:var(--shadow);}
+    .nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+    .chip{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;border:1px solid var(--line);padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.04);text-decoration:none;transition:transform .15s ease, background .15s ease;font-weight:900;font-size:13px;}
+    .chip:hover{transform:translateY(-1px);background:rgba(255,255,255,.07);}
+    .chip.primary{border-color:rgba(255,59,59,.35);background:rgba(255,59,59,.12);}
+    header{padding:46px 0 10px;border-bottom:1px solid var(--line);}
+    h1{margin:0 0 10px;font-size:clamp(26px,3.5vw,44px);line-height:1.15;}
+    .sub{color:var(--muted);margin:0 0 18px;}
+    section{padding:34px 0;}
+    .panel{background:rgba(15,24,53,.74);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);}
+    table{width:100%; border-collapse:collapse; font-size:14px;}
+    th,td{padding:12px; border-bottom:1px solid rgba(234,240,255,.12); vertical-align:top;}
+    th{text-align:left; width:28%; color:rgba(234,240,255,.92);}
+    .small{color:rgba(234,240,255,.86);font-size:13px;}
+    @media (max-width:920px){.nav{display:none;}}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <b>ファーストエイドライン</b><br>
+          <span style="color:var(--muted);font-size:12px;">会社概要</span>
+        </div>
+      </div>
+      <nav class="nav" aria-label="ページナビ">
+        <a class="chip" href="../">← トップ</a>
+        <a class="chip" href="../philosophy/">理念</a>
+        <a class="chip primary" href="./">会社概要</a>
+        <a class="chip" href="../recruit/">採用</a>
+        <a class="chip primary" href="tel:000-0000-0000">📞 000-0000-0000</a>
+      </nav>
+      <a class="chip" href="../">← トップへ</a>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap">
+      <h1>会社概要</h1>
+      <p class="sub">※ 下記はサンプルです。本番公開時に正式情報へ差し替えてください。</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="panel">
+        <table>
+          <tbody>
+            <tr><th>会社名</th><td>株式会社ファーストエイドライン</td></tr>
+            <tr><th>代表者</th><td>代表取締役 〇〇 〇〇</td></tr>
+            <tr><th>事業内容</th><td>緊急配送／特急便／スポット配送／物流コンサルティング</td></tr>
+            <tr><th>設立</th><td>20XX年X月</td></tr>
+            <tr><th>所在地</th><td>〒000-0000　〇〇県〇〇市〇〇町</td></tr>
+            <tr><th>対応エリア</th><td>全国（提携ネットワーク対応）</td></tr>
+            <tr><th>連絡先</th><td>TEL：000-0000-0000<br>MAIL：info@example.com</td></tr>
+          </tbody>
+        </table>
+
+        <p class="small" style="margin-top:14px;">
+          ★差し替え推奨：対応エリア（例：関東即応/全国提携）／車両台数（ある場合）／主要対応業種（製造・建設・イベント等）
+        </p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
