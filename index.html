@@ -494,7 +494,73 @@ footer{
     font-weight: 900;
     padding: 14px 20px;
   }
-  
+  /* =========================
+   セクション全体を強調
+========================= */
+
+/* セクションタイトル（サービス / 約束 / 今すぐ相談） */
+.section h2,
+.section h3 {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+/* セクション説明文 */
+.section p {
+  font-size: 16px;
+  line-height: 2;
+  color: rgba(255,255,255,0.9);
+}
+
+/* カード全体を大きく */
+.card,
+.panel {
+  padding: 28px;
+}
+
+/* カード見出し */
+.card h3,
+.panel h3 {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+/* カード本文 */
+.card p,
+.panel p,
+.panel li {
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.9);
+}
+
+/* 強調したい約束系カードをさらに目立たせる */
+.card {
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.45),
+    inset 0 0 0 1px rgba(255,255,255,.08);
+  backdrop-filter: blur(6px);
+}
+
+/* 今すぐ相談エリアを特に強調 */
+#contact .panel {
+  padding: 36px;
+  background: linear-gradient(
+    135deg,
+    rgba(230,0,18,.25),
+    rgba(255,255,255,.05)
+  );
+}
+
+#contact h2 {
+  font-size: 30px;
+}
+
 </style>
   /* ===== 強調テキストを白で協調表示 ===== */
 .hero strong,
