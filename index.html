@@ -6,6 +6,26 @@
   <title>ファーストエイドライン｜緊急配送・判断基準を公開</title>
   <meta name="description" content="緊急配送・特急便・スポット配送。安全最優先の判断基準を公開し、緊急時に真っ先に声がかかる物流会社を目指します。" />
   <style>
+    .hero {
+  position: relative;
+  background: url("./images/hero-illustration.png") center / cover no-repeat;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.7),
+    rgba(0,0,0,0.3)
+  );
+}
+
+.hero .wrap {
+  position: relative;
+  z-index: 1;
+}
     :root{
       --bg:#0b1020; --panel:#0f1835; --text:#eaf0ff; --muted:#b8c3e6;
       --line:rgba(234,240,255,.12); --accent:#ff3b3b; --accent2:#3be1ff;
@@ -144,7 +164,7 @@
       </nav>
 
       <!-- ★差し替え：電話番号 -->
-      <a class="chip primary" href="tel:000-0000-0000">📞 000-0000-0000</a>
+      <a class="chip primary" href="tel:04-2997-9697">📞 04-2997-9698</a>
     </div>
   </div>
 
@@ -165,7 +185,7 @@
         </div>
 
         <div class="hero-cta">
-          <a class="btn danger" href="tel:000-0000-0000">📞 今すぐ電話で相談</a>
+          <a class="btn danger" href="tel:04-2997-9697">📞 今すぐ電話で相談</a>
           <a class="btn info" href="https://example.com/line" target="_blank" rel="noopener">💬 LINEで相談</a>
           <a class="btn" href="#decision">▶ 判断基準を見る</a>
         </div>
