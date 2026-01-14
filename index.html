@@ -218,9 +218,10 @@ h1{ margin:14px 0 10px; font-size: clamp(30px, 4.2vw, 54px); line-height:1.12; }
 }
 
 .panelTitle{
-  font-size:18px;
+  font-size:20px;          /* ← 少し大きく */
   font-weight:900;
-  margin-bottom:10px;
+  margin-bottom:12px;
+  letter-spacing:0.04em;
 }
 
 .panelLead{
@@ -242,25 +243,27 @@ h1{ margin:14px 0 10px; font-size: clamp(30px, 4.2vw, 54px); line-height:1.12; }
 .judgeList li{
   display:flex;
   align-items:center;
-  gap:10px;
-  padding:10px 12px;
-  border-radius:12px;
-  background:rgba(255,255,255,.08);
-  font-size:14px;
-  font-weight:700;
+  gap:12px;
+  padding:14px 14px;
+  border-radius:14px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.18);
+  font-size:15px;          /* ← 大きく */
+  font-weight:800;
 }
 
 .judgeList li span{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:26px;
-  height:26px;
+  width:32px;
+  height:32px;
   border-radius:50%;
   background:#e60012;
   color:#fff;
-  font-size:13px;
+  font-size:14px;
   font-weight:900;
+  box-shadow:0 0 0 4px rgba(230,0,18,.25);
 }
 
 .judgeRules p{
