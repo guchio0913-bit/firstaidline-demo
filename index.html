@@ -161,20 +161,14 @@ img{max-width:100%;display:block}
 .heroFg{
   position:absolute;
   inset:0;
-  width:100%;
-  height:100%;
-  object-fit: contain;
-  object-position: var(--pos, 50% center);
-  filter: brightness(var(--bri,1)) contrast(var(--con,1)) saturate(var(--sat,1));
-  transform: scale(var(--zoom,1.22));
-}
-
-/* さらに“もう一回り大きく”見せる（切れにくい範囲で拡大） */
-.heroFg{
   width:112%;
   height:112%;
   left:-6%;
   top:-6%;
+  object-fit: contain;
+  object-position: var(--pos, 50% center);
+  filter: brightness(var(--bri,1)) contrast(var(--con,1)) saturate(var(--sat,1));
+  transform: scale(var(--zoom,1.22));
 }
 
 /* 文字が読める暗幕 */
@@ -372,34 +366,38 @@ h1{
   text-shadow:0 1px 2px rgba(0,0,0,.35);
 }
 .judgeRules p:last-child{ margin-bottom:0; }
-.judgeRules strong{
-  color:#ff4a4a;
-  font-weight:900;
-  letter-spacing:0.05em;
-}
+/* ★赤字にしていたのを白字に変更（ここが要点） */
+.judgeRules strong{ color:#ffffff; font-weight:900; letter-spacing:0.05em; }
 
 /* ===== Sections ===== */
 .section{ padding: 60px 0; }
-.section h2{ margin:0 0 10px; font-size:22px; color:#fff; }
+.section h2{ margin:0 0 10px; font-size:28px; font-weight:900; letter-spacing:.06em; color:#fff; text-shadow:0 2px 14px rgba(0,0,0,.35); }
 .sectionLead{
-  margin:0 0 22px;
-  color:rgba(255,255,255,.78);
+  margin:0 0 32px;
+  color:rgba(255,255,255,.9);
   line-height:1.85;
-  font-size:14px;
+  font-size:16px;
+  font-weight:700;
   max-width:70ch;
 }
 .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
 .card{
-  padding:18px;
+  padding:26px;
   border-radius:var(--r);
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.07);
-  box-shadow:0 14px 40px rgba(0,0,0,.18);
-  min-height:160px;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.10);
+  box-shadow:0 24px 70px rgba(0,0,0,.35);
+  min-height:190px;
   color:#fff;
+  transition: transform .25s ease, box-shadow .25s ease;
+  backdrop-filter: blur(6px);
 }
-.cardTitle{ margin:0 0 8px; font-weight:900; font-size:15px; }
-.cardText{ margin:0; color:rgba(255,255,255,.82); line-height:1.85; font-size:13px; }
+.card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 30px 90px rgba(0,0,0,.45);
+}
+.cardTitle{ margin:0 0 12px; font-weight:900; font-size:18px; color:#fff; letter-spacing:.04em; }
+.cardText{ margin:0; color:rgba(255,255,255,.92); line-height:1.9; font-size:14.5px; font-weight:700; }
 
 footer{
   padding:30px 0 40px;
@@ -447,130 +445,19 @@ footer{
   .btn{ width:100%; }
   .heroSlider{ min-height: 600px; }
 }
-   /* ←ここに追加する（この下に貼る） */
-  /* =========================
-     サービス・約束セクション 強調
-  ========================= */
-  .section h2{
-    font-size: 28px;
-    font-weight: 900;
-    letter-spacing: .06em;
-    margin-bottom: 14px;
-    text-shadow: 0 2px 14px rgba(0,0,0,.35);
-  }
-  .sectionLead{
-    font-size: 16px;
-    font-weight: 700;
-    color: rgba(255,255,255,.9);
-    margin-bottom: 32px;
-  }
-  .card{
-    padding: 26px;
-    min-height: 190px;
-    background: rgba(255,255,255,.10);
-    border: 1px solid rgba(255,255,255,.22);
-    box-shadow: 0 24px 70px rgba(0,0,0,.35);
-    transition: transform .25s ease, box-shadow .25s ease;
-  }
-  .card:hover{
-    transform: translateY(-6px);
-    box-shadow: 0 30px 90px rgba(0,0,0,.45);
-  }
-  .cardTitle{
-    font-size: 18px;
-    font-weight: 900;
-    margin-bottom: 12px;
-    color: #ffffff;
-    letter-spacing: .04em;
-  }
-  .cardText{
-    font-size: 14.5px;
-    font-weight: 700;
-    line-height: 1.9;
-    color: rgba(255,255,255,.92);
-  }
-  .ctaRow .btn{
-    font-size: 14px;
-    font-weight: 900;
-    padding: 14px 20px;
-  }
-  /* =========================
-   セクション全体を強調
-========================= */
 
-/* セクションタイトル（サービス / 約束 / 今すぐ相談） */
-.section h2,
-.section h3 {
-  font-size: 28px;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  color: #ffffff;
-  margin-bottom: 16px;
-}
-
-/* セクション説明文 */
-.section p {
-  font-size: 16px;
-  line-height: 2;
-  color: rgba(255,255,255,0.9);
-}
-
-/* カード全体を大きく */
-.card,
-.panel {
-  padding: 28px;
-}
-
-/* カード見出し */
-.card h3,
-.panel h3 {
-  font-size: 20px;
-  font-weight: 900;
-  margin-bottom: 12px;
-  color: #ffffff;
-}
-
-/* カード本文 */
-.card p,
-.panel p,
-.panel li {
-  font-size: 15px;
-  line-height: 1.9;
-  color: rgba(255,255,255,0.9);
-}
-
-/* 強調したい約束系カードをさらに目立たせる */
-.card {
-  box-shadow:
-    0 20px 50px rgba(0,0,0,.45),
-    inset 0 0 0 1px rgba(255,255,255,.08);
-  backdrop-filter: blur(6px);
-}
-
-/* 今すぐ相談エリアを特に強調 */
-#contact .panel {
-  padding: 36px;
-  background: linear-gradient(
-    135deg,
-    rgba(230,0,18,.25),
-    rgba(255,255,255,.05)
-  );
-}
-
-#contact h2 {
-  font-size: 30px;
-}
-
-</style>
-  /* ===== 強調テキストを白で協調表示 ===== */
+/* ===== 強調テキストを白で協調表示（※style内に入れるのが重要） ===== */
 .hero strong,
 .hero .em,
 .hero .highlight,
-.hero .accent {
-  color: #ffffff !important;
-  font-weight: 900;
-  text-shadow: 0 2px 6px rgba(0,0,0,.45);
+.hero .accent,
+.panelLead strong,
+.judgeRules strong{
+  color:#ffffff !important;
+  font-weight:900;
+  text-shadow:0 2px 6px rgba(0,0,0,.45);
 }
+</style>
 </head>
 
 <body>
@@ -611,21 +498,21 @@ footer{
 
         <!-- hero-1：トラックをもっと大きく（zoom高め） -->
         <div class="heroLayer is-active"
-             data-pos="50% center" data-bri="1.06" data-con="1.05" data-sat="1.06" data-zoom="1.28">
+             data-pos="50% center" data-bri="1.06" data-con="1.05" data-sat="1.06" data-zoom="1.32">
           <img class="heroBg" src="./images/hero-1.png" alt="">
           <img class="heroFg" src="./images/hero-1.png" alt="緊急物流イメージ1">
         </div>
 
         <!-- hero-2：同様 -->
         <div class="heroLayer"
-             data-pos="50% center" data-bri="1.05" data-con="1.05" data-sat="1.06" data-zoom="1.28">
+             data-pos="50% center" data-bri="1.05" data-con="1.05" data-sat="1.06" data-zoom="1.32">
           <img class="heroBg" src="./images/hero-2.png" alt="">
           <img class="heroFg" src="./images/hero-2.png" alt="緊急物流イメージ2">
         </div>
 
         <!-- hero-3：少し控えめ -->
         <div class="heroLayer"
-             data-pos="50% center" data-bri="1.05" data-con="1.05" data-sat="1.05" data-zoom="1.18">
+             data-pos="50% center" data-bri="1.05" data-con="1.05" data-sat="1.05" data-zoom="1.20">
           <img class="heroBg" src="./images/hero-3.png" alt="">
           <img class="heroFg" src="./images/hero-3.png" alt="緊急物流イメージ3">
         </div>
