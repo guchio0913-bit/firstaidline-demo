@@ -1,41 +1,38 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>First Aid Line｜緊急配送・安全最優先</title>
-  <meta name="description" content="緊急配送・特急便・スポット配送。判断に迷う場面ほど安全を最優先する物流会社です。">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>First Aid Line｜応急処置の物流（特急・緊急・スポット）</title>
+  <meta name="description" content="First Aid＝応急処置。急なトラブル時に、まず状況整理→最適手段→安全前提で最短手配。緊急配送・特急便・スポット配送。24時間365日。" />
 
   <style>
     :root{
       --red:#e60012;
-      --gray:#9ca3af;
+      --red2:#ff3b3b;
+      --ink:#0b1220;
+      --navy:#0f1a2f;
+      --navy2:#121f3a;
+      --slate:#8a94a6;
 
-      /* 背景：少し明るめネイビー */
-      --bg0:#111c2f;
-      --bg1:#1b2a44;
+      --text: rgba(255,255,255,.94);
+      --muted: rgba(255,255,255,.78);
+      --muted2: rgba(255,255,255,.62);
 
-      /* 文字：白は濃く、本文は少し落とす */
-      --text:#ffffff;
-      --muted:rgba(255,255,255,.92);
-      --muted2:rgba(255,255,255,.76);
+      --panel: rgba(255,255,255,.08);
+      --panel2: rgba(255,255,255,.06);
+      --line: rgba(255,255,255,.14);
+      --shadow: 0 18px 60px rgba(0,0,0,.38);
 
-      /* パネル/境界 */
-      --panel:rgba(255,255,255,.10);
-      --panel2:rgba(255,255,255,.07);
-      --border:rgba(255,255,255,.18);
-      --shadow:0 18px 54px rgba(0,0,0,.34);
+      --max: 1120px;
+      --r: 18px;
+      --r2: 26px;
 
-      --max:1120px;
-      --r:18px;
-      --r2:22px;
+      --header-h: 66px;
 
-      /* スライド調整 */
+      /* slider */
       --slide-interval: 5200ms;
       --fade-duration: 900ms;
-
-      /* ヘッダー高さ（見た目調整用） */
-      --header-h: 64px;
     }
 
     *{ box-sizing:border-box; }
@@ -43,456 +40,475 @@
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
-      color:var(--text);
+      color: var(--text);
       background:
-        radial-gradient(900px 520px at 12% 8%, rgba(230,0,18,.14), transparent 60%),
-        radial-gradient(900px 520px at 88% 0%, rgba(156,163,175,.14), transparent 60%),
-        linear-gradient(180deg, var(--bg1), var(--bg0));
-      letter-spacing:.02em;
+        radial-gradient(1200px 700px at 15% 0%, rgba(230,0,18,.14), transparent 55%),
+        radial-gradient(900px 520px at 90% 10%, rgba(138,148,166,.14), transparent 55%),
+        linear-gradient(180deg, var(--navy2), var(--navy));
+      letter-spacing: .02em;
     }
     a{ color:inherit; text-decoration:none; }
-    img{ max-width:100%; display:block; }
+    img{ display:block; max-width:100%; }
     .wrap{ width:min(var(--max), calc(100% - 40px)); margin-inline:auto; }
 
-    /* ===== Header ===== */
+    /* ===== Topbar ===== */
     .topbar{
       position:sticky;
       top:0;
-      z-index:100;
+      z-index:200;
+      height: var(--header-h);
+      display:flex;
+      align-items:center;
       backdrop-filter: blur(14px);
-      background:rgba(16, 28, 52, .82);
-      border-bottom:1px solid var(--border);
+      background: rgba(15,26,47,.78);
+      border-bottom: 1px solid rgba(255,255,255,.10);
     }
     .nav{
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline:auto;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      padding:12px 0;
-      min-height: var(--header-h);
     }
     .brand{
       display:flex;
       align-items:center;
       gap:12px;
-      min-width:240px;
+      min-width: 240px;
     }
-    .brandLogo{ width:44px; height:auto; }
-    .brandText{ line-height:1.15; }
-    .brandName{ font-weight:900; font-size:15px; }
-    .brandSub{ font-size:12px; color:var(--muted2); margin-top:2px; }
+    .brand img{ width:46px; height:auto; }
+    .brand .t1{ font-weight:900; font-size:15px; line-height:1.1; }
+    .brand .t2{ font-size:12px; color: var(--muted2); margin-top:3px; }
 
     .navLinks{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center;
     }
-    .chip{
+    .pill{
       padding:9px 12px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.05);
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
       font-size:13px;
-      color:#fff;
-      transition:.15s ease;
+      color: rgba(255,255,255,.90);
+      transition: .15s ease;
       white-space:nowrap;
     }
-    .chip:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); }
-    .chip.primary{
-      background:rgba(230,0,18,.16);
-      border-color:rgba(230,0,18,.42);
+    .pill:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); }
+    .pill.primary{
+      border-color: rgba(230,0,18,.38);
+      background: rgba(230,0,18,.16);
     }
 
     .navRight{
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-      min-width:240px;
+      display:flex; align-items:center; justify-content:flex-end; gap:10px; min-width:240px;
     }
-    .callPill{
-      display:flex;
-      align-items:center;
-      gap:10px;
+    .call{
+      display:flex; align-items:center; gap:10px;
       padding:9px 12px;
       border-radius:999px;
-      background:rgba(230,0,18,.14);
-      border:1px solid rgba(230,0,18,.40);
-      white-space:nowrap;
+      border:1px solid rgba(230,0,18,.38);
+      background: rgba(230,0,18,.16);
       font-size:13px;
-      color:#fff;
+      white-space:nowrap;
     }
-    .callDot{
-      width:10px;height:10px;border-radius:999px;
-      background:var(--red);
-      box-shadow:0 0 0 4px rgba(230,0,18,.20);
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--red);
+      box-shadow: 0 0 0 4px rgba(230,0,18,.20);
     }
 
-    /* ===== Hero（画面いっぱい＆バランス調整）===== */
-    .hero{ padding:0; }
+    /* ===== HERO (NEW LAYOUT) ===== */
+    .hero{
+      padding: 18px 0 18px;
+    }
 
-    .heroSlider{
+    .heroShell{
       position:relative;
+      border-radius: var(--r2);
       overflow:hidden;
       border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.05);
+      background: rgba(255,255,255,.04);
       box-shadow: var(--shadow);
-
-      /* ヘッダー分だけ引いて“詰まり”を軽減 */
-      min-height: calc(100vh - var(--header-h));
-      border-radius: 0;
+      min-height: calc(100vh - var(--header-h) - 22px);
     }
 
+    /* Slider Layers */
     .heroLayers{ position:absolute; inset:0; }
-
     .heroLayer{
-      position:absolute;
-      inset:0;
+      position:absolute; inset:0;
       opacity:0;
       transition: opacity var(--fade-duration) ease;
     }
     .heroLayer.is-active{ opacity:1; }
 
-    /* 背景：全面に敷いて余白を埋める */
     .heroBg{
       position:absolute;
-      inset:-18px;
-      width:calc(100% + 36px);
-      height:calc(100% + 36px);
-      object-fit:cover;
-      object-position:center center;
-      filter: blur(18px) brightness(.75) saturate(1.08);
+      inset:-20px;
+      width:calc(100% + 40px);
+      height:calc(100% + 40px);
+      object-fit: cover;
+      filter: blur(20px) brightness(.70) saturate(1.10);
       transform: scale(1.08);
     }
-
-    /* 前面：トラック全体（切れない）＋画面いっぱい感 */
     .heroFg{
-      position:absolute;
-      inset:0;
-      width:112%;
-      height:112%;
-      left:-6%;
-      top:-6%;
-      object-fit: contain;
+      position:absolute; inset:0;
+      width:110%;
+      height:110%;
+      left:-5%;
+      top:-5%;
+      object-fit: contain; /* 切れない */
       object-position: var(--pos, 50% center);
       filter: brightness(var(--bri,1)) contrast(var(--con,1)) saturate(var(--sat,1));
-      transform: scale(var(--zoom,1.20)); /* ←大きすぎない“ちょうど” */
+      transform: scale(var(--zoom,1.18));
     }
 
-    /* 文字が読める暗幕（強すぎない） */
-    .heroSlider::after{
+    /* readable veil */
+    .heroShell::after{
       content:"";
-      position:absolute;
-      inset:0;
+      position:absolute; inset:0;
       background: linear-gradient(
-        90deg,
-        rgba(10,16,30,.84),
-        rgba(10,16,30,.46),
-        rgba(10,16,30,.16)
+        100deg,
+        rgba(9,14,26,.90) 0%,
+        rgba(9,14,26,.55) 45%,
+        rgba(9,14,26,.20) 70%,
+        rgba(9,14,26,.10) 100%
       );
       pointer-events:none;
     }
 
-    .heroContent{
+    .heroInner{
       position:relative;
       z-index:2;
       height:100%;
-      display:flex;
-      align-items:center;
-    }
-    .heroGrid{
-      width:min(var(--max), calc(100% - 40px));
-      margin-inline:auto;
       display:grid;
-      grid-template-columns:1.18fr .98fr;
-      gap:18px;
-      align-items:center;
-      padding:22px 0;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items: center;
+      padding: 34px 34px;
     }
 
-    .tagline{
+    .kicker{
       display:inline-flex;
       align-items:center;
       gap:10px;
       padding:8px 12px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.08);
+      background: rgba(255,255,255,.08);
       font-size:12px;
-      width:fit-content;
+      width: fit-content;
       color:#fff;
     }
-    .tagIcon{
-      width:9px;height:9px;border-radius:999px;
-      background:var(--red);
-      box-shadow:0 0 0 4px rgba(230,0,18,.18);
+    .kicker .kdot{
+      width:9px; height:9px; border-radius:999px;
+      background: var(--red);
+      box-shadow: 0 0 0 4px rgba(230,0,18,.18);
     }
 
-    /* ★バランス調整：H1を少し抑えて、leadと粒度を揃える */
     h1{
-      margin:14px 0 10px;
+      margin: 14px 0 10px;
       font-size: clamp(34px, 5.2vw, 64px);
-      line-height:1.08;
-      color:#fff;
-      text-shadow:0 2px 12px rgba(0,0,0,.35);
-      letter-spacing:.02em;
-    }
-    .lead{
-      margin:0 0 18px;
-      color:#fff;
-      opacity:.92;
-      font-size: clamp(16px, 2.1vw, 19px);
-      font-weight:750;
-      line-height:1.85;
-      max-width: 60ch;
-      text-shadow:0 1px 2px rgba(0,0,0,.35);
+      line-height: 1.08;
+      font-weight: 950;
+      letter-spacing: .02em;
+      text-shadow: 0 2px 14px rgba(0,0,0,.40);
     }
 
-    .badges{ display:flex; flex-wrap:wrap; gap:10px; margin: 10px 0 18px; }
+    .subLead{
+      margin: 0 0 16px;
+      color: rgba(255,255,255,.92);
+      font-size: clamp(16px, 2.0vw, 19px);
+      line-height: 1.85;
+      font-weight: 750;
+      max-width: 62ch;
+      text-shadow: 0 1px 2px rgba(0,0,0,.30);
+    }
+
+    .heroBadges{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin: 12px 0 18px;
+    }
     .badge{
-      padding:8px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.14);
-      font-size:12px;
-      color:#fff;
-      font-weight:900;
-    }
-
-    .ctaRow{ display:flex; flex-wrap:wrap; gap:12px; margin-top:14px; }
-    .btn{
       display:inline-flex;
       align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:14px 18px;
-      border-radius:14px;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
       border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.08);
+      background: rgba(255,255,255,.08);
+      font-size:12px;
+      font-weight: 900;
+      color: rgba(255,255,255,.95);
+    }
+    .badge i{
+      width:8px; height:8px; border-radius:999px;
+      background: rgba(255,255,255,.70);
+    }
+
+    .ctaRow{
+      display:flex; flex-wrap:wrap; gap:12px;
+      margin-top: 16px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
       color:#fff;
-      font-weight:900;
-      font-size:14px;
-      transition:.15s ease;
-      box-shadow:0 14px 40px rgba(0,0,0,.22);
+      font-weight: 900;
+      font-size: 14px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.22);
+      transition: .15s ease;
       white-space:nowrap;
     }
-    .btn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.11); }
-    .btn.red{ background:linear-gradient(135deg, rgba(230,0,18,.98), rgba(230,0,18,.60)); border-color:rgba(230,0,18,.40); }
-    .btn.gray{ background:rgba(156,163,175,.16); border-color:rgba(156,163,175,.28); }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.11); }
+    .btn.red{
+      border-color: rgba(230,0,18,.36);
+      background: linear-gradient(135deg, rgba(230,0,18,.98), rgba(230,0,18,.58));
+    }
+    .btn.ghost{
+      background: rgba(255,255,255,.06);
+    }
 
-    .panel{
+    /* RIGHT "FirstAid" panel (NEW) */
+    .aidPanel{
       background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,.07));
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:var(--r2);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--r2);
       box-shadow: var(--shadow);
-      padding:22px;
-      color:#fff;
-      backdrop-filter: blur(6px);
+      padding: 22px;
+      backdrop-filter: blur(8px);
     }
-    .note{
-      color:rgba(255,255,255,.82);
-      font-size:12px;
-      line-height:1.7;
-      margin-top:10px;
+    .aidTitle{
+      margin:0 0 10px;
+      font-size: 20px;
+      font-weight: 950;
+      letter-spacing: .05em;
     }
-
-    /* ===== 判断パネル（強いが“上品”に）===== */
-    .panelTitle{
-      font-size:22px;
-      font-weight:900;
-      margin:0 0 12px;
-      letter-spacing:0.04em;
-      color:#fff;
-      text-shadow:0 1px 2px rgba(0,0,0,.35);
-    }
-
-    .panelLead{
-      font-size:17px;
-      line-height:1.75;
-      margin:0 0 16px;
-      color:#fff;
-      font-weight:900;
-      background:rgba(230,0,18,.14);
-      border-left:4px solid #e60012;
-      padding:14px 16px;
-      border-radius:10px;
-      text-shadow:0 1px 2px rgba(0,0,0,.30);
-    }
-    .leadTag{
-      display:inline-block;
-      margin-right:8px;
-      padding:4px 10px;
-      background:#e60012;
-      color:#fff;
-      font-size:12px;
-      font-weight:900;
-      border-radius:999px;
-    }
-
-    .judgeList{
-      list-style:none;
-      padding:0;
+    .aidCallout{
       margin:0 0 14px;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
+      padding: 14px 14px;
+      border-radius: 14px;
+      background: rgba(230,0,18,.14);
+      border: 1px solid rgba(230,0,18,.22);
+      font-weight: 900;
+      line-height: 1.7;
+      font-size: 16px;
     }
-    .judgeList li{
+    .aidCallout small{
+      display:block;
+      color: rgba(255,255,255,.86);
+      font-weight: 750;
+      font-size: 12px;
+      margin-top:6px;
+    }
+    .aidGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 0 0 14px;
+      padding: 0;
+      list-style:none;
+    }
+    .aidGrid li{
       display:flex;
       align-items:center;
       gap:12px;
-      padding:14px 14px;
-      border-radius:14px;
-      background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.18);
-      font-size:15px;
-      font-weight:900;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      font-weight: 900;
+      font-size: 14px;
       color:#fff;
     }
-    .judgeList li span{
+    .aidGrid b{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      width:32px;
-      height:32px;
-      border-radius:50%;
-      background:#e60012;
-      color:#fff;
-      font-size:14px;
-      font-weight:900;
-      box-shadow:0 0 0 4px rgba(230,0,18,.20);
-      flex:0 0 auto;
+      width:30px;height:30px;
+      border-radius: 999px;
+      background: rgba(230,0,18,.95);
+      box-shadow: 0 0 0 4px rgba(230,0,18,.18);
+      font-size: 13px;
     }
-
-    .judgeRules{
-      margin-top:14px;
-      padding:14px 14px;
-      background:rgba(255,255,255,.08);
-      border-left:4px solid rgba(255,255,255,.40);
-      border-radius:10px;
+    .aidRules{
+      margin:0;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
     }
-    .judgeRules p{
-      margin:0 0 10px;
-      font-size:15px;
-      line-height:1.85;
-      color:#fff;
-      font-weight:800;
-      text-shadow:0 1px 2px rgba(0,0,0,.28);
+    .aidRules p{
+      margin:0 0 8px;
+      color: rgba(255,255,255,.92);
+      font-size: 14px;
+      line-height: 1.8;
+      font-weight: 800;
     }
-    .judgeRules p:last-child{ margin-bottom:0; }
-    .judgeRules strong{
+    .aidRules p:last-child{ margin-bottom:0; }
+    .aidRules strong{
       color:#fff;
-      font-weight:900;
       text-decoration: underline;
       text-decoration-color: rgba(255,255,255,.45);
       text-underline-offset: 3px;
+      font-weight: 950;
     }
 
     /* ===== Sections ===== */
-    .section{ padding: 66px 0; }
+    .section{
+      padding: 68px 0;
+    }
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom: 26px;
+    }
     .section h2{
-      margin:0 0 12px;
+      margin:0;
       font-size: 26px;
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: .04em;
-      text-shadow: 0 2px 14px rgba(0,0,0,.28);
-      color:#fff;
     }
     .sectionLead{
-      margin:0 0 28px;
-      font-size: 15px;
-      font-weight: 700;
+      margin: 10px 0 0;
       color: rgba(255,255,255,.90);
-      line-height:1.9;
-      max-width: 72ch;
+      font-size: 15px;
+      line-height: 1.9;
+      font-weight: 720;
+      max-width: 74ch;
+    }
+    .mini{
+      color: rgba(255,255,255,.68);
+      font-size: 12px;
+      line-height: 1.7;
     }
 
-    .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
     .card{
-      padding:22px;
-      border-radius:var(--r);
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.085);
-      box-shadow:0 18px 54px rgba(0,0,0,.30);
-      min-height:170px;
-      color:#fff;
-      transition: transform .2s ease, box-shadow .2s ease;
-      backdrop-filter: blur(6px);
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.07);
+      box-shadow: 0 18px 54px rgba(0,0,0,.30);
+      padding: 22px;
+      min-height: 170px;
+      transition: transform .18s ease, box-shadow .18s ease;
+      backdrop-filter: blur(8px);
     }
     .card:hover{
       transform: translateY(-5px);
-      box-shadow:0 24px 70px rgba(0,0,0,.38);
+      box-shadow: 0 24px 70px rgba(0,0,0,.38);
+    }
+    .cardTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 10px;
     }
     .cardTitle{
-      margin:0 0 10px;
-      font-weight:900;
-      font-size:17px;
-      color:#fff;
-      letter-spacing:.02em;
+      margin:0;
+      font-size: 17px;
+      font-weight: 950;
+      letter-spacing: .02em;
+    }
+    .tagMini{
+      font-size: 11px;
+      font-weight: 900;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.88);
+      white-space:nowrap;
     }
     .cardText{
       margin:0;
-      color:rgba(255,255,255,.90);
-      line-height:1.85;
-      font-size:14px;
-      font-weight:650;
+      color: rgba(255,255,255,.90);
+      font-size: 14px;
+      line-height: 1.85;
+      font-weight: 680;
     }
 
-    /* Contact panel */
-    #contact2 .panel{
-      padding: 26px;
+    /* BIG CTA band */
+    .ctaBand{
+      border-radius: var(--r2);
+      border:1px solid rgba(255,255,255,.14);
       background: linear-gradient(135deg, rgba(230,0,18,.18), rgba(255,255,255,.06));
-      border-color: rgba(255,255,255,.16);
+      box-shadow: var(--shadow);
+      padding: 26px;
     }
+    .ctaBand h3{
+      margin:0 0 10px;
+      font-size: 22px;
+      font-weight: 950;
+      letter-spacing: .04em;
+    }
+    .ctaBand p{
+      margin:0;
+      color: rgba(255,255,255,.92);
+      font-size: 15px;
+      line-height: 1.9;
+      font-weight: 720;
+    }
+    .ctaBand .ctaRow{ margin-top: 14px; }
 
     footer{
-      padding:30px 0 40px;
-      border-top:1px solid rgba(255,255,255,.10);
-      color:rgba(255,255,255,.80);
-      font-size:12px;
-      line-height:1.8;
+      padding: 30px 0 42px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.78);
+      font-size: 12px;
+      line-height: 1.8;
     }
 
-    /* Fixed CTA */
+    /* fixed */
     .float{
-      position:fixed;
-      right:18px;
-      bottom:18px;
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 300;
       display:flex;
       flex-direction:column;
-      gap:10px;
-      z-index:120;
+      gap: 10px;
     }
     .float a{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:12px 14px;
-      border-radius:999px;
-      font-weight:900;
-      font-size:13px;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      padding: 12px 14px;
+      border-radius: 999px;
       border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.08);
-      box-shadow:0 18px 50px rgba(0,0,0,.25);
+      background: rgba(255,255,255,.08);
       color:#fff;
+      font-weight: 950;
+      font-size: 13px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.25);
     }
-    .float a.primary{ background:rgba(230,0,18,.20); border-color:rgba(230,0,18,.40); }
+    .float a.primary{
+      background: rgba(230,0,18,.22);
+      border-color: rgba(230,0,18,.40);
+    }
 
-    /* Responsive */
+    /* responsive */
     @media (max-width: 980px){
-      .heroGrid{ grid-template-columns:1fr; padding:22px 0; }
       .navRight{ display:none; }
-      .heroSlider{ min-height: calc(100vh - var(--header-h)); }
+      .heroInner{
+        grid-template-columns: 1fr;
+        padding: 26px 18px;
+      }
+      .heroShell{ min-height: calc(100vh - var(--header-h) - 14px); }
     }
     @media (max-width: 900px){
       .navLinks{ display:none; }
-      .grid3{ grid-template-columns:1fr; }
-      .judgeList{ grid-template-columns:1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .aidGrid{ grid-template-columns: 1fr; }
       .btn{ width:100%; }
-      h1{ font-size: clamp(32px, 8.2vw, 54px); }
-      .lead{ font-size: clamp(15px, 4.2vw, 18px); }
     }
   </style>
 </head>
@@ -501,107 +517,106 @@
 
   <!-- ===== Header ===== -->
   <div class="topbar">
-    <div class="wrap nav">
+    <div class="nav">
       <a class="brand" href="./">
-        <img class="brandLogo" src="./images/logo.png" alt="First Aid Line ロゴ">
-        <div class="brandText">
-          <div class="brandName">ファーストエイドライン</div>
-          <div class="brandSub">荷物の救急隊｜24時間365日</div>
+        <img src="./images/logo.png" alt="First Aid Line ロゴ">
+        <div>
+          <div class="t1">ファーストエイドライン</div>
+          <div class="t2">荷物の救急隊｜24時間365日</div>
         </div>
       </a>
 
       <div class="navLinks">
-        <a class="chip" href="./philosophy/">企業理念</a>
-        <a class="chip" href="./company/">会社概要</a>
-        <a class="chip" href="./recruit/">採用</a>
-        <a class="chip" href="./partner/">加盟店</a>
-        <a class="chip primary" href="#contact">今すぐ相談</a>
+        <a class="pill" href="./philosophy/">企業理念</a>
+        <a class="pill" href="./company/">会社概要</a>
+        <a class="pill" href="./recruit/">採用</a>
+        <a class="pill" href="./partner/">加盟店</a>
+        <a class="pill primary" href="#contact">今すぐ相談</a>
       </div>
 
       <div class="navRight">
-        <div class="callPill">
-          <span class="callDot"></span>
-          <span>04-2997-9697</span>
-        </div>
+        <div class="call"><span class="dot"></span><span>04-2997-9697</span></div>
       </div>
     </div>
   </div>
 
   <!-- ===== Hero ===== -->
   <section class="hero">
-    <div class="heroSlider" aria-label="ヒーロー画像スライダー">
-      <div class="heroLayers">
+    <div class="wrap">
+      <div class="heroShell" aria-label="ヒーロー画像スライダー">
+        <div class="heroLayers">
 
-        <div class="heroLayer is-active"
-             data-pos="50% center" data-bri="1.06" data-con="1.05" data-sat="1.06" data-zoom="1.24">
-          <img class="heroBg" src="./images/hero-1.png" alt="">
-          <img class="heroFg" src="./images/hero-1.png" alt="緊急物流イメージ1">
+          <div class="heroLayer is-active"
+               data-pos="50% center" data-bri="1.05" data-con="1.05" data-sat="1.06" data-zoom="1.20">
+            <img class="heroBg" src="./images/hero-1.png" alt="">
+            <img class="heroFg" src="./images/hero-1.png" alt="緊急物流イメージ1">
+          </div>
+
+          <div class="heroLayer"
+               data-pos="50% center" data-bri="1.05" data-con="1.05" data-sat="1.06" data-zoom="1.20">
+            <img class="heroBg" src="./images/hero-2.png" alt="">
+            <img class="heroFg" src="./images/hero-2.png" alt="緊急物流イメージ2">
+          </div>
+
+          <div class="heroLayer"
+               data-pos="50% center" data-bri="1.04" data-con="1.04" data-sat="1.05" data-zoom="1.16">
+            <img class="heroBg" src="./images/hero-3.png" alt="">
+            <img class="heroFg" src="./images/hero-3.png" alt="緊急物流イメージ3">
+          </div>
+
         </div>
 
-        <div class="heroLayer"
-             data-pos="50% center" data-bri="1.05" data-con="1.05" data-sat="1.06" data-zoom="1.24">
-          <img class="heroBg" src="./images/hero-2.png" alt="">
-          <img class="heroFg" src="./images/hero-2.png" alt="緊急物流イメージ2">
-        </div>
-
-        <div class="heroLayer"
-             data-pos="50% center" data-bri="1.05" data-con="1.05" data-sat="1.05" data-zoom="1.18">
-          <img class="heroBg" src="./images/hero-3.png" alt="">
-          <img class="heroFg" src="./images/hero-3.png" alt="緊急物流イメージ3">
-        </div>
-
-      </div>
-
-      <div class="heroContent">
-        <div class="heroGrid">
+        <div class="heroInner">
           <div>
-            <div class="tagline"><span class="tagIcon"></span><span>緊急配送・特急便・スポット配送</span></div>
+            <div class="kicker"><span class="kdot"></span><span>FirstAid＝応急処置の物流</span></div>
 
-            <h1>緊急だからこそ、<br>「安全」を最優先にします。</h1>
+            <h1>“運ぶ”の前に、<br>荷物を救う判断を。</h1>
 
-            <p class="lead">
-              判断に迷う場面ほど、無理をしない。<br>
-              私たちは「運ばない判断」も含めて責任を持ちます。
+            <p class="subLead">
+              いま一番欲しいのは「間に合うかどうか」の答え。<br>
+              私たちは状況を整理し、<b>最短手段</b>と<b>安全前提</b>の選択肢をすぐ返します。
             </p>
 
-            <div class="badges">
-              <span class="badge">安全最優先</span>
-              <span class="badge">判断基準を公開</span>
-              <span class="badge">24時間365日</span>
+            <div class="heroBadges">
+              <span class="badge"><i></i> 24時間365日</span>
+              <span class="badge"><i></i> 特急・スポット</span>
+              <span class="badge"><i></i> 判断基準を公開</span>
             </div>
 
             <div class="ctaRow" id="contact">
               <a class="btn red" href="tel:0429979697">📞 今すぐ電話で相談</a>
-              <a class="btn gray" href="./philosophy/">▶ 判断基準を見る</a>
+              <a class="btn ghost" href="./philosophy/">▶ 私たちの判断基準</a>
             </div>
 
-            <p class="note">※電話番号/メール/対応エリアは本番用に差し替えてください。</p>
+            <div class="mini" style="margin-top:10px;">
+              ※電話番号/メール/対応エリアは本番用に差し替えてください。
+            </div>
           </div>
 
-          <aside class="panel">
-            <h3 class="panelTitle">最短で判断するために</h3>
+          <aside class="aidPanel">
+            <div class="aidTitle">まず“応急処置”として</div>
 
-            <p class="panelLead">
-              <span class="leadTag">即回答</span>
-              下記 <strong>4点</strong> を共有いただければ、<br>
-              <strong>可否と最適手段</strong>を即回答します。
-            </p>
+            <div class="aidCallout">
+              下記 <b>4点</b> を共有いただければ、<br>
+              <b>可否</b>と<b>最適手段</b>を即回答します。
+              <small>（急いでいても、これだけで判断が速くなります）</small>
+            </div>
 
-            <ol class="judgeList">
-              <li><span>①</span> 集荷地</li>
-              <li><span>②</span> 届け先</li>
-              <li><span>③</span> 希望時間</li>
-              <li><span>④</span> 荷物（サイズ／重量／内容）</li>
-            </ol>
+            <ul class="aidGrid">
+              <li><b>①</b> 集荷地</li>
+              <li><b>②</b> 届け先</li>
+              <li><b>③</b> 希望時間</li>
+              <li><b>④</b> 荷物（サイズ/重量/内容）</li>
+            </ul>
 
-            <div class="judgeRules">
-              <p>判断に迷う場面では、<strong>安全を最優先</strong>にします。</p>
+            <div class="aidRules">
+              <p>迷う場面でも、<strong>安全を最優先</strong>にします。</p>
               <p>無理は<strong>一人で抱えない</strong>運用です。</p>
               <p>判断理由を<strong>共有</strong>し、再発防止へつなげます。</p>
             </div>
           </aside>
-
         </div>
+
       </div>
     </div>
   </section>
@@ -609,23 +624,45 @@
   <!-- ===== Services ===== -->
   <section class="section" id="services">
     <div class="wrap">
-      <h2>サービス</h2>
-      <p class="sectionLead">
-        緊急時に「最短・最適」を選ぶために。状況に合わせて最善の手段を提案します。
-      </p>
+      <div class="sectionHead">
+        <div>
+          <h2>サービス</h2>
+          <p class="sectionLead">
+            “なんとかしたい”を、現実的に叶える。状況に合わせて最短・最適を提案します。
+          </p>
+        </div>
+        <div class="mini">※文言は本番運用に合わせて調整可能</div>
+      </div>
 
       <div class="grid3">
         <div class="card">
-          <div class="cardTitle">緊急配送（スポット）</div>
-          <p class="cardText">“いますぐ”が必要な荷物に。安全条件を満たす範囲で最短手配します。</p>
+          <div class="cardTop">
+            <h3 class="cardTitle">緊急配送（スポット）</h3>
+            <span class="tagMini">今すぐ</span>
+          </div>
+          <p class="cardText">
+            「とにかく今日中に」など、突発案件に。安全条件を満たす範囲で、最短の手配を組みます。
+          </p>
         </div>
+
         <div class="card">
-          <div class="cardTitle">特急便（時間指定）</div>
-          <p class="cardText">到着時刻の確度を優先。無理な運行はせず、複数案で提示します。</p>
+          <div class="cardTop">
+            <h3 class="cardTitle">特急便（時間指定）</h3>
+            <span class="tagMini">確度重視</span>
+          </div>
+          <p class="cardText">
+            間に合うかの“確度”を優先。無理な運行はせず、現実的な到着案を複数提示します。
+          </p>
         </div>
+
         <div class="card">
-          <div class="cardTitle">判断基準の可視化</div>
-          <p class="cardText">判断の根拠を見える化。迷いを減らし、同じミスを繰り返しません。</p>
+          <div class="cardTop">
+            <h3 class="cardTitle">判断基準の可視化</h3>
+            <span class="tagMini">ブレない</span>
+          </div>
+          <p class="cardText">
+            早さだけで突っ走らない。判断の根拠を共有し、同じ事故や手戻りを繰り返しません。
+          </p>
         </div>
       </div>
     </div>
@@ -634,27 +671,48 @@
   <!-- ===== Promise ===== -->
   <section class="section" id="promise">
     <div class="wrap">
-      <h2>私たちから</h2>
-      <p class="sectionLead">
-        緊急時ほど、安全と安心を最優先に。迅速・確実・丁寧に対応します。
-      </p>
-
-      <div class="grid3">
-        <div class="card">
-          <div class="cardTitle">代替案まで提示します</div>
-          <p class="cardText">「無理です」で終わらせません。最善の手段をセットで提案します。</p>
-        </div>
-        <div class="card">
-          <div class="cardTitle">安全と法令を前提に運びます</div>
-          <p class="cardText">急ぎでも品質は落としません。確実に運ぶ計画で進めます。</p>
-        </div>
-        <div class="card">
-          <div class="cardTitle">チーム体制で安定対応</div>
-          <p class="cardText">担当者任せにせず、複数で確認。ブレない対応を提供します。</p>
+      <div class="sectionHead">
+        <div>
+          <h2>私たちからの約束</h2>
+          <p class="sectionLead">
+            緊急時ほど、安心して任せられる対応を。短期の正解より、長期の信頼を選びます。
+          </p>
         </div>
       </div>
 
-      <div class="ctaRow" style="margin-top:18px">
+      <div class="grid3">
+        <div class="card">
+          <div class="cardTop">
+            <h3 class="cardTitle">断る時も、代替案まで</h3>
+            <span class="tagMini">提案型</span>
+          </div>
+          <p class="cardText">
+            「無理です」で終わらせず、可能性がある手段・ルート・時間案をセットで返します。
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="cardTop">
+            <h3 class="cardTitle">安全と法令が前提</h3>
+            <span class="tagMini">品質</span>
+          </div>
+          <p class="cardText">
+            急いでいても、事故の芽を増やしません。“運べる条件”を整えた上で実行します。
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="cardTop">
+            <h3 class="cardTitle">チームで判断し、ブレない</h3>
+            <span class="tagMini">安定</span>
+          </div>
+          <p class="cardText">
+            一人に背負わせず複数で確認。緊急時の判断を属人化させません。
+          </p>
+        </div>
+      </div>
+
+      <div class="ctaRow" style="margin-top:18px;">
         <a class="btn" href="./philosophy/">▶ 企業理念を見る</a>
         <a class="btn" href="./company/">▶ 会社概要を見る</a>
         <a class="btn" href="./recruit/">▶ 採用を見る</a>
@@ -663,22 +721,18 @@
     </div>
   </section>
 
-  <!-- ===== Contact ===== -->
-  <section class="section" id="contact2">
+  <!-- ===== Contact Band ===== -->
+  <section class="section" id="contactBand">
     <div class="wrap">
-      <div class="panel">
-        <h2 style="margin:0 0 10px;">今すぐ相談</h2>
-        <p style="margin:0;color:rgba(255,255,255,.92);line-height:1.8;font-size:16px;font-weight:800;">
-          「まだ間に合うか？」その判断を、私たちに任せてください。
-        </p>
-
-        <div class="ctaRow" style="margin-top:14px">
+      <div class="ctaBand">
+        <h3>今すぐ相談</h3>
+        <p>「まだ間に合うか？」その判断を、まず私たちに。</p>
+        <div class="ctaRow">
           <a class="btn red" href="tel:0429979697">📞 04-2997-9697</a>
           <a class="btn" href="mailto:info@example.com">✉️ メールで相談</a>
-          <a class="btn gray" href="./company/">連絡先を見る</a>
+          <a class="btn ghost" href="./company/">連絡先を見る</a>
         </div>
-
-        <p class="note">※電話番号/メールは本番用に差し替えてください。</p>
+        <div class="mini" style="margin-top:10px;">※電話番号/メールは本番用に差し替えてください。</div>
       </div>
     </div>
   </section>
@@ -686,7 +740,7 @@
   <footer>
     <div class="wrap">
       © First Aid Line. All rights reserved.<br>
-      緊急配送・特急便・スポット配送｜安全最優先の判断基準を公開
+      FirstAid＝応急処置の物流｜緊急配送・特急便・スポット配送
     </div>
   </footer>
 
@@ -708,7 +762,7 @@
         const bri  = layer.dataset.bri  || "1";
         const con  = layer.dataset.con  || "1";
         const sat  = layer.dataset.sat  || "1";
-        const zoom = layer.dataset.zoom || "1.20";
+        const zoom = layer.dataset.zoom || "1.18";
 
         layer.style.setProperty('--pos', pos);
         layer.style.setProperty('--bri', bri);
