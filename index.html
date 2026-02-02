@@ -1,226 +1,861 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>First Aid Line｜応急処置としての緊急配送</title>
-<meta name="description" content="緊急時の物流を“応急処置”として立て直す。判断に迷う時間を引き受ける物流会社です。">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>First Aid Line｜応急処置としての物流</title>
+  <meta name="description" content="応急処置として、荷物の状況を立て直します。判断に迷う時間を、私たちが引き受けます。" />
 
-<style>
-:root{
-  --red:#e60012;
-  --bg-dark:#0f172a;
-  --bg-mid:#1e293b;
-  --text:#ffffff;
-  --muted:rgba(255,255,255,.8);
-  --border:rgba(255,255,255,.15);
-  --max:1200px;
-}
+  <style>
+    :root{
+      --red:#e60012;
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-  color:var(--text);
-  background:linear-gradient(180deg,var(--bg-mid),var(--bg-dark));
-}
+      /* ① 背景を明るく（暗すぎ対策） */
+      --bg0:#16233d;   /* 明るめネイビー */
+      --bg1:#22345a;   /* さらに明るい */
+      --bg2:#2b3e6a;   /* アクセント */
 
-a{text-decoration:none;color:inherit}
-.wrap{width:min(var(--max),90%);margin:auto}
+      --text:rgba(255,255,255,.96);
+      --muted:rgba(255,255,255,.82);
+      --muted2:rgba(255,255,255,.68);
 
-/* ===== HEADER ===== */
-header{
-  position:fixed;
-  top:0;left:0;right:0;
-  background:rgba(15,23,42,.9);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--border);
-  z-index:100;
-}
-.nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 0;
-}
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:900;
-}
-.logo img{width:42px}
-.nav a{
-  margin-left:16px;
-  font-size:14px;
-}
+      --panel:rgba(255,255,255,.11);
+      --panel2:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.18);
 
-/* ===== HERO ===== */
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  position:relative;
-  overflow:hidden;
-}
-.hero img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  transform:scale(1.25);
-  opacity:.25;
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    90deg,
-    rgba(15,23,42,.9),
-    rgba(15,23,42,.6),
-    rgba(15,23,42,.3)
-  );
-}
-.hero-content{
-  position:relative;
-  z-index:2;
-  max-width:720px;
-}
-.hero h1{
-  font-size:clamp(38px,5vw,64px);
-  line-height:1.2;
-  margin:0 0 24px;
-  font-weight:900;
-}
-.hero p{
-  font-size:18px;
-  line-height:1.8;
-  margin-bottom:36px;
-  color:var(--muted);
-}
-.hero .cta{
-  display:inline-block;
-  padding:18px 28px;
-  background:var(--red);
-  font-weight:900;
-  border-radius:6px;
-}
+      --shadow: 0 18px 60px rgba(0,0,0,.28);
 
-/* ===== SECTION ===== */
-section{
-  padding:120px 0;
-}
-section h2{
-  font-size:32px;
-  margin-bottom:24px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:32px;
-}
-.card{
-  background:rgba(255,255,255,.06);
-  padding:32px;
-  border:1px solid var(--border);
-}
-.card h3{
-  font-size:20px;
-  margin-bottom:12px;
-}
-.card p{
-  line-height:1.8;
-  color:var(--muted);
-}
+      --max:1180px;
+      --r:18px;
+      --r2:26px;
 
-/* ===== FOOTER ===== */
-footer{
-  padding:60px 0;
-  border-top:1px solid var(--border);
-  font-size:13px;
-  color:var(--muted);
-}
-</style>
+      /* ② 文字を大きく（小さい対策） */
+      --base: 17px;
+      --h1: clamp(40px, 5.2vw, 70px);
+      --h2: clamp(26px, 2.6vw, 34px);
+      --lead: clamp(18px, 1.8vw, 20px);
+
+      --header-h: 72px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+      font-size: var(--base);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 720px at 12% 0%, rgba(230,0,18,.12), transparent 55%),
+        radial-gradient(1000px 560px at 92% 0%, rgba(255,255,255,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg2), var(--bg0));
+      letter-spacing:.02em;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .wrap{ width:min(var(--max), calc(100% - 40px)); margin-inline:auto; }
+
+    /* ===== Header / Nav ===== */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:200;
+      height:var(--header-h);
+      display:flex;
+      align-items:center;
+      backdrop-filter: blur(14px);
+      background: rgba(22,35,61,.78);
+      border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      width:min(var(--max), calc(100% - 40px));
+      margin-inline:auto;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:240px;
+    }
+    .brand img{ width:46px; height:auto; }
+    .brandName{ font-weight:950; font-size:16px; line-height:1.1; }
+    .brandSub{ font-size:12px; color:var(--muted2); margin-top:3px; }
+
+    /* ③ 見出し6項目（枠組み） */
+    .menu{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .menuItem{
+      position:relative;
+      display:flex;
+      align-items:center;
+    }
+
+    .menuLink{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.07);
+      color:#fff;
+      font-size:14px;
+      font-weight:850;
+      transition:.15s ease;
+      white-space:nowrap;
+    }
+    .menuLink:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.10);
+    }
+    .menuLink.primary{
+      border-color: rgba(230,0,18,.40);
+      background: rgba(230,0,18,.16);
+    }
+    .caret{
+      width:0;height:0;
+      border-left:5px solid transparent;
+      border-right:5px solid transparent;
+      border-top:6px solid rgba(255,255,255,.88);
+      opacity:.9;
+    }
+
+    /* dropdown */
+    .dropdown{
+      position:absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      min-width: 280px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(20,30,52,.92);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      padding: 12px;
+      opacity:0;
+      transform: translateY(-6px);
+      pointer-events:none;
+      transition: .18s ease;
+    }
+    .menuItem:hover .dropdown,
+    .menuItem:focus-within .dropdown{
+      opacity:1;
+      transform: translateY(0);
+      pointer-events:auto;
+    }
+    .dropTitle{
+      font-weight:950;
+      font-size:13px;
+      color: rgba(255,255,255,.85);
+      margin: 0 0 10px;
+      letter-spacing:.05em;
+    }
+    .dropGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+    }
+    .dropCard{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      transition:.15s ease;
+    }
+    .dropCard:hover{ background: rgba(255,255,255,.10); transform: translateY(-1px); }
+    .badgeDot{
+      width:10px;height:10px;border-radius:999px;background: var(--red);
+      box-shadow:0 0 0 4px rgba(230,0,18,.18);
+      margin-top:4px;
+      flex:0 0 auto;
+    }
+    .dropCard b{ display:block; font-size:14px; font-weight:950; margin-bottom:4px; }
+    .dropCard span{ display:block; font-size:12px; color: var(--muted2); line-height:1.6; }
+
+    .navRight{
+      min-width: 240px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:10px;
+    }
+    .callPill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(230,0,18,.40);
+      background: rgba(230,0,18,.16);
+      font-size:14px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .callDot{ width:10px;height:10px;border-radius:999px;background:var(--red);box-shadow:0 0 0 4px rgba(230,0,18,.18); }
+
+    /* ===== Hero ===== */
+    .hero{
+      padding: 18px 0 22px;
+    }
+    .heroShell{
+      position:relative;
+      border-radius: var(--r2);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow);
+      min-height: calc(92vh - var(--header-h));
+    }
+    .heroBg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:.22;
+      filter: blur(0px) saturate(1.04);
+      transform: scale(1.05);
+    }
+    .heroShell::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(
+        110deg,
+        rgba(12,18,32,.70) 0%,
+        rgba(12,18,32,.45) 45%,
+        rgba(12,18,32,.22) 75%,
+        rgba(12,18,32,.12) 100%
+      );
+      pointer-events:none;
+    }
+    .heroInner{
+      position:relative;
+      z-index:2;
+      height:100%;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      align-items:center;
+      padding: 38px 34px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      font-weight:900;
+      font-size: 13px;
+      width:fit-content;
+    }
+    .kdot{width:9px;height:9px;border-radius:999px;background:var(--red);box-shadow:0 0 0 4px rgba(230,0,18,.18);}
+
+    h1{
+      margin: 14px 0 12px;
+      font-size: var(--h1);
+      line-height:1.05;
+      font-weight: 950;
+      text-shadow: 0 2px 18px rgba(0,0,0,.28);
+    }
+    .lead{
+      margin:0 0 18px;
+      font-size: var(--lead);
+      line-height: 1.95;
+      font-weight: 780;
+      color: rgba(255,255,255,.92);
+      text-shadow: 0 1px 2px rgba(0,0,0,.22);
+      max-width: 62ch;
+    }
+
+    .ctaRow{ display:flex; flex-wrap:wrap; gap:12px; margin-top: 18px; }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 15px 18px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      font-weight:950;
+      font-size: 15px;
+      color:#fff;
+      box-shadow: 0 14px 40px rgba(0,0,0,.20);
+      transition:.15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.11); }
+    .btn.red{
+      border-color: rgba(230,0,18,.36);
+      background: linear-gradient(135deg, rgba(230,0,18,.98), rgba(230,0,18,.58));
+    }
+    .btn.ghost{ background: rgba(255,255,255,.06); }
+
+    .heroCard{
+      border-radius: var(--r2);
+      border:1px solid rgba(255,255,255,.16);
+      background: linear-gradient(to bottom, rgba(255,255,255,.12), rgba(255,255,255,.08));
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(10px);
+    }
+    .heroCard h3{
+      margin:0 0 10px;
+      font-size: 20px;
+      font-weight: 950;
+      letter-spacing:.05em;
+    }
+    .callout{
+      margin:0 0 12px;
+      padding: 14px 14px;
+      border-radius: 14px;
+      background: rgba(230,0,18,.14);
+      border:1px solid rgba(230,0,18,.22);
+      font-weight: 950;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    .need{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .need li{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.16);
+      font-weight: 900;
+    }
+    .need b{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:30px;height:30px;
+      border-radius:999px;
+      background: rgba(230,0,18,.95);
+      box-shadow: 0 0 0 4px rgba(230,0,18,.18);
+      font-size: 13px;
+      flex: 0 0 auto;
+    }
+    .rules{
+      margin-top:12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .rules p{
+      margin:0 0 8px;
+      font-size: 14px;
+      font-weight: 850;
+      line-height: 1.85;
+      color: rgba(255,255,255,.92);
+    }
+    .rules p:last-child{ margin-bottom:0; }
+    .rules strong{
+      color:#fff;
+      text-decoration: underline;
+      text-decoration-color: rgba(255,255,255,.45);
+      text-underline-offset: 3px;
+      font-weight: 950;
+    }
+
+    /* ===== Sections (枠の器) ===== */
+    .section{
+      padding: 70px 0;
+    }
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom: 22px;
+    }
+    .section h2{
+      margin:0;
+      font-size: var(--h2);
+      font-weight: 950;
+      letter-spacing:.04em;
+    }
+    .sectionLead{
+      margin: 10px 0 0;
+      color: rgba(255,255,255,.90);
+      font-size: 16px;
+      font-weight: 760;
+      line-height:1.95;
+      max-width: 78ch;
+    }
+
+    .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card{
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 18px 54px rgba(0,0,0,.24);
+      padding: 22px;
+      min-height: 170px;
+    }
+    .cardTitle{
+      font-weight: 950;
+      font-size: 18px;
+      margin:0 0 10px;
+    }
+    .cardText{
+      margin:0;
+      color: rgba(255,255,255,.86);
+      line-height: 1.85;
+      font-weight: 700;
+      font-size: 14.5px;
+    }
+    .cardLink{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      margin-top: 14px;
+      font-weight: 950;
+      color:#fff;
+      opacity:.92;
+    }
+
+    /* news list */
+    .news{
+      border-radius: var(--r2);
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.07);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .newsRow{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding: 16px 18px;
+      border-top:1px solid rgba(255,255,255,.12);
+    }
+    .newsRow:first-child{ border-top:none; }
+    .newsDate{ min-width: 120px; font-weight: 950; color: rgba(255,255,255,.90); }
+    .newsTitle{ margin:0; font-weight: 800; color: rgba(255,255,255,.92); line-height:1.6; }
+
+    /* contact */
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .panel{
+      border-radius: var(--r2);
+      border:1px solid rgba(255,255,255,.16);
+      background: linear-gradient(to bottom, rgba(255,255,255,.12), rgba(255,255,255,.07));
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+    .panel h3{ margin:0 0 10px; font-size: 20px; font-weight: 950; }
+    .panel p{ margin:0 0 14px; color: rgba(255,255,255,.88); font-weight: 740; line-height:1.85; }
+    .tel{ font-size: 22px; font-weight: 950; letter-spacing:.03em; }
+    .small{ font-size: 12px; color: rgba(255,255,255,.72); line-height:1.7; }
+
+    footer{
+      padding: 30px 0 42px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.78);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    /* fixed CTA */
+    .float{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 500;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .float a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.10);
+      box-shadow: 0 18px 50px rgba(0,0,0,.20);
+      font-weight: 950;
+      font-size: 13px;
+      color:#fff;
+    }
+    .float a.primary{
+      background: rgba(230,0,18,.24);
+      border-color: rgba(230,0,18,.45);
+    }
+
+    /* responsive */
+    @media (max-width: 980px){
+      .navRight{display:none;}
+      .heroInner{grid-template-columns:1fr; padding: 26px 18px;}
+      .need{grid-template-columns:1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .contactGrid{grid-template-columns:1fr;}
+    }
+    @media (max-width: 900px){
+      .menu{display:none;} /* スマホは一旦非表示（必要ならハンバーガー化） */
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="wrap nav">
-    <div class="logo">
-      <img src="./images/logo.png" alt="First Aid Line">
-      <span>ファーストエイドライン</span>
+  <!-- ===== Header ===== -->
+  <div class="topbar">
+    <div class="nav">
+      <a class="brand" href="#home">
+        <img src="./images/logo.png" alt="First Aid Line ロゴ">
+        <div>
+          <div class="brandName">ファーストエイドライン</div>
+          <div class="brandSub">荷物の救急隊｜24時間365日</div>
+        </div>
+      </a>
+
+      <!-- ③ 6項目：Home / FirstAidLineとは / サービス / 安全の取り組み / お知らせ / お問合せ -->
+      <nav class="menu" aria-label="グローバルナビゲーション">
+        <a class="menuLink" href="#home">ホーム</a>
+
+        <div class="menuItem">
+          <a class="menuLink" href="#about" aria-haspopup="true">
+            FirstAidLineとは <span class="caret" aria-hidden="true"></span>
+          </a>
+          <div class="dropdown" role="menu" aria-label="FirstAidLineとは">
+            <p class="dropTitle">この中身は後で各ページ化もできます</p>
+            <div class="dropGrid">
+              <a class="dropCard" href="#greeting">
+                <span class="badgeDot"></span>
+                <div>
+                  <b>ご挨拶</b>
+                  <span>“応急処置の物流”としての考え方を短く。</span>
+                </div>
+              </a>
+              <a class="dropCard" href="#company">
+                <span class="badgeDot"></span>
+                <div>
+                  <b>会社概要</b>
+                  <span>所在地/電話/FAX/保有車両などの枠。</span>
+                </div>
+              </a>
+              <a class="dropCard" href="#philosophy">
+                <span class="badgeDot"></span>
+                <div>
+                  <b>企業理念</b>
+                  <span>基本理念・企業理念・ビジョン・方針を整理。</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="menuItem">
+          <a class="menuLink" href="#services" aria-haspopup="true">
+            サービス <span class="caret" aria-hidden="true"></span>
+          </a>
+          <div class="dropdown" role="menu" aria-label="サービス">
+            <p class="dropTitle">※まだ検討中のサービス名（仮枠）</p>
+            <div class="dropGrid">
+              <a class="dropCard" href="#services">
+                <span class="badgeDot"></span>
+                <div>
+                  <b>（仮）サービス名A</b>
+                  <span>説明は1〜2行でOK。まず枠を作る。</span>
+                </div>
+              </a>
+              <a class="dropCard" href="#services">
+                <span class="badgeDot"></span>
+                <div>
+                  <b>（仮）サービス名B</b>
+                  <span>“何ができるか”が一瞬で分かる表現に。</span>
+                </div>
+              </a>
+              <a class="dropCard" href="#services">
+                <span class="badgeDot"></span>
+                <div>
+                  <b>（仮）サービス名C</b>
+                  <span>“どう助かるか”を一言で。</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a class="menuLink" href="#safety">安全の取り組み</a>
+        <a class="menuLink" href="#news">お知らせ</a>
+        <a class="menuLink primary" href="#contact">お問合せ</a>
+      </nav>
+
+      <div class="navRight">
+        <div class="callPill">
+          <span class="callDot"></span>
+          <span>04-2997-9697</span>
+        </div>
+      </div>
     </div>
-    <nav>
-      <a href="./philosophy/">企業理念</a>
-      <a href="./company/">会社概要</a>
-      <a href="./recruit/">採用</a>
-    </nav>
   </div>
-</header>
 
-<section class="hero">
-  <img src="./images/hero-1.png" alt="">
-  <div class="wrap hero-content">
-    <h1>
-      応急処置として、<br>
-      荷物の状況を立て直します。
-    </h1>
-    <p>
-      判断に迷う時間を、私たちが引き受けます。
-    </p>
-    <a class="cta" href="tel:0429979697">今すぐ相談する</a>
-  </div>
-</section>
+  <!-- ===== HERO / HOME ===== -->
+  <section class="hero" id="home">
+    <div class="wrap">
+      <div class="heroShell">
+        <img class="heroBg" src="./images/hero-1.png" alt="">
+        <div class="heroInner">
 
-<section>
-  <div class="wrap">
-    <h2>サービス</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>緊急配送</h3>
-        <p>いま運びたい荷物に対し、まず「安全に運べるか」を即判断します。</p>
-      </div>
-      <div class="card">
-        <h3>特急便</h3>
-        <p>時間指定がある荷物も、無理のない最適ルートで提案します。</p>
-      </div>
-      <div class="card">
-        <h3>判断基準の可視化</h3>
-        <p>なぜその判断なのかを明確にし、属人化を防ぎます。</p>
+          <div>
+            <div class="kicker"><span class="kdot"></span><span>FirstAid＝応急処置の物流</span></div>
+
+            <h1>
+              応急処置として、<br>
+              荷物の状況を立て直します。
+            </h1>
+
+            <p class="lead">
+              判断に迷う時間を、私たちが引き受けます。<br>
+              「いま何ができるか」を、最短で整理して返します。
+            </p>
+
+            <div class="ctaRow">
+              <a class="btn red" href="tel:0429979697">📞 今すぐ電話で相談</a>
+              <a class="btn ghost" href="#services">▶ サービスを見る</a>
+              <a class="btn ghost" href="#about">▶ FirstAidLineとは</a>
+            </div>
+
+            <p class="small" style="margin-top:10px;">
+              ※電話番号/メール/受付時間は本番用に差し替えてください。
+            </p>
+          </div>
+
+          <aside class="heroCard" aria-label="最短判断のための情報">
+            <h3>最短で判断するために</h3>
+
+            <p class="callout">
+              下記 <b>4点</b> を共有いただければ、<b>可否と最適手段</b>を即回答します。
+            </p>
+
+            <ul class="need">
+              <li><b>①</b> 集荷地</li>
+              <li><b>②</b> 届け先</li>
+              <li><b>③</b> 希望時間</li>
+              <li><b>④</b> 荷物（サイズ/重量/内容）</li>
+            </ul>
+
+            <div class="rules">
+              <p>判断に迷う場面でも、<strong>安全を最優先</strong>にします。</p>
+              <p>無理は<strong>一人で抱えない</strong>運用です。</p>
+              <p>判断理由を<strong>共有</strong>し、再発防止へつなげます。</p>
+            </div>
+          </aside>
+
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <div class="wrap">
-    <h2>私たちの約束</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>無理な運行をしません</h3>
-        <p>安全を損なう依頼はお受けしません。</p>
+  <!-- ===== 6項目の枠：FirstAidLineとは ===== -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <h2>FirstAidLineとは</h2>
+          <p class="sectionLead">
+            “応急処置の物流”として、緊急時に「いま何ができるか」を最短で整理し、現実的な一手を提示します。
+          </p>
+        </div>
       </div>
-      <div class="card">
-        <h3>判断を一人に任せません</h3>
-        <p>迷うときほど複数人で判断します。</p>
-      </div>
-      <div class="card">
-        <h3>理由を説明します</h3>
-        <p>できない場合も、必ず理由をお伝えします。</p>
+
+      <div class="grid3">
+        <div class="card" id="greeting">
+          <div class="cardTitle">ご挨拶</div>
+          <p class="cardText">
+            （仮）緊急時に必要なのは、勇ましさではなく「整理された判断」だと考えています。<br>
+            この文章は後で一緒に短く刺さる形に整えます。
+          </p>
+          <a class="cardLink" href="./company/">→ 後で独立ページ化も可能</a>
+        </div>
+
+        <div class="card" id="company">
+          <div class="cardTitle">会社概要</div>
+          <p class="cardText">
+            （枠）設立年月日／資本金／従業員数／保有車両／所在地／電話／FAX／仕入先…<br>
+            この枠は“会社概要ページ”と連動させます。
+          </p>
+          <a class="cardLink" href="./company/">→ 会社概要へ</a>
+        </div>
+
+        <div class="card" id="philosophy">
+          <div class="cardTitle">企業理念</div>
+          <p class="cardText">
+            （枠）基本理念／企業理念／ビジョン／経営方針／行動指標…<br>
+            この枠は“企業理念ページ”と連動させます。
+          </p>
+          <a class="cardLink" href="./philosophy/">→ 企業理念へ</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="wrap">
-    © First Aid Line<br>
-    応急処置としての緊急配送
+  <!-- ===== 6項目の枠：サービス ===== -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <h2>サービス</h2>
+          <p class="sectionLead">
+            ※まだ検討中のサービス名でOK。先に「3項目の枠」を作り、後から名称と文言を詰めます。
+          </p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <div class="cardTitle">（仮）サービス名A</div>
+          <p class="cardText">（仮）緊急時にまず「何ができるか」を整理し、最短の提案を返します。</p>
+        </div>
+        <div class="card">
+          <div class="cardTitle">（仮）サービス名B</div>
+          <p class="cardText">（仮）時間指定がある案件に、無理のない現実解を提示します。</p>
+        </div>
+        <div class="card">
+          <div class="cardTitle">（仮）サービス名C</div>
+          <p class="cardText">（仮）判断の根拠を共有し、手戻りや事故の芽を増やしません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6項目の枠：安全の取り組み ===== -->
+  <section class="section" id="safety">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <h2>安全の取り組み</h2>
+          <p class="sectionLead">
+            緊急時ほど安全のルールが崩れやすい。だからこそ、判断基準を明確にし、属人化させません。
+          </p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <div class="cardTitle">判断基準</div>
+          <p class="cardText">（枠）安全が担保できない場合は運行変更・中止も含めて判断します。</p>
+        </div>
+        <div class="card">
+          <div class="cardTitle">緊急時フロー</div>
+          <p class="cardText">（枠）連絡→判断→手配→共有→振り返り の運用を簡潔に提示。</p>
+        </div>
+        <div class="card">
+          <div class="cardTitle">再発防止</div>
+          <p class="cardText">（枠）個人責任ではなく判断プロセスを振り返り、次に活かします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6項目の枠：お知らせ ===== -->
+  <section class="section" id="news">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <h2>お知らせ</h2>
+          <p class="sectionLead">更新がある会社は信頼されます。まずは3件で枠を完成させます。</p>
+        </div>
+      </div>
+
+      <div class="news">
+        <div class="newsRow">
+          <div class="newsDate">2026-01-15</div>
+          <p class="newsTitle">（例）サイトをリニューアルしました</p>
+        </div>
+        <div class="newsRow">
+          <div class="newsDate">2025-11-13</div>
+          <p class="newsTitle">（例）年末年始の対応について</p>
+        </div>
+        <div class="newsRow">
+          <div class="newsDate">2025-07-04</div>
+          <p class="newsTitle">（例）対応エリアの更新について</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6項目の枠：お問合せ ===== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <h2>お問合せ</h2>
+          <p class="sectionLead">新規のご相談／ご利用中のご連絡で迷わない導線にします。</p>
+        </div>
+      </div>
+
+      <div class="contactGrid">
+        <div class="panel">
+          <h3>新規のご相談</h3>
+          <p>まずは状況を共有ください。可否と最適手段を最短で返します。</p>
+          <div class="tel">📞 04-2997-9697</div>
+          <div class="small">（例）受付：平日 9:00-18:00 ／ 緊急はまず電話</div>
+          <div style="margin-top:14px" class="ctaRow">
+            <a class="btn red" href="tel:0429979697">今すぐ電話</a>
+            <a class="btn ghost" href="mailto:info@example.com">メール</a>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>ご利用中のお客様</h3>
+          <p>拠点・担当の連絡先からご連絡ください（後で整理して掲載します）。</p>
+          <div class="ctaRow">
+            <a class="btn red" href="./company/">拠点・連絡先を見る</a>
+            <a class="btn ghost" href="./partner/">加盟店ページ</a>
+          </div>
+          <div class="small">※加盟店ページは後で枠と内容を詰めます。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      © First Aid Line. All rights reserved.<br>
+      応急処置として、荷物の状況を立て直します。
+    </div>
+  </footer>
+
+  <div class="float" aria-label="固定CTA">
+    <a class="primary" href="tel:0429979697">📞 今すぐ</a>
+    <a href="#contact">💬 お問合せ</a>
   </div>
-</footer>
 
 </body>
 </html>
