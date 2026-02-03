@@ -601,7 +601,27 @@
       .stickyCta{ display:block; }
       body{ padding-bottom: 86px; }
     }
+    /* ===== 2) ヒーロー写真を大きくする ===== */
+.heroBox{
+  min-height: 78vh;        /* 画面に近い高さ */
+  border-radius: 18px;
+}
 
+.heroFg{
+  object-fit: contain;    /* 切れない */
+  transform: scale(1.28); /* 写真を大きく */
+  object-position: 55% center;
+}
+    /* ===== 3) スマホだけ少し抑える ===== */
+@media (max-width: 860px){
+  .heroBox{
+    min-height: 74vh;
+  }
+
+  .heroFg{
+    transform: scale(1.12);
+  }
+}
     /* motion配慮 */
     @media (prefers-reduced-motion: reduce){
       *{ scroll-behavior:auto !important; }
