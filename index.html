@@ -313,6 +313,9 @@
     }
 
     .heroBtns{
+      <p style="margin:14px 0 0; font-weight:900; opacity:.95; line-height:1.8;">
+  対応：緊急配送／特急便／スポット　｜　<strong>24時間365日</strong>　｜　最短で可否を整理します
+</p>
       display:flex;
       flex-wrap:wrap;
       gap:12px;
@@ -538,6 +541,57 @@
       .btn2{ width:100%; }
       .heroFg{ transform: scale(1.10); } /* スマホは少し抑えて見切れ防止 */
     }
+    <style>
+  /* === Sticky CTA (mobile) === */
+  .stickyCta{
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    padding: 10px 12px;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(229,231,235,.95);
+    z-index: 300;
+    display: none;
+  }
+  .stickyCta .inner{
+    width:min(var(--max), calc(100% - (var(--pad) * 2)));
+    margin: 0 auto;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .stickyCta a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding: 14px 14px;
+    border-radius: 14px;
+    font-weight: 1000;
+    border:1px solid var(--border);
+    background:#fff;
+    color: var(--ink);
+    box-shadow: 0 12px 40px rgba(15,23,42,.10);
+  }
+  .stickyCta a.call{
+    border-color: rgba(230,0,18,.30);
+    background: linear-gradient(135deg, rgba(230,0,18,.98), rgba(230,0,18,.65));
+    color:#fff;
+  }
+  /* スマホのみ表示 & 下にスペース確保 */
+  @media (max-width: 860px){
+    .stickyCta{ display:block; }
+    body{ padding-bottom: 86px; }
+  }
+
+  /* motion配慮 */
+  @media (prefers-reduced-motion: reduce){
+    *{ scroll-behavior:auto !important; }
+    .card, .pill, .btn{ transition:none !important; }
+    .card:hover, .pill:hover, .btn:hover{ transform:none !important; }
+  }
+</style>
+
   </style>
 </head>
 
@@ -819,6 +873,12 @@
       });
     })();
   </script>
+<div class="stickyCta" aria-label="固定の問い合わせ">
+  <div class="inner">
+    <a class="call" href="tel:0429979697">📞 今すぐ電話</a>
+    <a href="#contact">✉️ 相談する</a>
+  </div>
+</div>
 
 </body>
 </html>
