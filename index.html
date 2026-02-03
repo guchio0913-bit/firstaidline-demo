@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>First Aid Line｜応急処置として、荷物の状況を立て直します。</title>
-  <meta name="description" content="応急処置として、荷物の状況を立て直します。判断に迷う時間を、私たちが引き受けます。いま何ができるかを、最短で整理します。" />
+  <title>First Aid Line｜緊急配送・特急便｜荷物の状況を“最短で”立て直します</title>
+  <meta name="description" content="緊急配送・特急便・スポット配送。判断に迷う時間を私たちが引き受けます。集荷地／届け先／希望時間／荷物情報の4点で、可否と最適手段をすぐ整理します。" />
 
   <style>
     :root{
@@ -14,19 +14,16 @@
       --muted:#475569;
       --border:#e5e7eb;
 
-      /* 明るめ（暗くしない） */
       --bg:#f6f7fb;
       --card:#ffffff;
       --shadow: 0 18px 60px rgba(15, 23, 42, .12);
 
-      /* 余白（GB寄せ：広めだが“多すぎない”） */
       --max: 1280px;
       --pad: 20px;
       --radius: 18px;
 
-      /* 文字：全体大きめ（読みやすく） */
-      --h1: clamp(36px, 4.6vw, 66px);
-      --h2: clamp(26px, 2.3vw, 36px);
+      --h1: clamp(34px, 4.6vw, 66px);
+      --h2: clamp(24px, 2.3vw, 36px);
       --lead: clamp(16px, 1.3vw, 20px);
     }
 
@@ -227,7 +224,6 @@
       min-height: clamp(460px, 68vh, 780px);
     }
 
-    /* 背景：全面（多少切れてOK） */
     .heroBg{
       position:absolute;
       inset:-16px;
@@ -239,7 +235,6 @@
       transform: scale(1.08);
     }
 
-    /* 前景：トラック全体を必ず入れる（切れない） */
     .heroFg{
       position:absolute;
       inset:0;
@@ -247,11 +242,10 @@
       height:100%;
       object-fit: contain;
       object-position: 55% center;
-      transform: scale(1.18); /* ここで“大きさ”調整（大きくしたい＝上げる） */
+      transform: scale(1.18);
       filter: saturate(1.02) contrast(1.06);
     }
 
-    /* 読みやすい幕（暗すぎない） */
     .heroBox::after{
       content:"";
       position:absolute;
@@ -312,10 +306,33 @@
       text-shadow: 0 6px 20px rgba(0,0,0,.32);
     }
 
+    .heroTrust{
+      margin: 14px 0 0;
+      font-weight: 900;
+      line-height: 1.8;
+      opacity: .96;
+      color: rgba(255,255,255,.92);
+      text-shadow: 0 6px 18px rgba(0,0,0,.28);
+    }
+    .trustBadges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top: 10px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.20);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
     .heroBtns{
-      <p style="margin:14px 0 0; font-weight:900; opacity:.95; line-height:1.8;">
-  対応：緊急配送／特急便／スポット　｜　<strong>24時間365日</strong>　｜　最短で可否を整理します
-</p>
       display:flex;
       flex-wrap:wrap;
       gap:12px;
@@ -346,7 +363,6 @@
       border-color: rgba(255,255,255,.92);
     }
 
-    /* right panel in hero */
     .heroPanel{
       background: rgba(255,255,255,.20);
       border: 1px solid rgba(255,255,255,.24);
@@ -525,6 +541,43 @@
       background: rgba(255,255,255,.65);
     }
 
+    /* === Sticky CTA (mobile) === */
+    .stickyCta{
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      padding: 10px 12px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(229,231,235,.95);
+      z-index: 300;
+      display: none;
+    }
+    .stickyCta .inner{
+      width:min(var(--max), calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .stickyCta a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 14px 14px;
+      border-radius: 14px;
+      font-weight: 1000;
+      border:1px solid var(--border);
+      background:#fff;
+      color: var(--ink);
+      box-shadow: 0 12px 40px rgba(15,23,42,.10);
+    }
+    .stickyCta a.call{
+      border-color: rgba(230,0,18,.30);
+      background: linear-gradient(135deg, rgba(230,0,18,.98), rgba(230,0,18,.65));
+      color:#fff;
+    }
+
     /* ===== Responsive ===== */
     @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
@@ -539,59 +592,17 @@
       .contactBox{ flex-direction: column; align-items:flex-start; }
       .contactBtns{ width:100%; justify-content:flex-start; }
       .btn2{ width:100%; }
-      .heroFg{ transform: scale(1.10); } /* スマホは少し抑えて見切れ防止 */
+      .heroFg{ transform: scale(1.10); }
+      .stickyCta{ display:block; }
+      body{ padding-bottom: 86px; }
     }
-    <style>
-  /* === Sticky CTA (mobile) === */
-  .stickyCta{
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
-    padding: 10px 12px;
-    background: rgba(255,255,255,.92);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(229,231,235,.95);
-    z-index: 300;
-    display: none;
-  }
-  .stickyCta .inner{
-    width:min(var(--max), calc(100% - (var(--pad) * 2)));
-    margin: 0 auto;
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .stickyCta a{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    padding: 14px 14px;
-    border-radius: 14px;
-    font-weight: 1000;
-    border:1px solid var(--border);
-    background:#fff;
-    color: var(--ink);
-    box-shadow: 0 12px 40px rgba(15,23,42,.10);
-  }
-  .stickyCta a.call{
-    border-color: rgba(230,0,18,.30);
-    background: linear-gradient(135deg, rgba(230,0,18,.98), rgba(230,0,18,.65));
-    color:#fff;
-  }
-  /* スマホのみ表示 & 下にスペース確保 */
-  @media (max-width: 860px){
-    .stickyCta{ display:block; }
-    body{ padding-bottom: 86px; }
-  }
 
-  /* motion配慮 */
-  @media (prefers-reduced-motion: reduce){
-    *{ scroll-behavior:auto !important; }
-    .card, .pill, .btn{ transition:none !important; }
-    .card:hover, .pill:hover, .btn:hover{ transform:none !important; }
-  }
-</style>
-
+    /* motion配慮 */
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto !important; }
+      .card, .pill, .btn{ transition:none !important; }
+      .card:hover, .pill:hover, .btn:hover{ transform:none !important; }
+    }
   </style>
 </head>
 
@@ -627,9 +638,9 @@
             サービス <span class="caret">▼</span>
           </button>
           <div class="ddMenu" role="menu">
-            <a href="./service-1/" role="menuitem">（仮）サービスA <span>→</span></a>
-            <a href="./service-2/" role="menuitem">（仮）サービスB <span>→</span></a>
-            <a href="./service-3/" role="menuitem">（仮）サービスC <span>→</span></a>
+            <a href="./service-1/" role="menuitem">緊急配送（今すぐ） <span>→</span></a>
+            <a href="./service-2/" role="menuitem">特急便（時間指定） <span>→</span></a>
+            <a href="./service-3/" role="menuitem">スポット配送（単発） <span>→</span></a>
           </div>
         </div>
 
@@ -655,9 +666,9 @@
         <a href="./greeting/">ご挨拶</a>
         <a href="./company/">会社概要</a>
         <a href="./philosophy/">企業理念</a>
-        <a href="./service-1/">（仮）サービスA</a>
-        <a href="./service-2/">（仮）サービスB</a>
-        <a href="./service-3/">（仮）サービスC</a>
+        <a href="./service-1/">緊急配送（今すぐ）</a>
+        <a href="./service-2/">特急便（時間指定）</a>
+        <a href="./service-3/">スポット配送（単発）</a>
         <a href="./measures/">安全の取り組み</a>
         <a href="#news">お知らせ</a>
         <a href="#contact">お問合せ</a>
@@ -670,9 +681,8 @@
   <main id="home" class="hero">
     <div class="wrap">
       <section class="heroBox" aria-label="メインビジュアル">
-        <!-- ★あなたが探していたタグはココ（hero-1.png） -->
         <img class="heroBg" src="./images/hero-1.png" alt="">
-        <img class="heroFg" src="./images/hero-1.png" alt="First Aid Line イメージ">
+        <img class="heroFg" src="./images/hero-1.png" alt="緊急配送・特急便のイメージ（トラック）">
 
         <div class="heroInner">
           <div class="wrap heroGrid">
@@ -688,13 +698,24 @@
               </h1>
 
               <p class="heroLead">
-                判断に迷う時間を、私たちが引き受けます。<br>
+                「間に合わないかも」「どう動くべきか分からない」——<br>
+                その判断に迷う時間を、私たちが引き受けます。<br>
                 いま何ができるかを、最短で整理します。
               </p>
 
               <div class="heroBtns">
-                <a class="btn red" href="tel:0429979697">📞 今すぐ電話する</a>
-                <a class="btn white" href="#contact">✉️ 相談する</a>
+                <a class="btn red" href="tel:0429979697">📞 今すぐ電話で相談</a>
+                <a class="btn white" href="#contact">✉️ メールで相談</a>
+              </div>
+
+              <p class="heroTrust">
+                相談は“状況のまま”でOK。まずは可否と最適手段を整理します。
+              </p>
+              <div class="trustBadges" aria-label="信頼情報（必要に応じて差し替え）">
+                <span class="badge">24時間365日</span>
+                <span class="badge">法人・個人対応</span>
+                <span class="badge">関東中心（全国応相談）</span>
+                <span class="badge">安全最優先</span>
               </div>
             </div>
 
@@ -702,7 +723,8 @@
               <h3>最短で判断するために</h3>
               <div class="leadBox">
                 下記 <b>4点</b> を共有いただければ、<br>
-                <b>可否と最適手段</b>をすぐ整理します。
+                <b>可否と最適手段</b>をすぐ整理します。<br>
+                <span style="opacity:.92;">（電話なら口頭でOK）</span>
               </div>
 
               <ol>
@@ -724,27 +746,39 @@
       <div class="sectionHead">
         <div>
           <h2>FirstAidLineとは</h2>
-          <p>「いま、どうしたらいい？」を最短で整理し、次の一手までつなぐ物流の応急処置です。</p>
+          <p>
+            「いま、どうしたらいい？」を最短で整理し、次の一手につなぐ物流の応急処置。
+            急ぎでも安全が揺らがないよう、判断の軸を明確にしてご提案します。
+          </p>
         </div>
       </div>
 
       <div class="grid3">
         <div class="card">
-          <h3>ご挨拶</h3>
-          <p>まずは“安心して相談できる相手”として。考えが追いつかない時ほど、整理役になります。</p>
+          <h3>まずは“整理役”になります</h3>
+          <p>
+            事情が複雑でも大丈夫です。状況を一緒にほどきながら、
+            「何ができるか／できないか」をはっきりさせます。
+          </p>
           <a class="more" href="./greeting/">詳しく見る →</a>
         </div>
 
         <div class="card">
-          <h3>会社概要</h3>
-          <p>対応エリア、連絡先、体制など。依頼前に必要な情報をわかりやすくまとめます。</p>
+          <h3>依頼前に必要な情報を公開</h3>
+          <p>
+            対応エリア・連絡先・体制など、依頼前に知りたい情報を
+            できるだけ分かりやすくまとめます。
+          </p>
           <a class="more" href="./company/">詳しく見る →</a>
         </div>
 
         <div class="card">
-          <h3>企業理念</h3>
-          <p>「急ぎ」でも「安全」が揺らがない。判断の軸を公開し、迷いを減らします。</p>
-          <a class="more" href="./philosophy/">詳しく見る →</a>
+          <h3>急ぎでも“安全最優先”</h3>
+          <p>
+            早さだけを優先せず、事故やトラブルの芽を潰します。
+            安全の取り組みも公開し、安心して任せられる土台を作ります。
+          </p>
+          <a class="more" href="./measures/">詳しく見る →</a>
         </div>
       </div>
     </div>
@@ -756,31 +790,43 @@
       <div class="sectionHead">
         <div>
           <h2>サービス</h2>
-          <p>※サービス名は検討中でOK。まずは枠と導線を作って、後から差し替え可能にします。</p>
+          <p>
+            目的から選べる3つの窓口。迷う場合は「今すぐ相談」でOK。
+            状況に合わせて最適な手段をこちらで整理します。
+          </p>
         </div>
       </div>
 
       <div class="grid3">
         <div class="card">
-          <h3>（仮）サービスA</h3>
-          <p>ここに短い説明文を入れます（後で一緒に整えましょう）。</p>
+          <h3>緊急配送（今すぐ）</h3>
+          <p>
+            「今日中」「すぐ動きたい」など緊急度が高い案件に。
+            まずは可否を確認し、最短の手段をご提案します。
+          </p>
           <a class="more" href="./service-1/">詳しく見る →</a>
         </div>
         <div class="card">
-          <h3>（仮）サービスB</h3>
-          <p>ここに短い説明文を入れます（後で一緒に整えましょう）。</p>
+          <h3>特急便（時間指定）</h3>
+          <p>
+            「◯時必着」「朝イチ納品」など時間が決まっている案件に。
+            余裕を作る段取りまで含めて支援します。
+          </p>
           <a class="more" href="./service-2/">詳しく見る →</a>
         </div>
         <div class="card">
-          <h3>（仮）サービスC</h3>
-          <p>ここに短い説明文を入れます（後で一緒に整えましょう）。</p>
+          <h3>スポット配送（単発）</h3>
+          <p>
+            単発の依頼・突発的な増便に。普段の体制を崩さず、
+            まずは“穴埋め”として安定運用につなげます。
+          </p>
           <a class="more" href="./service-3/">詳しく見る →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== News（枠だけ） ===== -->
+  <!-- ===== News ===== -->
   <section id="news" class="section">
     <div class="wrap">
       <div class="sectionHead">
@@ -791,18 +837,18 @@
       </div>
 
       <div class="grid3">
-        <div class="card">
-          <h3>NEW</h3>
-          <p>サイト公開（仮）。文言や写真は順次アップデートします。</p>
-        </div>
-        <div class="card">
-          <h3>INFO</h3>
-          <p>サービス名は検討中。先に枠を作ることで差し替えが簡単になります。</p>
-        </div>
-        <div class="card">
-          <h3>INFO</h3>
-          <p>安全の取り組みページは独立ページ化して拡張します。</p>
-        </div>
+        <article class="card" aria-label="お知らせ1">
+          <h3>サイト公開</h3>
+          <p><time datetime="2026-02-03">2026.02.03</time>　サービス内容と導線を順次アップデートします。</p>
+        </article>
+        <article class="card" aria-label="お知らせ2">
+          <h3>サービス名を整理しました</h3>
+          <p><time datetime="2026-02-03">2026.02.03</time>　「緊急／時間指定／スポット」の3窓口で迷いにくくしました。</p>
+        </article>
+        <article class="card" aria-label="お知らせ3">
+          <h3>安全の取り組みページ更新予定</h3>
+          <p><time datetime="2026-02-03">2026.02.03</time>　急ぎでも安全が揺らがない仕組みを公開します。</p>
+        </article>
       </div>
     </div>
   </section>
@@ -813,12 +859,20 @@
       <div class="contactBox">
         <div>
           <h2>お問合せ</h2>
-          <p>「いま、どうすればいい？」を整理します。迷っている状況のまま連絡してください。</p>
+          <p>
+            「いま、どうすればいい？」を整理します。<br>
+            迷っている状況のまま連絡してください。
+          </p>
+          <p style="margin-top:10px; font-weight:900; color:#334155; line-height:1.8;">
+            連絡の前にメモ（口頭でもOK）：<br>
+            ①集荷地 ②届け先 ③希望時間 ④荷物（サイズ/重量/内容）
+          </p>
         </div>
 
         <div class="contactBtns">
-          <a class="btn2 red" href="tel:0429979697">📞 電話する</a>
-          <a class="btn2" href="mailto:info@example.com">✉️ メールする</a>
+          <a class="btn2 red" href="tel:0429979697">📞 電話で相談する</a>
+          <!-- 本番用に差し替え：メールアドレス／件名 -->
+          <a class="btn2" href="mailto:info@yourdomain.com?subject=緊急配送の相談">✉️ メールで相談する</a>
           <a class="btn2" href="./company/">📍 連絡先を見る</a>
         </div>
       </div>
@@ -831,6 +885,14 @@
       ※電話番号・メール・住所などは本番用に差し替えてください。
     </div>
   </footer>
+
+  <!-- Mobile sticky CTA -->
+  <div class="stickyCta" aria-label="固定の問い合わせ">
+    <div class="inner">
+      <a class="call" href="tel:0429979697">📞 今すぐ電話</a>
+      <a href="#contact">✉️ 相談する</a>
+    </div>
+  </div>
 
   <script>
     // Desktop dropdown
@@ -873,12 +935,6 @@
       });
     })();
   </script>
-<div class="stickyCta" aria-label="固定の問い合わせ">
-  <div class="inner">
-    <a class="call" href="tel:0429979697">📞 今すぐ電話</a>
-    <a href="#contact">✉️ 相談する</a>
-  </div>
-</div>
 
 </body>
 </html>
