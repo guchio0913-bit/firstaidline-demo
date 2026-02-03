@@ -17,12 +17,12 @@
       --card:#ffffff;
       --shadow: 0 18px 60px rgba(15, 23, 42, .12);
 
-      /* ✅余白をGBTEC寄せ：広く・余白少なめ */
-      --max: 1400px; /* 1240 → 1400 */
-      --pad: 16px;   /* 28 → 16 */
+      /* 余白（GB寄せ） */
+      --max: 1400px;
+      --pad: 16px;
       --radius: 18px;
 
-      /* 文字（全体的に大きめ） */
+      /* 文字 */
       --h1: clamp(36px, 4.8vw, 68px);
       --h2: clamp(26px, 2.4vw, 36px);
       --lead: clamp(16px, 1.35vw, 20px);
@@ -99,7 +99,6 @@
       gap:10px;
     }
 
-    /* Desktop menu */
     .menu{
       display:flex;
       align-items:center;
@@ -125,7 +124,6 @@
       color: #7a0610;
     }
 
-    /* dropdown */
     .dd{ position:relative; }
     .dd > button{
       all: unset;
@@ -188,7 +186,6 @@
       box-shadow: 0 0 0 5px rgba(230,0,18,.14);
     }
 
-    /* Mobile menu button */
     .hamb{
       display:none;
       border:1px solid var(--border);
@@ -199,7 +196,6 @@
       color:var(--ink);
     }
 
-    /* Mobile drawer */
     .drawer{
       display:none;
       border-top:1px solid var(--border);
@@ -220,15 +216,13 @@
     .drawer small{ color:var(--muted); font-weight:800; display:block; margin-top:6px; }
 
     /* ===== Hero ===== */
-    .hero{
-      padding: 14px 0 34px;
-    }
+    .hero{ padding: 14px 0 34px; }
 
-    /* ✅ここが一番重要：Heroを画面いっぱいに */
+    /* ✅ Hero は画面いっぱい */
     .heroBox{
       position:relative;
       width: 100vw;
-      margin-left: calc(50% - 50vw); /* wrap中央寄せの影響を打ち消す */
+      margin-left: calc(50% - 50vw);
       border-radius: 26px;
       overflow:hidden;
       box-shadow: var(--shadow);
@@ -237,17 +231,32 @@
       min-height: clamp(460px, 66vh, 780px);
     }
 
-    .heroImg{
+    /* ✅ 背景：全面に敷いて自然に埋める（多少切れてOK） */
+    .heroBg{
       position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit: cover; /* 画面いっぱい */
+      inset:-22px;
+      width: calc(100% + 44px);
+      height: calc(100% + 44px);
+      object-fit: cover;
       object-position: center center;
-      transform: scale(1.03);
-      filter: saturate(1.02) contrast(1.05);
+      transform: scale(1.08);
+      filter: blur(18px) brightness(.88) saturate(1.08);
     }
 
+    /* ✅ 前面：トラック全体を必ず入れる（切れない） */
+    .heroFg{
+      position:absolute;
+      inset:0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;                 /* ←切れない核心 */
+      object-position: 62% 60%;            /* ←トラック位置の微調整（必要なら変える） */
+      transform: scale(1.06);              /* ←少し大きく（切れにくい範囲） */
+      filter: saturate(1.02) contrast(1.05);
+      pointer-events:none;
+    }
+
+    /* 文字が読める暗幕 */
     .heroBox::after{
       content:"";
       position:absolute;
@@ -255,7 +264,7 @@
       background: linear-gradient(90deg,
         rgba(15,23,42,.72),
         rgba(15,23,42,.38),
-        rgba(15,23,42,.08)
+        rgba(15,23,42,.10)
       );
     }
 
@@ -266,8 +275,6 @@
       display:flex;
       align-items:center;
     }
-
-    /* hero内の文字・パネルは中央幅 */
     .heroGrid{
       display:grid;
       grid-template-columns: 1.2fr .9fr;
@@ -276,10 +283,7 @@
       padding: 30px 0;
     }
 
-    .heroCopy{
-      color:#fff;
-      max-width: 62ch;
-    }
+    .heroCopy{ color:#fff; max-width: 62ch; }
     .heroKicker{
       display:inline-flex;
       align-items:center;
@@ -342,7 +346,6 @@
       border-color: rgba(255,255,255,.92);
     }
 
-    /* right panel in hero */
     .heroPanel{
       background: rgba(255,255,255,.18);
       border: 1px solid rgba(255,255,255,.22);
@@ -398,7 +401,7 @@
     }
 
     /* ===== Sections ===== */
-    .section{ padding: 46px 0; } /* 54 → 46 少し詰める */
+    .section{ padding: 46px 0; }
     .sectionHead{
       display:flex;
       align-items:flex-end;
@@ -461,7 +464,6 @@
       color: #0b3a8a;
     }
 
-    /* News */
     .news{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
@@ -530,7 +532,6 @@
       font-size: 15px;
     }
 
-    /* Contact */
     .contactBox{
       background: linear-gradient(135deg, rgba(230,0,18,.10), #ffffff);
       border:1px solid var(--border);
@@ -589,12 +590,12 @@
       background: rgba(255,255,255,.65);
     }
 
-    /* ===== Responsive ===== */
     @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
       .heroPanel ol{ grid-template-columns: 1fr; }
       .news{ grid-template-columns: 1fr; }
       .heroBox{ border-radius: 20px; }
+      .heroFg{ object-position: 50% 60%; transform: scale(1.03); } /* スマホは少し抑える */
     }
     @media (max-width: 860px){
       .menu{ display:none; }
@@ -611,7 +612,6 @@
 
 <body>
 
-  <!-- ===== Header ===== -->
   <header class="topbar">
     <div class="wrap nav">
       <a class="brand" href="#home" aria-label="ホームへ">
@@ -622,7 +622,6 @@
         </div>
       </a>
 
-      <!-- Desktop Menu -->
       <nav class="menu" aria-label="グローバルナビゲーション">
         <a class="pill" href="#home">ホーム</a>
 
@@ -665,7 +664,6 @@
       </div>
     </div>
 
-    <!-- Mobile Drawer -->
     <div class="drawer" id="drawer">
       <div class="wrap row">
         <a href="#home">ホーム</a>
@@ -696,11 +694,11 @@
     </div>
   </header>
 
-  <!-- ===== Hero ===== -->
   <main id="home" class="hero">
-    <!-- ✅wrapを外した（Heroが画面いっぱいになる） -->
     <section class="heroBox" aria-label="メインビジュアル">
-      <img class="heroImg" src="./images/hero-1.png" alt="First Aid Line イメージ">
+      <!-- ✅同じ画像を2枚重ね：背景cover + 前面contain -->
+      <img class="heroBg" src="./images/hero-1.png" alt="">
+      <img class="heroFg" src="./images/hero-1.png" alt="First Aid Line イメージ（トラック全体）">
 
       <div class="heroInner">
         <div class="wrap heroGrid">
@@ -745,7 +743,7 @@
     </section>
   </main>
 
-  <!-- ===== About ===== -->
+  <!-- ===== 以下はそのまま（枠組み） ===== -->
   <section id="about" class="section">
     <div class="wrap">
       <div class="sectionHead">
@@ -777,7 +775,6 @@
     </div>
   </section>
 
-  <!-- ===== Services ===== -->
   <section id="services" class="section">
     <div class="wrap">
       <div class="sectionHead">
@@ -790,26 +787,23 @@
       <div class="grid3">
         <div class="card">
           <h3>（仮）サービスA</h3>
-          <p>ここに「お客様目線で刺さる短文」を入れます（後で一緒に整えましょう）。</p>
+          <p>ここに「お客様目線で刺さる短文」を入れます。</p>
           <a class="more" href="./service-1/">詳しく見る →</a>
         </div>
-
         <div class="card">
           <h3>（仮）サービスB</h3>
-          <p>ここに「お客様目線で刺さる短文」を入れます（後で一緒に整えましょう）。</p>
+          <p>ここに「お客様目線で刺さる短文」を入れます。</p>
           <a class="more" href="./service-2/">詳しく見る →</a>
         </div>
-
         <div class="card">
           <h3>（仮）サービスC</h3>
-          <p>ここに「お客様目線で刺さる短文」を入れます（後で一緒に整えましょう）。</p>
+          <p>ここに「お客様目線で刺さる短文」を入れます。</p>
           <a class="more" href="./service-3/">詳しく見る →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Safety measures ===== -->
   <section id="safety" class="section">
     <div class="wrap">
       <div class="sectionHead">
@@ -842,13 +836,12 @@
     </div>
   </section>
 
-  <!-- ===== News ===== -->
   <section id="news" class="section">
     <div class="wrap">
       <div class="sectionHead">
         <div>
           <h2>お知らせ</h2>
-          <p>最新情報・対応状況・お知らせを掲載します（ここは後で更新運用を決めましょう）。</p>
+          <p>最新情報・対応状況・お知らせを掲載します。</p>
         </div>
       </div>
 
@@ -888,7 +881,6 @@
     </div>
   </section>
 
-  <!-- ===== Contact ===== -->
   <section id="contact" class="section">
     <div class="wrap">
       <div class="contactBox">
@@ -917,10 +909,9 @@
   </footer>
 
   <script>
-    // ===== Desktop dropdown =====
+    // Desktop dropdown
     (function(){
       const dds = Array.from(document.querySelectorAll('[data-dd]'));
-
       function closeAll(){
         dds.forEach(dd => dd.classList.remove('is-open'));
         dds.forEach(dd => {
@@ -928,7 +919,6 @@
           if(btn) btn.setAttribute('aria-expanded', 'false');
         });
       }
-
       dds.forEach(dd => {
         const btn = dd.querySelector('button');
         btn.addEventListener('click', (e) => {
@@ -941,7 +931,6 @@
           }
         });
       });
-
       document.addEventListener('click', (e) => {
         if(!e.target.closest('[data-dd]')) closeAll();
       });
@@ -950,7 +939,7 @@
       });
     })();
 
-    // ===== Mobile drawer =====
+    // Mobile drawer
     (function(){
       const hamb = document.getElementById('hamb');
       const drawer = document.getElementById('drawer');
@@ -960,7 +949,6 @@
         hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
 
-      // mobile panels
       document.querySelectorAll('.mobToggle').forEach(btn => {
         btn.addEventListener('click', () => {
           const key = btn.dataset.mob;
