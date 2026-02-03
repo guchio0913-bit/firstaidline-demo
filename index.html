@@ -17,15 +17,15 @@
       --card:#ffffff;
       --shadow: 0 18px 60px rgba(15, 23, 42, .12);
 
-      /* 余白（gbtec寄せ：広め） */
-      --max: 1240px;
-      --pad: 28px;
+      /* ✅余白をGBTEC寄せ：広く・余白少なめ */
+      --max: 1400px; /* 1240 → 1400 */
+      --pad: 16px;   /* 28 → 16 */
       --radius: 18px;
 
       /* 文字（全体的に大きめ） */
-      --h1: clamp(34px, 4.6vw, 64px);
-      --h2: clamp(24px, 2.3vw, 34px);
-      --lead: clamp(16px, 1.3vw, 19px);
+      --h1: clamp(36px, 4.8vw, 68px);
+      --h2: clamp(26px, 2.4vw, 36px);
+      --lead: clamp(16px, 1.35vw, 20px);
     }
 
     *{box-sizing:border-box}
@@ -221,19 +221,22 @@
 
     /* ===== Hero ===== */
     .hero{
-      padding: 18px 0 34px;
+      padding: 14px 0 34px;
     }
+
+    /* ✅ここが一番重要：Heroを画面いっぱいに */
     .heroBox{
       position:relative;
-      width: 100%;
+      width: 100vw;
+      margin-left: calc(50% - 50vw); /* wrap中央寄せの影響を打ち消す */
       border-radius: 26px;
       overflow:hidden;
       box-shadow: var(--shadow);
       border:1px solid rgba(229,231,235,.9);
       background:#111;
-      /* “画面いっぱい感”：高さをしっかり */
-      min-height: clamp(420px, 62vh, 720px);
+      min-height: clamp(460px, 66vh, 780px);
     }
+
     .heroImg{
       position:absolute;
       inset:0;
@@ -244,7 +247,7 @@
       transform: scale(1.03);
       filter: saturate(1.02) contrast(1.05);
     }
-    /* 白背景でも文字が読めるように：左から薄い暗幕 */
+
     .heroBox::after{
       content:"";
       position:absolute;
@@ -263,12 +266,14 @@
       display:flex;
       align-items:center;
     }
+
+    /* hero内の文字・パネルは中央幅 */
     .heroGrid{
       display:grid;
       grid-template-columns: 1.2fr .9fr;
       gap: 18px;
       align-items:center;
-      padding: 26px 0;
+      padding: 30px 0;
     }
 
     .heroCopy{
@@ -295,7 +300,7 @@
       font-weight: 1000;
       letter-spacing: .02em;
       text-shadow: 0 10px 30px rgba(0,0,0,.35);
-      writing-mode: horizontal-tb; /* 横文字 */
+      writing-mode: horizontal-tb;
     }
     .heroLead{
       margin: 0;
@@ -393,15 +398,13 @@
     }
 
     /* ===== Sections ===== */
-    .section{
-      padding: 54px 0;
-    }
+    .section{ padding: 46px 0; } /* 54 → 46 少し詰める */
     .sectionHead{
       display:flex;
       align-items:flex-end;
       justify-content:space-between;
       gap:16px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     .sectionHead h2{
       margin:0;
@@ -591,6 +594,7 @@
       .heroGrid{ grid-template-columns: 1fr; }
       .heroPanel ol{ grid-template-columns: 1fr; }
       .news{ grid-template-columns: 1fr; }
+      .heroBox{ border-radius: 20px; }
     }
     @media (max-width: 860px){
       .menu{ display:none; }
@@ -694,57 +698,54 @@
 
   <!-- ===== Hero ===== -->
   <main id="home" class="hero">
-    <div class="wrap">
-      <section class="heroBox" aria-label="メインビジュアル">
-        <!-- 画像はお手元の hero を使ってOK -->
-        <img class="heroImg" src="./images/hero-1.png" alt="First Aid Line イメージ">
+    <!-- ✅wrapを外した（Heroが画面いっぱいになる） -->
+    <section class="heroBox" aria-label="メインビジュアル">
+      <img class="heroImg" src="./images/hero-1.png" alt="First Aid Line イメージ">
 
-        <div class="heroInner">
-          <div class="wrap heroGrid">
-            <div class="heroCopy">
-              <div class="heroKicker">
-                <span class="dot"></span>
-                <span>緊急配送・特急便・スポット配送</span>
-              </div>
-
-              <h1 class="heroH1">
-                応急処置として、<br>
-                荷物の状況を立て直します。
-              </h1>
-
-              <p class="heroLead">
-                判断に迷う時間を、私たちが引き受けます。<br>
-                いま何ができるかを、最短で整理します。
-              </p>
-
-              <div class="heroBtns">
-                <a class="btn red" href="tel:0429979697">📞 今すぐ電話する</a>
-                <a class="btn white" href="#contact">✉️ 相談する</a>
-              </div>
+      <div class="heroInner">
+        <div class="wrap heroGrid">
+          <div class="heroCopy">
+            <div class="heroKicker">
+              <span class="dot"></span>
+              <span>緊急配送・特急便・スポット配送</span>
             </div>
 
-            <!-- 右側：4点ヒアリング枠（大きく見やすい） -->
-            <aside class="heroPanel" aria-label="最短で判断するために">
-              <h3>最短で判断するために</h3>
-              <div class="leadBox">
-                下記 <b>4点</b> を共有いただければ、<br>
-                <b>可否と最適手段</b>をすぐ整理します。
-              </div>
+            <h1 class="heroH1">
+              応急処置として、<br>
+              荷物の状況を立て直します。
+            </h1>
 
-              <ol>
-                <li><span class="n">①</span> 集荷地</li>
-                <li><span class="n">②</span> 届け先</li>
-                <li><span class="n">③</span> 希望時間</li>
-                <li><span class="n">④</span> 荷物（サイズ／重量／内容）</li>
-              </ol>
-            </aside>
+            <p class="heroLead">
+              判断に迷う時間を、私たちが引き受けます。<br>
+              いま何ができるかを、最短で整理します。
+            </p>
+
+            <div class="heroBtns">
+              <a class="btn red" href="tel:0429979697">📞 今すぐ電話する</a>
+              <a class="btn white" href="#contact">✉️ 相談する</a>
+            </div>
           </div>
+
+          <aside class="heroPanel" aria-label="最短で判断するために">
+            <h3>最短で判断するために</h3>
+            <div class="leadBox">
+              下記 <b>4点</b> を共有いただければ、<br>
+              <b>可否と最適手段</b>をすぐ整理します。
+            </div>
+
+            <ol>
+              <li><span class="n">①</span> 集荷地</li>
+              <li><span class="n">②</span> 届け先</li>
+              <li><span class="n">③</span> 希望時間</li>
+              <li><span class="n">④</span> 荷物（サイズ／重量／内容）</li>
+            </ol>
+          </aside>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </main>
 
-  <!-- ===== About (枠だけ先に作る) ===== -->
+  <!-- ===== About ===== -->
   <section id="about" class="section">
     <div class="wrap">
       <div class="sectionHead">
@@ -776,7 +777,7 @@
     </div>
   </section>
 
-  <!-- ===== Services (枠だけ先に作る) ===== -->
+  <!-- ===== Services ===== -->
   <section id="services" class="section">
     <div class="wrap">
       <div class="sectionHead">
@@ -808,7 +809,7 @@
     </div>
   </section>
 
-  <!-- ===== Safety measures (独立ページへ導線＋枠) ===== -->
+  <!-- ===== Safety measures ===== -->
   <section id="safety" class="section">
     <div class="wrap">
       <div class="sectionHead">
