@@ -675,6 +675,46 @@
     font-size: 15px;
   }
 }
+/* ===== ヒーローを画面いっぱい使う ===== */
+.hero > .wrap{
+  width: 100vw;
+  max-width: none;
+  margin: 0;
+  padding: 0 12px; /* ←ほんの少し余白 */
+}
+
+.heroBox{
+  min-height: 88vh;   /* ほぼ画面いっぱい */
+  border-radius: 18px;
+}
+    /* ===== ② 右パネルを画像の上に浮かせる ===== */
+@media (min-width: 981px){
+  .heroGrid{
+    position: relative;
+  }
+
+  .heroPanel{
+    position: absolute;
+    top: 40px;        /* 上に移動（数値を小さくするとさらに上） */
+    right: 40px;      /* 右へ寄せる */
+    width: 560px;     /* パネルを大きくする */
+    max-width: 46vw;
+
+    padding: 24px;
+    transform: none;  /* 既存のズラしを無効化 */
+  }
+}
+/* ===== ③ 左テキストを締める ===== */
+@media (min-width: 981px){
+  .heroCopy{
+    max-width: 52ch;
+  }
+
+  .heroH1{
+    font-size: clamp(32px, 3.8vw, 56px);
+    line-height: 1.05;
+  }
+}
 
   </style>
 </head>
