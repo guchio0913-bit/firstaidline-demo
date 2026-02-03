@@ -23,9 +23,9 @@
       --radius: 18px;
 
       /* 文字 */
-      --h1: clamp(36px, 4.8vw, 68px);
+      --h1: clamp(38px, 5.0vw, 72px);
       --h2: clamp(26px, 2.4vw, 36px);
-      --lead: clamp(16px, 1.35vw, 20px);
+      --lead: clamp(17px, 1.45vw, 21px);
     }
 
     *{box-sizing:border-box}
@@ -218,53 +218,55 @@
     /* ===== Hero ===== */
     .hero{ padding: 14px 0 34px; }
 
-    /* ✅ Hero は画面いっぱい */
+    /* ✅ 画面いっぱい＋余白はGB程度 */
     .heroBox{
       position:relative;
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      border-radius: 26px;
+      width: 100%;
+      border-radius: 28px;
       overflow:hidden;
       box-shadow: var(--shadow);
       border:1px solid rgba(229,231,235,.9);
       background:#111;
-      min-height: clamp(460px, 66vh, 780px);
+      /* ✅ 高さを上げて「写真が大きい」印象に */
+      min-height: clamp(520px, 72vh, 860px);
     }
 
-    /* ✅ 背景：全面に敷いて自然に埋める（多少切れてOK） */
+    /* ✅ 背景：全面 cover（迫力） */
     .heroBg{
       position:absolute;
-      inset:-22px;
-      width: calc(100% + 44px);
-      height: calc(100% + 44px);
+      inset:-30px;
+      width: calc(100% + 60px);
+      height: calc(100% + 60px);
       object-fit: cover;
-      object-position: center center;
-      transform: scale(1.08);
-      filter: blur(18px) brightness(.88) saturate(1.08);
+      object-position: 55% 55%;
+      transform: scale(1.10);
+      filter: blur(16px) brightness(.90) saturate(1.10);
     }
 
-    /* ✅ 前面：トラック全体を必ず入れる（切れない） */
+    /* ✅ 前面：トラック全体は必ず入れる（切らない）＋大きく見せる */
     .heroFg{
       position:absolute;
       inset:0;
       width: 100%;
       height: 100%;
-      object-fit: contain;                 /* ←切れない核心 */
-      object-position: 62% 60%;            /* ←トラック位置の微調整（必要なら変える） */
-      transform: scale(1.06);              /* ←少し大きく（切れにくい範囲） */
-      filter: saturate(1.02) contrast(1.05);
+      object-fit: contain;
+      /* ✅ PCでは少し右寄せで車体を大きく見せる */
+      object-position: 70% 62%;
+      /* ✅ ここが「もっと大きく」の本体 */
+      transform: scale(1.18);
+      filter: saturate(1.04) contrast(1.06);
       pointer-events:none;
     }
 
-    /* 文字が読める暗幕 */
+    /* ✅ 文字の読みやすさ（暗幕は強すぎない） */
     .heroBox::after{
       content:"";
       position:absolute;
       inset:0;
       background: linear-gradient(90deg,
-        rgba(15,23,42,.72),
-        rgba(15,23,42,.38),
-        rgba(15,23,42,.10)
+        rgba(15,23,42,.62),
+        rgba(15,23,42,.32),
+        rgba(15,23,42,.08)
       );
     }
 
@@ -277,13 +279,13 @@
     }
     .heroGrid{
       display:grid;
-      grid-template-columns: 1.2fr .9fr;
+      grid-template-columns: 1.25fr .85fr;
       gap: 18px;
       align-items:center;
-      padding: 30px 0;
+      padding: 34px 0;
     }
 
-    .heroCopy{ color:#fff; max-width: 62ch; }
+    .heroCopy{ color:#fff; max-width: 64ch; }
     .heroKicker{
       display:inline-flex;
       align-items:center;
@@ -300,7 +302,7 @@
     .heroH1{
       margin: 14px 0 10px;
       font-size: var(--h1);
-      line-height: 1.08;
+      line-height: 1.06;
       font-weight: 1000;
       letter-spacing: .02em;
       text-shadow: 0 10px 30px rgba(0,0,0,.35);
@@ -309,9 +311,9 @@
     .heroLead{
       margin: 0;
       font-size: var(--lead);
-      line-height: 1.95;
-      font-weight: 800;
-      opacity: .95;
+      line-height: 1.9;
+      font-weight: 850;
+      opacity: .96;
       text-shadow: 0 6px 20px rgba(0,0,0,.32);
     }
 
@@ -594,8 +596,13 @@
       .heroGrid{ grid-template-columns: 1fr; }
       .heroPanel ol{ grid-template-columns: 1fr; }
       .news{ grid-template-columns: 1fr; }
-      .heroBox{ border-radius: 20px; }
-      .heroFg{ object-position: 50% 60%; transform: scale(1.03); } /* スマホは少し抑える */
+
+      /* ✅ スマホは中央に寄せて見切れ防止 */
+      .heroFg{
+        object-position: 52% 62%;
+        transform: scale(1.10);
+      }
+      .heroBox{ min-height: clamp(520px, 74vh, 900px); }
     }
     @media (max-width: 860px){
       .menu{ display:none; }
@@ -695,55 +702,56 @@
   </header>
 
   <main id="home" class="hero">
-    <section class="heroBox" aria-label="メインビジュアル">
-      <!-- ✅同じ画像を2枚重ね：背景cover + 前面contain -->
-      <img class="heroBg" src="./images/hero-1.png" alt="">
-      <img class="heroFg" src="./images/hero-1.png" alt="First Aid Line イメージ（トラック全体）">
+    <div class="wrap">
+      <section class="heroBox" aria-label="メインビジュアル">
+        <!-- ✅ 2枚重ね：背景cover + 前面contain（でも拡大） -->
+        <img class="heroBg" src="./images/hero-1.png" alt="">
+        <img class="heroFg" src="./images/hero-1.png" alt="First Aid Line イメージ（トラック全体）">
 
-      <div class="heroInner">
-        <div class="wrap heroGrid">
-          <div class="heroCopy">
-            <div class="heroKicker">
-              <span class="dot"></span>
-              <span>緊急配送・特急便・スポット配送</span>
+        <div class="heroInner">
+          <div class="wrap heroGrid">
+            <div class="heroCopy">
+              <div class="heroKicker">
+                <span class="dot"></span>
+                <span>緊急配送・特急便・スポット配送</span>
+              </div>
+
+              <h1 class="heroH1">
+                応急処置として、<br>
+                荷物の状況を立て直します。
+              </h1>
+
+              <p class="heroLead">
+                判断に迷う時間を、私たちが引き受けます。<br>
+                いま何ができるかを、最短で整理します。
+              </p>
+
+              <div class="heroBtns">
+                <a class="btn red" href="tel:0429979697">📞 今すぐ電話する</a>
+                <a class="btn white" href="#contact">✉️ 相談する</a>
+              </div>
             </div>
 
-            <h1 class="heroH1">
-              応急処置として、<br>
-              荷物の状況を立て直します。
-            </h1>
+            <aside class="heroPanel" aria-label="最短で判断するために">
+              <h3>最短で判断するために</h3>
+              <div class="leadBox">
+                下記 <b>4点</b> を共有いただければ、<br>
+                <b>可否と最適手段</b>をすぐ整理します。
+              </div>
 
-            <p class="heroLead">
-              判断に迷う時間を、私たちが引き受けます。<br>
-              いま何ができるかを、最短で整理します。
-            </p>
-
-            <div class="heroBtns">
-              <a class="btn red" href="tel:0429979697">📞 今すぐ電話する</a>
-              <a class="btn white" href="#contact">✉️ 相談する</a>
-            </div>
+              <ol>
+                <li><span class="n">①</span> 集荷地</li>
+                <li><span class="n">②</span> 届け先</li>
+                <li><span class="n">③</span> 希望時間</li>
+                <li><span class="n">④</span> 荷物（サイズ／重量／内容）</li>
+              </ol>
+            </aside>
           </div>
-
-          <aside class="heroPanel" aria-label="最短で判断するために">
-            <h3>最短で判断するために</h3>
-            <div class="leadBox">
-              下記 <b>4点</b> を共有いただければ、<br>
-              <b>可否と最適手段</b>をすぐ整理します。
-            </div>
-
-            <ol>
-              <li><span class="n">①</span> 集荷地</li>
-              <li><span class="n">②</span> 届け先</li>
-              <li><span class="n">③</span> 希望時間</li>
-              <li><span class="n">④</span> 荷物（サイズ／重量／内容）</li>
-            </ol>
-          </aside>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
-  <!-- ===== 以下はそのまま（枠組み） ===== -->
   <section id="about" class="section">
     <div class="wrap">
       <div class="sectionHead">
