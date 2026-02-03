@@ -636,6 +636,45 @@
 
 /* 上下の余白も少し詰める（好みで） */
 .hero{ padding: 10px 0 16px; }
+/* ===== Hero バランス調整（PC）===== */
+@media (min-width: 981px){
+  /* 左右の比率を整える：右（パネル）を少し広く */
+  .heroGrid{
+    grid-template-columns: 1.05fr 0.95fr; /* ←右を大きくしたいなら 1fr 1fr でもOK */
+    gap: 22px;
+    padding: 22px 0;
+  }
+
+  /* 左の文字ブロックを少し締める（大きすぎ対策） */
+  .heroCopy{ max-width: 56ch; } /* 62ch→56chで“塊感”が減る */
+
+  .heroH1{
+    font-size: clamp(32px, 4.1vw, 58px); /* 少しだけ小さく */
+    line-height: 1.06;
+    margin: 12px 0 10px;
+  }
+  .heroLead{
+    font-size: clamp(15px, 1.12vw, 18px);
+    line-height: 1.85;
+  }
+
+  /* 右のパネルを“しっかり存在感”出す */
+  .heroPanel{
+    width: min(520px, 100%); /* パネルを少し大きく */
+    justify-self: end;       /* 右寄せ */
+    padding: 20px;
+    transform: translateY(18px); /* 少し下げてバランス */
+  }
+
+  .heroPanel h3{ font-size: 20px; }
+  .heroPanel .leadBox{ font-size: 16px; }
+
+  /* 4項目の箱を少し大きく */
+  .heroPanel li{
+    padding: 14px 14px;
+    font-size: 15px;
+  }
+}
 
   </style>
 </head>
