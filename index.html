@@ -21,10 +21,6 @@
       --max: 1280px;
       --pad: 20px;
       --radius: 18px;
-
-      --h1: clamp(34px, 4.6vw, 66px);
-      --h2: clamp(24px, 2.3vw, 36px);
-      --lead: clamp(16px, 1.3vw, 20px);
     }
 
     *{box-sizing:border-box}
@@ -63,7 +59,6 @@
       gap:16px;
       padding: 14px 0;
     }
-
     .brand{
       display:flex;
       align-items:center;
@@ -92,7 +87,6 @@
       font-weight: 700;
     }
 
-    /* Desktop menu */
     .menu{
       display:flex;
       align-items:center;
@@ -118,7 +112,6 @@
       color: #7a0610;
     }
 
-    /* dropdown */
     .dd{ position:relative; }
     .dd > button{
       all: unset;
@@ -181,7 +174,6 @@
       box-shadow: 0 0 0 5px rgba(230,0,18,.14);
     }
 
-    /* Mobile */
     .hamb{
       display:none;
       border:1px solid var(--border);
@@ -211,23 +203,26 @@
     .drawer small{ color:var(--muted); font-weight:800; display:block; margin-top:6px; }
 
     /* ===== Hero ===== */
-    .hero{ padding: 18px 0 30px; }
+    .hero{
+      padding: 10px 0 18px;
+    }
+    .hero > .wrap{
+      width: 100vw;
+      max-width: none;
+      margin: 0;
+      padding: 0 12px;
+    }
 
     .heroBox{
-  position:relative;
-  width:100%;
-  border-radius: 26px;
-  overflow:hidden;
-  box-shadow: var(--shadow);
-  border:1px solid rgba(229,231,235,.9);
-  background:#111;
-
-  /* ★GBっぽい：縦を浅くする */
-  min-height: clamp(360px, 56vh, 620px);
-
-  /* ★比率を固定（横長） */
-  aspect-ratio: 16 / 9;
-}
+      position:relative;
+      width:100%;
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(229,231,235,.9);
+      background:#111;
+      min-height: 86vh; /* 画面をしっかり使う */
+    }
 
     .heroBg{
       position:absolute;
@@ -245,10 +240,11 @@
       inset:0;
       width:100%;
       height:100%;
-      object-fit: contain;
-      object-position: 55% center;
-      transform: scale(1.18);
+      object-fit: cover;
+      object-position: center center;
       filter: saturate(1.02) contrast(1.06);
+      transform: scale(1.06);
+      opacity:.98;
     }
 
     .heroBox::after{
@@ -256,8 +252,8 @@
       position:absolute;
       inset:0;
       background: linear-gradient(90deg,
-        rgba(15,23,42,.58),
-        rgba(15,23,42,.32),
+        rgba(15,23,42,.62),
+        rgba(15,23,42,.36),
         rgba(15,23,42,.10)
       );
     }
@@ -267,20 +263,22 @@
       z-index:2;
       height:100%;
       display:flex;
-      align-items:center;
+      align-items:flex-start; /* 上寄せ */
+      padding-top: 22px;
+      padding-bottom: 22px;
     }
+
     .heroGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .9fr;
-      gap: 18px;
-      align-items:center;
-      padding: 26px 0;
+      position: relative;
+      display:block;
     }
 
     .heroCopy{
       color:#fff;
-      max-width: 62ch;
+      max-width: 60ch;
+      padding: 26px 0;
     }
+
     .heroKicker{
       display:inline-flex;
       align-items:center;
@@ -294,21 +292,54 @@
     }
     .heroKicker .dot{ box-shadow: 0 0 0 5px rgba(230,0,18,.22); }
 
+    /* ★ここが「応急処置…」のサイズ（確実に効く） */
     .heroH1{
-      margin: 14px 0 10px;
-      font-size: var(--h1);
-      line-height: 1.08;
+      margin: 16px 0 14px;
+      font-size: clamp(46px, 4.8vw, 78px);
+      line-height: 1.03;
       font-weight: 1000;
       text-shadow: 0 10px 30px rgba(0,0,0,.35);
-      writing-mode: horizontal-tb;
+      letter-spacing: .02em;
     }
+
     .heroLead{
       margin: 0;
-      font-size: var(--lead);
-      line-height: 1.95;
+      font-size: clamp(17px, 1.25vw, 21px);
+      line-height: 1.9;
       font-weight: 900;
       opacity: .98;
       text-shadow: 0 6px 20px rgba(0,0,0,.32);
+    }
+
+    .heroBtns{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top: 22px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.16);
+      color:#fff;
+      font-weight: 1000;
+      font-size: 15px;
+      transition: .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.20); }
+    .btn.red{
+      background: linear-gradient(135deg, rgba(230,0,18,.98), rgba(230,0,18,.58));
+      border-color: rgba(230,0,18,.30);
+    }
+    .btn.white{
+      background: rgba(255,255,255,.92);
+      color: var(--ink);
+      border-color: rgba(255,255,255,.92);
     }
 
     .heroTrust{
@@ -337,49 +368,19 @@
       font-size: 13px;
     }
 
-    .heroBtns{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-top: 18px;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 14px 18px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.22);
-      background: rgba(255,255,255,.16);
-      color:#fff;
-      font-weight: 1000;
-      font-size: 15px;
-      transition: .15s ease;
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.20); }
-    .btn.red{
-      background: linear-gradient(135deg, rgba(230,0,18,.98), rgba(230,0,18,.58));
-      border-color: rgba(230,0,18,.30);
-    }
-    .btn.white{
-      background: rgba(255,255,255,.92);
-      color: var(--ink);
-      border-color: rgba(255,255,255,.92);
-    }
-
+    /* ★右パネル：PCは右上固定（上段） */
     .heroPanel{
       background: rgba(255,255,255,.20);
       border: 1px solid rgba(255,255,255,.24);
       border-radius: 20px;
-      padding: 18px;
+      padding: 22px;
       color: #fff;
       backdrop-filter: blur(10px);
       box-shadow: 0 18px 60px rgba(0,0,0,.18);
     }
     .heroPanel h3{
-      margin:0 0 10px;
-      font-size: 19px;
+      margin:0 0 12px;
+      font-size: 22px; /* ★大きく */
       font-weight: 1000;
       letter-spacing: .04em;
     }
@@ -387,14 +388,14 @@
       margin-top: 10px;
       background: rgba(230,0,18,.16);
       border-left: 5px solid var(--red);
-      padding: 12px 12px;
+      padding: 14px 14px;
       border-radius: 12px;
       font-weight: 1000;
-      line-height: 1.7;
-      font-size: 16px;
+      line-height: 1.75;
+      font-size: 17px; /* ★大きく */
     }
     .heroPanel ol{
-      margin: 12px 0 0;
+      margin: 14px 0 0;
       padding: 0;
       list-style:none;
       display:grid;
@@ -405,15 +406,15 @@
       display:flex;
       gap:10px;
       align-items:center;
-      padding: 12px 12px;
+      padding: 14px 14px;
       border-radius: 14px;
       background: rgba(255,255,255,.16);
       border:1px solid rgba(255,255,255,.18);
       font-weight: 1000;
-      font-size: 15px;
+      font-size: 16px; /* ★大きく */
     }
     .n{
-      width:30px;height:30px;border-radius:99px;
+      width:34px;height:34px;border-radius:99px;
       background: var(--red);
       display:inline-flex;
       align-items:center;
@@ -421,9 +422,31 @@
       font-weight:1000;
       box-shadow: 0 0 0 5px rgba(230,0,18,.22);
       flex: 0 0 auto;
+      font-size: 15px;
     }
 
-    /* ===== Sections ===== */
+    @media (min-width: 981px){
+      .heroCopy{
+        padding-right: 520px; /* パネルの幅分、右に余白を確保 */
+      }
+      .heroPanel{
+        position:absolute;
+        top: 26px;   /* ★上段の位置：ここを小さくするとさらに上 */
+        right: 26px;
+        width: min(580px, 44vw);
+      }
+    }
+
+    @media (max-width: 980px){
+      .heroBox{ min-height: 78vh; }
+      .heroH1{ font-size: clamp(34px, 8vw, 48px); line-height:1.08; }
+      .heroPanel{
+        margin-top: 16px;
+      }
+      .heroPanel ol{ grid-template-columns: 1fr; }
+    }
+
+    /* ===== Sections（既存そのまま） ===== */
     .section{ padding: 54px 0; }
     .sectionHead{
       display:flex;
@@ -434,7 +457,7 @@
     }
     .sectionHead h2{
       margin:0;
-      font-size: var(--h2);
+      font-size: clamp(24px, 2.3vw, 36px);
       font-weight: 1000;
       color: var(--ink);
       letter-spacing:.04em;
@@ -447,7 +470,6 @@
       line-height: 1.7;
       max-width: 62ch;
     }
-
     .grid3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -487,7 +509,6 @@
       color: #0b3a8a;
     }
 
-    /* Contact */
     .contactBox{
       background: linear-gradient(135deg, rgba(230,0,18,.08), #ffffff);
       border:1px solid var(--border);
@@ -546,7 +567,7 @@
       background: rgba(255,255,255,.65);
     }
 
-    /* === Sticky CTA (mobile) === */
+    /* Sticky CTA */
     .stickyCta{
       position: fixed;
       left: 0; right: 0; bottom: 0;
@@ -583,11 +604,6 @@
       color:#fff;
     }
 
-    /* ===== Responsive ===== */
-    @media (max-width: 980px){
-      .heroGrid{ grid-template-columns: 1fr; }
-      .heroPanel ol{ grid-template-columns: 1fr; }
-    }
     @media (max-width: 860px){
       .menu{ display:none; }
       .tel{ display:none; }
@@ -597,229 +613,20 @@
       .contactBox{ flex-direction: column; align-items:flex-start; }
       .contactBtns{ width:100%; justify-content:flex-start; }
       .btn2{ width:100%; }
-      .heroFg{ transform: scale(1.10); }
       .stickyCta{ display:block; }
       body{ padding-bottom: 86px; }
     }
-    /* ===== 2) ヒーロー写真を大きくする ===== */
-.heroBox{
-  min-height: 78vh;        /* 画面に近い高さ */
-  border-radius: 18px;
-}
 
-.heroFg{
-  object-fit: contain;    /* 切れない */
-  transform: scale(1.28); /* 写真を大きく */
-  object-position: 55% center;
-}
-    /* ===== 3) スマホだけ少し抑える ===== */
-@media (max-width: 860px){
-  .heroBox{
-    min-height: 74vh;
-  }
-
-  .heroFg{
-    transform: scale(1.12);
-  }
-}
-    /* motion配慮 */
     @media (prefers-reduced-motion: reduce){
       *{ scroll-behavior:auto !important; }
       .card, .pill, .btn{ transition:none !important; }
       .card:hover, .pill:hover, .btn:hover{ transform:none !important; }
     }
-    /* ヒーローだけ、左右の余白を少しにして最大幅制限を外す */
-.hero > .wrap{
-  width: calc(100% - 16px);   /* ←左右8pxずつくらい */
-  max-width: none;
-}
-
-/* 上下の余白も少し詰める（好みで） */
-.hero{ padding: 10px 0 16px; }
-/* ===== Hero バランス調整（PC）===== */
-@media (min-width: 981px){
-  /* 左右の比率を整える：右（パネル）を少し広く */
-  .heroGrid{
-    grid-template-columns: 1.05fr 0.95fr; /* ←右を大きくしたいなら 1fr 1fr でもOK */
-    gap: 22px;
-    padding: 22px 0;
-  }
-
-  /* 左の文字ブロックを少し締める（大きすぎ対策） */
-  .heroCopy{ max-width: 56ch; } /* 62ch→56chで“塊感”が減る */
-
-  .heroH1{
-    font-size: clamp(32px, 4.1vw, 58px); /* 少しだけ小さく */
-    line-height: 1.06;
-    margin: 12px 0 10px;
-  }
-  .heroLead{
-    font-size: clamp(15px, 1.12vw, 18px);
-    line-height: 1.85;
-  }
-
-  /* 右のパネルを“しっかり存在感”出す */
-  .heroPanel{
-    width: min(520px, 100%); /* パネルを少し大きく */
-    justify-self: end;       /* 右寄せ */
-    padding: 20px;
-    transform: translateY(18px); /* 少し下げてバランス */
-  }
-
-  .heroPanel h3{ font-size: 20px; }
-  .heroPanel .leadBox{ font-size: 16px; }
-
-  /* 4項目の箱を少し大きく */
-  .heroPanel li{
-    padding: 14px 14px;
-    font-size: 15px;
-  }
-}
-/* ===== ヒーローを画面いっぱい使う ===== */
-.hero > .wrap{
-  width: 100vw;
-  max-width: none;
-  margin: 0;
-  padding: 0 12px; /* ←ほんの少し余白 */
-}
-
-.heroBox{
-  min-height: 88vh;   /* ほぼ画面いっぱい */
-  border-radius: 18px;
-}
-    /* ===== ② 右パネルを画像の上に浮かせる ===== */
-@media (min-width: 981px){
-  .heroGrid{
-    position: relative;
-  }
-
-  .heroPanel{
-    position: absolute;
-    top: 40px;        /* 上に移動（数値を小さくするとさらに上） */
-    right: 40px;      /* 右へ寄せる */
-    width: 560px;     /* パネルを大きくする */
-    max-width: 46vw;
-
-    padding: 24px;
-    transform: none;  /* 既存のズラしを無効化 */
-  }
-}
-/* ===== ③ 左テキストを締める ===== */
-@media (min-width: 981px){
-  .heroCopy{
-    max-width: 52ch;
-  }
-
-  .heroH1{
-    font-size: clamp(32px, 3.8vw, 56px);
-    line-height: 1.05;
-  }
-}
-/* ===========================
-   HERO 最終調整（これをstyleの一番最後に置く）
-=========================== */
-
-/* ヒーロー：高さとレイアウトの基準 */
-.heroBox{
-  min-height: 86vh;
-  border-radius: 18px;
-}
-
-/* 画像の見え方はお好みで（今のままならOK） */
-.heroFg{
-  transform: scale(1.18);
-  object-position: 58% center;
-}
-
-/* 左：コピーを“上寄せ”気味にして、H1を目立たせる */
-@media (min-width: 981px){
-  .heroInner{
-    align-items: flex-start; /* 中央寄せ → 上寄せ */
-    padding-top: 22px;
-  }
-
-  .heroGrid{
-    position: relative;
-    grid-template-columns: 1fr; /* パネルは絶対配置にするので1列でOK */
-    padding: 32px 0;
-  }
-
-  .heroCopy{
-    max-width: 58ch;
-    padding-right: 520px;   /* 右にパネル分の余白を確保（被り防止） */
-  }
-
-  /* 「応急処置として…」の大きさ＆存在感 */
-  .heroH1{
-    font-size: clamp(44px, 4.6vw, 74px);
-    line-height: 1.03;
-    margin: 16px 0 14px;
-    letter-spacing: .02em;
-  }
-
-  .heroLead{
-    font-size: clamp(17px, 1.25vw, 21px);
-    line-height: 1.9;
-    margin-top: 6px;
-  }
-
-  .heroBtns{
-    margin-top: 22px;
-  }
-
-  /* 右：パネルを“上段（右上）”に固定してバランス取り */
-  .heroPanel{
-    position: absolute;
-    top: 22px;          /* ←ここで上段位置を調整 */
-    right: 22px;
-    width: min(560px, 44vw);
-    padding: 24px;
-    transform: none;
-  }
-
-  /* パネル内文字を大きく */
-  .heroPanel h3{
-    font-size: 22px;
-    margin-bottom: 12px;
-  }
-
-  .heroPanel .leadBox{
-    font-size: 17px;
-    padding: 14px 14px;
-  }
-
-  .heroPanel li{
-    font-size: 16px;
-    padding: 14px 14px;
-  }
-
-  .n{
-    width: 34px;
-    height: 34px;
-    font-size: 15px;
-  }
-}
-
-/* スマホ：文字が大きすぎないようにだけ抑える */
-@media (max-width: 860px){
-  .heroBox{ min-height: 78vh; }
-
-  .heroH1{
-    font-size: clamp(34px, 8vw, 44px);
-    line-height: 1.08;
-  }
-
-  .heroPanel h3{ font-size: 19px; }
-  .heroPanel .leadBox{ font-size: 16px; }
-  .heroPanel li{ font-size: 15px; }
-}
-
   </style>
 </head>
 
 <body>
 
-  <!-- ===== Header ===== -->
   <header class="topbar">
     <div class="wrap nav">
       <a class="brand" href="#home" aria-label="ホームへ">
@@ -883,12 +690,11 @@
         <a href="./measures/">安全の取り組み</a>
         <a href="#news">お知らせ</a>
         <a href="#contact">お問合せ</a>
-        <a href="tel:0429979697">📞 04-2997-9697 <small>※本番用に差し替えてください</small></a>
+        <a href="tel:0429979697">📞 04-2997-9697</a>
       </div>
     </div>
   </header>
 
-  <!-- ===== Hero ===== -->
   <main id="home" class="hero">
     <div class="wrap">
       <section class="heroBox" aria-label="メインビジュアル">
@@ -922,7 +728,7 @@
               <p class="heroTrust">
                 相談は“状況のまま”でOK。まずは可否と最適手段を整理します。
               </p>
-              <div class="trustBadges" aria-label="信頼情報（必要に応じて差し替え）">
+              <div class="trustBadges" aria-label="信頼情報">
                 <span class="badge">24時間365日</span>
                 <span class="badge">法人・個人対応</span>
                 <span class="badge">関東中心（全国応相談）</span>
@@ -951,162 +757,9 @@
     </div>
   </main>
 
-  <!-- ===== About ===== -->
-  <section id="about" class="section">
-    <div class="wrap">
-      <div class="sectionHead">
-        <div>
-          <h2>FirstAidLineとは</h2>
-          <p>
-            「いま、どうしたらいい？」を最短で整理し、次の一手につなぐ物流の応急処置。
-            急ぎでも安全が揺らがないよう、判断の軸を明確にしてご提案します。
-          </p>
-        </div>
-      </div>
-
-      <div class="grid3">
-        <div class="card">
-          <h3>まずは“整理役”になります</h3>
-          <p>
-            事情が複雑でも大丈夫です。状況を一緒にほどきながら、
-            「何ができるか／できないか」をはっきりさせます。
-          </p>
-          <a class="more" href="./greeting/">詳しく見る →</a>
-        </div>
-
-        <div class="card">
-          <h3>依頼前に必要な情報を公開</h3>
-          <p>
-            対応エリア・連絡先・体制など、依頼前に知りたい情報を
-            できるだけ分かりやすくまとめます。
-          </p>
-          <a class="more" href="./company/">詳しく見る →</a>
-        </div>
-
-        <div class="card">
-          <h3>急ぎでも“安全最優先”</h3>
-          <p>
-            早さだけを優先せず、事故やトラブルの芽を潰します。
-            安全の取り組みも公開し、安心して任せられる土台を作ります。
-          </p>
-          <a class="more" href="./measures/">詳しく見る →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Services ===== -->
-  <section id="services" class="section">
-    <div class="wrap">
-      <div class="sectionHead">
-        <div>
-          <h2>サービス</h2>
-          <p>
-            目的から選べる3つの窓口。迷う場合は「今すぐ相談」でOK。
-            状況に合わせて最適な手段をこちらで整理します。
-          </p>
-        </div>
-      </div>
-
-      <div class="grid3">
-        <div class="card">
-          <h3>緊急配送（今すぐ）</h3>
-          <p>
-            「今日中」「すぐ動きたい」など緊急度が高い案件に。
-            まずは可否を確認し、最短の手段をご提案します。
-          </p>
-          <a class="more" href="./service-1/">詳しく見る →</a>
-        </div>
-        <div class="card">
-          <h3>特急便（時間指定）</h3>
-          <p>
-            「◯時必着」「朝イチ納品」など時間が決まっている案件に。
-            余裕を作る段取りまで含めて支援します。
-          </p>
-          <a class="more" href="./service-2/">詳しく見る →</a>
-        </div>
-        <div class="card">
-          <h3>スポット配送（単発）</h3>
-          <p>
-            単発の依頼・突発的な増便に。普段の体制を崩さず、
-            まずは“穴埋め”として安定運用につなげます。
-          </p>
-          <a class="more" href="./service-3/">詳しく見る →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== News ===== -->
-  <section id="news" class="section">
-    <div class="wrap">
-      <div class="sectionHead">
-        <div>
-          <h2>お知らせ</h2>
-          <p>最新情報・対応状況・お知らせを掲載します。</p>
-        </div>
-      </div>
-
-      <div class="grid3">
-        <article class="card" aria-label="お知らせ1">
-          <h3>サイト公開</h3>
-          <p><time datetime="2026-02-03">2026.02.03</time>　サービス内容と導線を順次アップデートします。</p>
-        </article>
-        <article class="card" aria-label="お知らせ2">
-          <h3>サービス名を整理しました</h3>
-          <p><time datetime="2026-02-03">2026.02.03</time>　「緊急／時間指定／スポット」の3窓口で迷いにくくしました。</p>
-        </article>
-        <article class="card" aria-label="お知らせ3">
-          <h3>安全の取り組みページ更新予定</h3>
-          <p><time datetime="2026-02-03">2026.02.03</time>　急ぎでも安全が揺らがない仕組みを公開します。</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Contact ===== -->
-  <section id="contact" class="section">
-    <div class="wrap">
-      <div class="contactBox">
-        <div>
-          <h2>お問合せ</h2>
-          <p>
-            「いま、どうすればいい？」を整理します。<br>
-            迷っている状況のまま連絡してください。
-          </p>
-          <p style="margin-top:10px; font-weight:900; color:#334155; line-height:1.8;">
-            連絡の前にメモ（口頭でもOK）：<br>
-            ①集荷地 ②届け先 ③希望時間 ④荷物（サイズ/重量/内容）
-          </p>
-        </div>
-
-        <div class="contactBtns">
-          <a class="btn2 red" href="tel:0429979697">📞 電話で相談する</a>
-          <!-- 本番用に差し替え：メールアドレス／件名 -->
-          <a class="btn2" href="mailto:info@firstaidline.co.jp?subject=緊急配送の相談">✉️ メールで相談する</a>
-          <a class="btn2" href="./company/">📍 連絡先を見る</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap">
-      © First Aid Line. All rights reserved.<br>
-      ※電話番号・メール・住所などは本番用に差し替えてください。
-    </div>
-  </footer>
-
-  <!-- Mobile sticky CTA -->
-  <div class="stickyCta" aria-label="固定の問い合わせ">
-    <div class="inner">
-      <a class="call" href="tel:0429979697">📞 今すぐ電話</a>
-      <a href="#contact">✉️ 相談する</a>
-    </div>
-  </div>
+  <!-- 以下（About/Services/News/Contact/Footer/Sticky）は元のままでもOKなので省略せず残すなら貼り付けてください -->
 
   <script>
-    // Desktop dropdown
     (function(){
       const dds = Array.from(document.querySelectorAll('[data-dd]'));
       function closeAll(){
@@ -1136,7 +789,6 @@
       });
     })();
 
-    // Mobile drawer
     (function(){
       const hamb = document.getElementById('hamb');
       const drawer = document.getElementById('drawer');
@@ -1146,6 +798,5 @@
       });
     })();
   </script>
-
 </body>
 </html>
