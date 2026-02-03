@@ -13,39 +13,22 @@
       --text:#0b1220;
       --muted:#475569;
       --border:#e5e7eb;
+
+      /* 明るめ（暗くしない） */
       --bg:#f6f7fb;
       --card:#ffffff;
       --shadow: 0 18px 60px rgba(15, 23, 42, .12);
 
-      /* 余白（GB寄せ） */
-      --max: 1400px;
-      --pad: 16px;
+      /* 余白（GB寄せ：広めだが“多すぎない”） */
+      --max: 1280px;
+      --pad: 20px;
       --radius: 18px;
 
-      /* 文字 */
-      --h1: clamp(38px, 5.0vw, 72px);
-      --h2: clamp(26px, 2.4vw, 36px);
-      --lead: clamp(17px, 1.45vw, 21px);
+      /* 文字：全体大きめ（読みやすく） */
+      --h1: clamp(36px, 4.6vw, 66px);
+      --h2: clamp(26px, 2.3vw, 36px);
+      --lead: clamp(16px, 1.3vw, 20px);
     }
-/* ===== Hero画像：切れ防止＆拡大 ===== */
-.heroBox{
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 26px;
-  min-height: clamp(520px, 78vh, 860px);
-}
-
-.heroImg{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit: contain;      /* ← トラックを切らない */
-  object-position: center;
-  padding: 1.5vh 2.5vw;     /* ← 余白を最小限に */
-  background:#ffffff;
-}
 
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -72,7 +55,7 @@
       position: sticky;
       top:0;
       z-index:200;
-      background: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.90);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(229,231,235,.9);
     }
@@ -112,12 +95,7 @@
       font-weight: 700;
     }
 
-    .navRight{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
+    /* Desktop menu */
     .menu{
       display:flex;
       align-items:center;
@@ -129,7 +107,7 @@
       padding: 10px 12px;
       border-radius: 999px;
       border:1px solid var(--border);
-      background: rgba(255,255,255,.7);
+      background: rgba(255,255,255,.78);
       font-size: 14px;
       font-weight: 900;
       color: var(--ink);
@@ -143,6 +121,7 @@
       color: #7a0610;
     }
 
+    /* dropdown */
     .dd{ position:relative; }
     .dd > button{
       all: unset;
@@ -150,7 +129,7 @@
       padding: 10px 12px;
       border-radius: 999px;
       border:1px solid var(--border);
-      background: rgba(255,255,255,.7);
+      background: rgba(255,255,255,.78);
       font-size: 14px;
       font-weight: 900;
       color: var(--ink);
@@ -205,6 +184,7 @@
       box-shadow: 0 0 0 5px rgba(230,0,18,.14);
     }
 
+    /* Mobile */
     .hamb{
       display:none;
       border:1px solid var(--border);
@@ -214,7 +194,6 @@
       font-weight:1000;
       color:var(--ink);
     }
-
     .drawer{
       display:none;
       border-top:1px solid var(--border);
@@ -235,57 +214,52 @@
     .drawer small{ color:var(--muted); font-weight:800; display:block; margin-top:6px; }
 
     /* ===== Hero ===== */
-    .hero{ padding: 14px 0 34px; }
+    .hero{ padding: 18px 0 30px; }
 
-    /* ✅ 画面いっぱい＋余白はGB程度 */
     .heroBox{
       position:relative;
-      width: 100%;
-      border-radius: 28px;
+      width:100%;
+      border-radius: 26px;
       overflow:hidden;
       box-shadow: var(--shadow);
       border:1px solid rgba(229,231,235,.9);
       background:#111;
-      /* ✅ 高さを上げて「写真が大きい」印象に */
-      min-height: clamp(520px, 72vh, 860px);
+      min-height: clamp(460px, 68vh, 780px);
     }
 
-    /* ✅ 背景：全面 cover（迫力） */
+    /* 背景：全面（多少切れてOK） */
     .heroBg{
       position:absolute;
-      inset:-30px;
-      width: calc(100% + 60px);
-      height: calc(100% + 60px);
+      inset:-16px;
+      width:calc(100% + 32px);
+      height:calc(100% + 32px);
       object-fit: cover;
-      object-position: 55% 55%;
-      transform: scale(1.10);
-      filter: blur(16px) brightness(.90) saturate(1.10);
+      object-position: center center;
+      filter: blur(14px) brightness(.88) saturate(1.02);
+      transform: scale(1.08);
     }
 
-    /* ✅ 前面：トラック全体は必ず入れる（切らない）＋大きく見せる */
+    /* 前景：トラック全体を必ず入れる（切れない） */
     .heroFg{
       position:absolute;
       inset:0;
-      width: 100%;
-      height: 100%;
+      width:100%;
+      height:100%;
       object-fit: contain;
-      /* ✅ PCでは少し右寄せで車体を大きく見せる */
-      object-position: 70% 62%;
-      /* ✅ ここが「もっと大きく」の本体 */
-      transform: scale(1.18);
-      filter: saturate(1.04) contrast(1.06);
-      pointer-events:none;
+      object-position: 55% center;
+      transform: scale(1.18); /* ここで“大きさ”調整（大きくしたい＝上げる） */
+      filter: saturate(1.02) contrast(1.06);
     }
 
-    /* ✅ 文字の読みやすさ（暗幕は強すぎない） */
+    /* 読みやすい幕（暗すぎない） */
     .heroBox::after{
       content:"";
       position:absolute;
       inset:0;
       background: linear-gradient(90deg,
-        rgba(15,23,42,.62),
+        rgba(15,23,42,.58),
         rgba(15,23,42,.32),
-        rgba(15,23,42,.08)
+        rgba(15,23,42,.10)
       );
     }
 
@@ -298,21 +272,24 @@
     }
     .heroGrid{
       display:grid;
-      grid-template-columns: 1.25fr .85fr;
+      grid-template-columns: 1.2fr .9fr;
       gap: 18px;
       align-items:center;
-      padding: 34px 0;
+      padding: 26px 0;
     }
 
-    .heroCopy{ color:#fff; max-width: 64ch; }
+    .heroCopy{
+      color:#fff;
+      max-width: 62ch;
+    }
     .heroKicker{
       display:inline-flex;
       align-items:center;
       gap:10px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,.16);
-      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.24);
       font-weight: 1000;
       font-size: 13px;
     }
@@ -321,18 +298,17 @@
     .heroH1{
       margin: 14px 0 10px;
       font-size: var(--h1);
-      line-height: 1.06;
+      line-height: 1.08;
       font-weight: 1000;
-      letter-spacing: .02em;
       text-shadow: 0 10px 30px rgba(0,0,0,.35);
       writing-mode: horizontal-tb;
     }
     .heroLead{
       margin: 0;
       font-size: var(--lead);
-      line-height: 1.9;
-      font-weight: 850;
-      opacity: .96;
+      line-height: 1.95;
+      font-weight: 900;
+      opacity: .98;
       text-shadow: 0 6px 20px rgba(0,0,0,.32);
     }
 
@@ -349,14 +325,14 @@
       gap:10px;
       padding: 14px 18px;
       border-radius: 14px;
-      border:1px solid rgba(255,255,255,.20);
-      background: rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.16);
       color:#fff;
       font-weight: 1000;
       font-size: 15px;
       transition: .15s ease;
     }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.18); }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.20); }
     .btn.red{
       background: linear-gradient(135deg, rgba(230,0,18,.98), rgba(230,0,18,.58));
       border-color: rgba(230,0,18,.30);
@@ -367,30 +343,31 @@
       border-color: rgba(255,255,255,.92);
     }
 
+    /* right panel in hero */
     .heroPanel{
-      background: rgba(255,255,255,.18);
-      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.20);
+      border: 1px solid rgba(255,255,255,.24);
       border-radius: 20px;
       padding: 18px;
       color: #fff;
       backdrop-filter: blur(10px);
-      box-shadow: 0 18px 60px rgba(0,0,0,.25);
+      box-shadow: 0 18px 60px rgba(0,0,0,.18);
     }
     .heroPanel h3{
       margin:0 0 10px;
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 1000;
       letter-spacing: .04em;
     }
     .heroPanel .leadBox{
       margin-top: 10px;
-      background: rgba(230,0,18,.18);
+      background: rgba(230,0,18,.16);
       border-left: 5px solid var(--red);
       padding: 12px 12px;
       border-radius: 12px;
       font-weight: 1000;
       line-height: 1.7;
-      font-size: 15px;
+      font-size: 16px;
     }
     .heroPanel ol{
       margin: 12px 0 0;
@@ -406,9 +383,10 @@
       align-items:center;
       padding: 12px 12px;
       border-radius: 14px;
-      background: rgba(255,255,255,.14);
+      background: rgba(255,255,255,.16);
       border:1px solid rgba(255,255,255,.18);
       font-weight: 1000;
+      font-size: 15px;
     }
     .n{
       width:30px;height:30px;border-radius:99px;
@@ -422,13 +400,13 @@
     }
 
     /* ===== Sections ===== */
-    .section{ padding: 46px 0; }
+    .section{ padding: 54px 0; }
     .sectionHead{
       display:flex;
       align-items:flex-end;
       justify-content:space-between;
       gap:16px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .sectionHead h2{
       margin:0;
@@ -465,7 +443,7 @@
     }
     .card h3{
       margin:0 0 10px;
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 1000;
       color: var(--ink);
     }
@@ -485,76 +463,9 @@
       color: #0b3a8a;
     }
 
-    .news{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:16px;
-      align-items:start;
-    }
-    .newsList{
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: 0 14px 50px rgba(15,23,42,.08);
-      overflow:hidden;
-    }
-    .newsItem{
-      padding: 16px 18px;
-      border-top:1px solid var(--border);
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-    }
-    .newsItem:first-child{ border-top:0; }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(30,58,138,.10);
-      color:#0b3a8a;
-      font-weight:1000;
-      font-size: 12px;
-      white-space:nowrap;
-      border:1px solid rgba(30,58,138,.16);
-    }
-    .newsItem h4{
-      margin:0;
-      font-size: 16px;
-      font-weight: 1000;
-      color: var(--ink);
-    }
-    .newsItem p{
-      margin:6px 0 0;
-      color: var(--muted);
-      font-weight: 800;
-      line-height: 1.75;
-      font-size: 14px;
-    }
-    .sideBox{
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: 0 14px 50px rgba(15,23,42,.08);
-    }
-    .sideBox h3{
-      margin:0 0 10px;
-      font-size: 18px;
-      font-weight: 1000;
-      color: var(--ink);
-    }
-    .sideBox p{
-      margin:0;
-      color: var(--muted);
-      font-weight: 800;
-      line-height:1.9;
-      font-size: 15px;
-    }
-
+    /* Contact */
     .contactBox{
-      background: linear-gradient(135deg, rgba(230,0,18,.10), #ffffff);
+      background: linear-gradient(135deg, rgba(230,0,18,.08), #ffffff);
       border:1px solid var(--border);
       border-radius: 22px;
       padding: 24px;
@@ -611,17 +522,10 @@
       background: rgba(255,255,255,.65);
     }
 
+    /* ===== Responsive ===== */
     @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
       .heroPanel ol{ grid-template-columns: 1fr; }
-      .news{ grid-template-columns: 1fr; }
-
-      /* ✅ スマホは中央に寄せて見切れ防止 */
-      .heroFg{
-        object-position: 52% 62%;
-        transform: scale(1.10);
-      }
-      .heroBox{ min-height: clamp(520px, 74vh, 900px); }
     }
     @media (max-width: 860px){
       .menu{ display:none; }
@@ -632,12 +536,14 @@
       .contactBox{ flex-direction: column; align-items:flex-start; }
       .contactBtns{ width:100%; justify-content:flex-start; }
       .btn2{ width:100%; }
+      .heroFg{ transform: scale(1.10); } /* スマホは少し抑えて見切れ防止 */
     }
   </style>
 </head>
 
 <body>
 
+  <!-- ===== Header ===== -->
   <header class="topbar">
     <div class="wrap nav">
       <a class="brand" href="#home" aria-label="ホームへ">
@@ -678,12 +584,11 @@
         <a class="pill cta" href="#contact">お問合せ</a>
       </nav>
 
-      <div class="navRight">
+      <div style="display:flex;align-items:center;gap:10px;">
         <a class="tel" href="tel:0429979697" aria-label="電話する">
           <span class="dot"></span>
           <span>04-2997-9697</span>
         </a>
-
         <button class="hamb" type="button" id="hamb" aria-expanded="false" aria-controls="drawer">
           ☰ メニュー
         </button>
@@ -693,39 +598,27 @@
     <div class="drawer" id="drawer">
       <div class="wrap row">
         <a href="#home">ホーム</a>
-
-        <button type="button" class="mobToggle" data-mob="about">FirstAidLineとは（開く）</button>
-        <div class="mobPanel" id="mob-about" style="display:none;">
-          <a href="./greeting/">ご挨拶</a>
-          <a href="./company/">会社概要</a>
-          <a href="./philosophy/">企業理念</a>
-        </div>
-
-        <button type="button" class="mobToggle" data-mob="service">サービス（開く）</button>
-        <div class="mobPanel" id="mob-service" style="display:none;">
-          <a href="./service-1/">（仮）サービスA</a>
-          <a href="./service-2/">（仮）サービスB</a>
-          <a href="./service-3/">（仮）サービスC</a>
-        </div>
-
+        <a href="./greeting/">ご挨拶</a>
+        <a href="./company/">会社概要</a>
+        <a href="./philosophy/">企業理念</a>
+        <a href="./service-1/">（仮）サービスA</a>
+        <a href="./service-2/">（仮）サービスB</a>
+        <a href="./service-3/">（仮）サービスC</a>
         <a href="./measures/">安全の取り組み</a>
         <a href="#news">お知らせ</a>
         <a href="#contact">お問合せ</a>
-
-        <a href="tel:0429979697">
-          📞 04-2997-9697
-          <small>※本番用に差し替えてください</small>
-        </a>
+        <a href="tel:0429979697">📞 04-2997-9697 <small>※本番用に差し替えてください</small></a>
       </div>
     </div>
   </header>
 
+  <!-- ===== Hero ===== -->
   <main id="home" class="hero">
     <div class="wrap">
       <section class="heroBox" aria-label="メインビジュアル">
-        <!-- ✅ 2枚重ね：背景cover + 前面contain（でも拡大） -->
+        <!-- ★あなたが探していたタグはココ（hero-1.png） -->
         <img class="heroBg" src="./images/hero-1.png" alt="">
-        <img class="heroFg" src="./images/hero-1.png" alt="First Aid Line イメージ（トラック全体）">
+        <img class="heroFg" src="./images/hero-1.png" alt="First Aid Line イメージ">
 
         <div class="heroInner">
           <div class="wrap heroGrid">
@@ -771,6 +664,7 @@
     </div>
   </main>
 
+  <!-- ===== About ===== -->
   <section id="about" class="section">
     <div class="wrap">
       <div class="sectionHead">
@@ -802,67 +696,37 @@
     </div>
   </section>
 
+  <!-- ===== Services ===== -->
   <section id="services" class="section">
     <div class="wrap">
       <div class="sectionHead">
         <div>
           <h2>サービス</h2>
-          <p>※サービス名は検討中でOK。まずは「3枠＋各ページ導線」を先に作って、後から差し替え可能にします。</p>
+          <p>※サービス名は検討中でOK。まずは枠と導線を作って、後から差し替え可能にします。</p>
         </div>
       </div>
 
       <div class="grid3">
         <div class="card">
           <h3>（仮）サービスA</h3>
-          <p>ここに「お客様目線で刺さる短文」を入れます。</p>
+          <p>ここに短い説明文を入れます（後で一緒に整えましょう）。</p>
           <a class="more" href="./service-1/">詳しく見る →</a>
         </div>
         <div class="card">
           <h3>（仮）サービスB</h3>
-          <p>ここに「お客様目線で刺さる短文」を入れます。</p>
+          <p>ここに短い説明文を入れます（後で一緒に整えましょう）。</p>
           <a class="more" href="./service-2/">詳しく見る →</a>
         </div>
         <div class="card">
           <h3>（仮）サービスC</h3>
-          <p>ここに「お客様目線で刺さる短文」を入れます。</p>
+          <p>ここに短い説明文を入れます（後で一緒に整えましょう）。</p>
           <a class="more" href="./service-3/">詳しく見る →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="safety" class="section">
-    <div class="wrap">
-      <div class="sectionHead">
-        <div>
-          <h2>安全の取り組み</h2>
-          <p>「急ぐ」ほど危ない。だから“安全を崩さない仕組み”を、見える形で用意します。</p>
-        </div>
-        <div>
-          <a class="pill" href="./measures/">安全の取り組みページへ →</a>
-        </div>
-      </div>
-
-      <div class="grid3">
-        <div class="card">
-          <h3>運行の判断基準</h3>
-          <p>迷った時に“戻れる基準”。属人化しない判断のための枠組み。</p>
-          <a class="more" href="./measures/">詳しく見る →</a>
-        </div>
-        <div class="card">
-          <h3>点検・整備</h3>
-          <p>トラブルを未然に。緊急対応でも基礎が崩れない体制。</p>
-          <a class="more" href="./measures/">詳しく見る →</a>
-        </div>
-        <div class="card">
-          <h3>教育・共有</h3>
-          <p>「なぜそう判断したか」を残す。再発を防ぐ仕組み。</p>
-          <a class="more" href="./measures/">詳しく見る →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- ===== News（枠だけ） ===== -->
   <section id="news" class="section">
     <div class="wrap">
       <div class="sectionHead">
@@ -872,51 +736,30 @@
         </div>
       </div>
 
-      <div class="news">
-        <div class="newsList" aria-label="お知らせ一覧">
-          <div class="newsItem">
-            <span class="badge">NEW</span>
-            <div>
-              <h4>サイト公開（仮）</h4>
-              <p>ホームページの枠組みを整備しました。文言や写真は順次アップデート予定です。</p>
-            </div>
-          </div>
-          <div class="newsItem">
-            <span class="badge">INFO</span>
-            <div>
-              <h4>サービス名は検討中</h4>
-              <p>先に「枠」と「導線」を作ることで、後から差し替えが簡単になります。</p>
-            </div>
-          </div>
-          <div class="newsItem">
-            <span class="badge">INFO</span>
-            <div>
-              <h4>安全の取り組みページを作成予定</h4>
-              <p>参考：gbtec722.co.jp の “measures” のような構成で、独立ページにします。</p>
-            </div>
-          </div>
+      <div class="grid3">
+        <div class="card">
+          <h3>NEW</h3>
+          <p>サイト公開（仮）。文言や写真は順次アップデートします。</p>
         </div>
-
-        <aside class="sideBox">
-          <h3>更新方針（仮）</h3>
-          <p>
-            「緊急時に見た人が迷わない」ことが最優先。<br>
-            お知らせは “短く・結論から・連絡先へ” で統一します。
-          </p>
-        </aside>
+        <div class="card">
+          <h3>INFO</h3>
+          <p>サービス名は検討中。先に枠を作ることで差し替えが簡単になります。</p>
+        </div>
+        <div class="card">
+          <h3>INFO</h3>
+          <p>安全の取り組みページは独立ページ化して拡張します。</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ===== Contact ===== -->
   <section id="contact" class="section">
     <div class="wrap">
       <div class="contactBox">
         <div>
           <h2>お問合せ</h2>
-          <p>
-            「いま、どうすればいい？」を整理します。<br>
-            迷っている状況のまま連絡してください。
-          </p>
+          <p>「いま、どうすればいい？」を整理します。迷っている状況のまま連絡してください。</p>
         </div>
 
         <div class="contactBtns">
@@ -970,20 +813,9 @@
     (function(){
       const hamb = document.getElementById('hamb');
       const drawer = document.getElementById('drawer');
-
       hamb.addEventListener('click', () => {
         const open = drawer.classList.toggle('is-open');
         hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-
-      document.querySelectorAll('.mobToggle').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const key = btn.dataset.mob;
-          const panel = document.getElementById('mob-' + key);
-          const isOpen = panel.style.display === 'block';
-          panel.style.display = isOpen ? 'none' : 'block';
-          btn.textContent = btn.textContent.replace(isOpen ? '（閉じる）' : '（開く）', isOpen ? '（開く）' : '（閉じる）');
-        });
       });
     })();
   </script>
