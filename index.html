@@ -214,15 +214,20 @@
     .hero{ padding: 18px 0 30px; }
 
     .heroBox{
-      position:relative;
-      width:100%;
-      border-radius: 26px;
-      overflow:hidden;
-      box-shadow: var(--shadow);
-      border:1px solid rgba(229,231,235,.9);
-      background:#111;
-      min-height: clamp(460px, 68vh, 780px);
-    }
+  position:relative;
+  width:100%;
+  border-radius: 26px;
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  border:1px solid rgba(229,231,235,.9);
+  background:#111;
+
+  /* ★GBっぽい：縦を浅くする */
+  min-height: clamp(360px, 56vh, 620px);
+
+  /* ★比率を固定（横長） */
+  aspect-ratio: 16 / 9;
+}
 
     .heroBg{
       position:absolute;
